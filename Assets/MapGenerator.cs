@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
+
 
 public class MapGenerator : MonoBehaviour 
 {
@@ -37,6 +39,7 @@ public class MapGenerator : MonoBehaviour
 
         GenerateStartingMap();
         
+        
         tileMap.RefreshAllTiles();
                
     }
@@ -57,10 +60,48 @@ public class MapGenerator : MonoBehaviour
     {
         // Get the six neighbours
         Dictionary<TileBase, int> neighbourWeights = GetNeighbourWeights(newPosition);
+
+        Tile nextTile = null;
+        int totalValues = 0;
         
-        //work out the weights of the new tile generation from the neighbours
+        foreach (int value in neighbourWeights.Values)
+        {
+            totalValues += value;
+        }
+
+        int percentWeightUnit = Mathf.FloorToInt(95 / totalValues);
         
-        tileMap.SetTile(newPosition, sandTile);
+        Dictionary<int, TileBase> weightTable = new Dictionary<int, TileBase>();
+        
+        foreach (KeyValuePair<TileBase, int> neighbourWeight in neighbourWeights)
+        {
+            int newWeight = neighbourWeight.Value * percentWeightUnit;
+            if (weightTable.ContainsKey(newWeight))
+            {
+                weightTable.Add(newWeight + 5, neighbourWeight.Key);
+            }
+            else
+            {
+                weightTable.Add(newWeight, neighbourWeight.Key);  
+            }
+            
+        }
+
+        int rng = Mathf.FloorToInt(Random.Range(0f, 100f));
+
+        foreach (var weight in weightTable)
+        {
+            if (rng < weight.Key)
+            {
+                nextTile = weight.Value as Tile;
+                break;
+            }
+            
+            //Nothing in the weight table so lets pick something else
+            nextTile = grassTile;
+
+        }
+        tileMap.SetTile(newPosition, nextTile);
         tileMap.RefreshAllTiles();
     }
 
@@ -113,7 +154,7 @@ public class MapGenerator : MonoBehaviour
         }
         
         Debug.Log(neighbourWeights.Count);
-        foreach (var neighbourWeight in neighbourWeights)
+        foreach (KeyValuePair<TileBase, int> neighbourWeight in neighbourWeights)
         {
             Debug.Log($"Key: {neighbourWeight.Key}, Val: {neighbourWeight.Value}");
         }
