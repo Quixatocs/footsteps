@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -22,6 +23,8 @@ public class MapGenerator : MonoBehaviour
             Vector3Int position = grid.WorldToCell(worldPoint);
             Debug.Log(position);
             //Debug.Log(highlightMap.size);
+
+            GenerateTile(position);
         }
     }
 
@@ -35,7 +38,6 @@ public class MapGenerator : MonoBehaviour
         GenerateStartingMap();
         
         tileMap.RefreshAllTiles();
-        Debug.Log("---");
                
     }
 
@@ -49,5 +51,35 @@ public class MapGenerator : MonoBehaviour
         tileMap.SetTile(new Vector3Int(1, 0, 0), sandTile);
         tileMap.SetTile(new Vector3Int(0, -1, 0), sandTile);
         tileMap.SetTile(new Vector3Int(-1, -1, 0), waterTile);
+    }
+
+    private void GenerateTile(Vector3Int newPosition)
+    {
+        // Get the six neighbours
+        
+        //work out the weights of the new tile generation from the neighbours
+        
+        tileMap.SetTile(new Vector3Int(0, 0, 0), sandTile);
+        tileMap.RefreshAllTiles();
+    }
+
+    private List<TileBase> GetNeighbours(Vector3Int newPosition)
+    {
+        List<TileBase> neighbours = new List<TileBase>();
+        TileBase leftNeighbour = tileMap.GetTile(new Vector3Int(newPosition.x - 1, newPosition.y, newPosition.z));
+        TileBase leftUpNeighbour = tileMap.GetTile(new Vector3Int(newPosition.x - 1, newPosition.y + 1, newPosition.z));
+        TileBase rightUpNeighbour = tileMap.GetTile(new Vector3Int(newPosition.x, newPosition.y + 1, newPosition.z));
+        TileBase rightNeighbour = tileMap.GetTile(new Vector3Int(newPosition.x + 1, newPosition.y, newPosition.z));
+        TileBase rightDownNeighbour = tileMap.GetTile(new Vector3Int(newPosition.x, newPosition.y - 1, newPosition.z));
+        TileBase leftDownNeighbour = tileMap.GetTile(new Vector3Int(newPosition.x - 1, newPosition.y - 1, newPosition.z));
+        
+        neighbours.Add(leftNeighbour);
+        neighbours.Add(leftUpNeighbour);
+        neighbours.Add(rightUpNeighbour);
+        neighbours.Add(rightNeighbour);
+        neighbours.Add(rightDownNeighbour);
+        neighbours.Add(leftDownNeighbour);
+
+        return neighbours;
     }
 }
