@@ -45,6 +45,13 @@ public class MapGenerator : MonoBehaviour
         GenerateStartingMap();
         
         tileMap.RefreshAllTiles();
+        
+        InvokeRepeating("GenGen", 1f, 0.03f);
+    }
+
+    private void GenGen()
+    {
+        GenerateTile(new Vector3Int(Random.Range(-10, 10), Random.Range(-10, 10), 0));
     }
 
     private void GenerateStartingMap() 
@@ -61,8 +68,22 @@ public class MapGenerator : MonoBehaviour
 
     private void GenerateTile(Vector3Int newPosition)
     {
-        tileMap.SetTile(newPosition, GenerateTileFromNeighbourTypes(newPosition));
+        Tile newTile = GenerateTileFromNeighbourWeights(newPosition);
+
+        if (newTile == null)
+        {
+            newTile = GenerateRandomTile();
+        }
+        
+        tileMap.SetTile(newPosition, newTile);
         tileMap.RefreshAllTiles();
+    }
+
+    private Tile GenerateRandomTile()
+    {
+        int rng = Random.Range(0, allTiles.Length);
+
+        return allTiles[rng];
     }
 
     private Tile GenerateTileFromNeighbourTypes(Vector3Int newPosition)
@@ -70,6 +91,8 @@ public class MapGenerator : MonoBehaviour
         // Get the six neighbours
         TileBase[] tiles = GetNeighbourWeights(newPosition).Keys.ToArray();
 
+        if (tiles.Length == 0) return null;
+        
         int rng = Random.Range(0, tiles.Length);
 
         return tiles[rng] as Tile;
@@ -77,9 +100,12 @@ public class MapGenerator : MonoBehaviour
     
     private Tile GenerateTileFromNeighbourWeights(Vector3Int newPosition)
     {
+        
         // Get the six neighbours
         Dictionary<TileBase, int> neighbourWeights = GetNeighbourWeights(newPosition);
 
+        if (neighbourWeights.Count == 0) return null;
+        
         Tile nextTile = null;
         int totalValues = 0;
         
@@ -87,7 +113,7 @@ public class MapGenerator : MonoBehaviour
         {
             totalValues += value;
         }
-
+        
         int percentWeightUnit = Mathf.FloorToInt(96 / totalValues);
         
         //Build the Table
@@ -121,7 +147,7 @@ public class MapGenerator : MonoBehaviour
 
     private Dictionary<TileBase, int> GetNeighbourWeights(Vector3Int newPosition)
     {
-        Dictionary<TileBase, int> neighbourWeights = new Dictionary<TileBase, int>();
+        
         List<TileBase> neighbours = new List<TileBase>();
 
         TileBase left = tileMap.GetTile(new Vector3Int(newPosition.x - 1, newPosition.y, newPosition.z));
@@ -144,6 +170,8 @@ public class MapGenerator : MonoBehaviour
             ? tileMap.GetTile(new Vector3Int(newPosition.x - 1, newPosition.y - 1, newPosition.z))
             : tileMap.GetTile(new Vector3Int(newPosition.x, newPosition.y - 1, newPosition.z));
         
+        Dictionary<TileBase, int> neighbourWeights = new Dictionary<TileBase, int>();
+        
         neighbours.Add(left);
         neighbours.Add(leftUp);
         neighbours.Add(rightUp);
@@ -164,7 +192,6 @@ public class MapGenerator : MonoBehaviour
                     neighbourWeights.Add(neighbour, 1);
                 }
             }
-            
         }
         
         Debug.Log(neighbourWeights.Count);
@@ -173,7 +200,6 @@ public class MapGenerator : MonoBehaviour
             Debug.Log($"Key: {neighbourWeight.Key}, Val: {neighbourWeight.Value}");
         }
         
-
         return neighbourWeights;
     }
     
