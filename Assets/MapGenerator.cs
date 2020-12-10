@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
@@ -13,6 +14,8 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private Tile grassTile;
 
     private Tilemap tileMap;
+
+    private Tile[] allTiles;
     
 
     private void Update() {
@@ -37,11 +40,11 @@ public class MapGenerator : MonoBehaviour
         int rows = 10;
         int columns = 10;
 
+        allTiles = new[] {waterTile, sandTile, grassTile};
+
         GenerateStartingMap();
         
-        
         tileMap.RefreshAllTiles();
-               
     }
 
     private void GenerateStartingMap() 
@@ -50,13 +53,29 @@ public class MapGenerator : MonoBehaviour
         tileMap.SetTile(new Vector3Int(0, 0, 0), sandTile);
         tileMap.SetTile(new Vector3Int(-1, 0, 0), waterTile);
         tileMap.SetTile(new Vector3Int(-1, 1, 0), waterTile);
-        tileMap.SetTile(new Vector3Int(0, 1, 0), sandTile);
+        tileMap.SetTile(new Vector3Int(0, 1, 0), grassTile);
         tileMap.SetTile(new Vector3Int(1, 0, 0), sandTile);
         tileMap.SetTile(new Vector3Int(0, -1, 0), sandTile);
         tileMap.SetTile(new Vector3Int(-1, -1, 0), waterTile);
     }
 
     private void GenerateTile(Vector3Int newPosition)
+    {
+        tileMap.SetTile(newPosition, GenerateTileFromNeighbourTypes(newPosition));
+        tileMap.RefreshAllTiles();
+    }
+
+    private Tile GenerateTileFromNeighbourTypes(Vector3Int newPosition)
+    {
+        // Get the six neighbours
+        TileBase[] tiles = GetNeighbourWeights(newPosition).Keys.ToArray();
+
+        int rng = Random.Range(0, tiles.Length);
+
+        return tiles[rng] as Tile;
+    }
+    
+    private Tile GenerateTileFromNeighbourWeights(Vector3Int newPosition)
     {
         // Get the six neighbours
         Dictionary<TileBase, int> neighbourWeights = GetNeighbourWeights(newPosition);
@@ -69,40 +88,35 @@ public class MapGenerator : MonoBehaviour
             totalValues += value;
         }
 
-        int percentWeightUnit = Mathf.FloorToInt(95 / totalValues);
+        int percentWeightUnit = Mathf.FloorToInt(96 / totalValues);
         
-        Dictionary<int, TileBase> weightTable = new Dictionary<int, TileBase>();
-        
-        foreach (KeyValuePair<TileBase, int> neighbourWeight in neighbourWeights)
+        //Build the Table
+        Dictionary<int, Tile> percentageTileWeights = new Dictionary<int, Tile>();
+
+        int randomTileIndex = Random.Range(0, allTiles.Length);
+        int cumulativePercentage = 4;
+        percentageTileWeights.Add(cumulativePercentage, allTiles[randomTileIndex]);
+
+        foreach (KeyValuePair<TileBase, int> keyValuePair in neighbourWeights)
         {
-            int newWeight = neighbourWeight.Value * percentWeightUnit;
-            if (weightTable.ContainsKey(newWeight))
-            {
-                weightTable.Add(newWeight + 5, neighbourWeight.Key);
-            }
-            else
-            {
-                weightTable.Add(newWeight, neighbourWeight.Key);  
-            }
-            
+            cumulativePercentage += keyValuePair.Value * percentWeightUnit;
+            percentageTileWeights.Add(cumulativePercentage, keyValuePair.Key as Tile);
         }
 
-        int rng = Mathf.FloorToInt(Random.Range(0f, 100f));
+        //TODO: check this out
+        //Query the table
+        int rng = Random.Range(0, 100);
 
-        foreach (var weight in weightTable)
+        foreach (KeyValuePair<int, Tile> keyValuePair in percentageTileWeights)
         {
-            if (rng < weight.Key)
+            if (keyValuePair.Key > rng)
             {
-                nextTile = weight.Value as Tile;
+                nextTile = keyValuePair.Value;
                 break;
             }
-            
-            //Nothing in the weight table so lets pick something else
-            nextTile = grassTile;
-
         }
-        tileMap.SetTile(newPosition, nextTile);
-        tileMap.RefreshAllTiles();
+
+        return nextTile;
     }
 
     private Dictionary<TileBase, int> GetNeighbourWeights(Vector3Int newPosition)
@@ -162,4 +176,6 @@ public class MapGenerator : MonoBehaviour
 
         return neighbourWeights;
     }
+    
+    
 }
