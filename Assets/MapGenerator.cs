@@ -1,21 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 
 public class MapGenerator : MonoBehaviour 
 {
     [SerializeField] public Grid grid;
-    [SerializeField] private Tile waterTile;
-    [SerializeField] private Tile sandTile;
-    [SerializeField] private Tile grassTile;
 
     private Tilemap tileMap;
-
-    private Tile[] allTiles;
+    private List<WorldTile> worldTiles;
+    
+    public AssetReference worldTileSetReference;
     
 
     private void Update() {
@@ -27,7 +26,6 @@ public class MapGenerator : MonoBehaviour
             // get current grid location
             Vector3Int position = grid.WorldToCell(worldPoint);
             Debug.Log(position);
-            //Debug.Log(highlightMap.size);
 
             GenerateTile(position);
         }
@@ -35,35 +33,56 @@ public class MapGenerator : MonoBehaviour
 
     void Start()
     {
-        tileMap = GetComponent<Tilemap>();
-
-        int rows = 10;
-        int columns = 10;
-
-        allTiles = new[] {waterTile, sandTile, grassTile};
-
-        GenerateStartingMap();
-        
-        tileMap.RefreshAllTiles();
-        
-        //InvokeRepeating("GenGen", 0.5f, 0.01f);
+        Addressables.LoadAssetAsync<WorldTileSet>(worldTileSetReference).Completed += OnWorldTileSetLoadDone;
     }
-
-    private void GenGen()
+    
+    private void OnWorldTileSetLoadDone(AsyncOperationHandle<WorldTileSet> obj)
     {
-        GenerateTile(new Vector3Int(Random.Range(-9, 9), Random.Range(-9, 9), 0));
-    }
+        if (obj.Status == AsyncOperationStatus.Succeeded)
+        {
+            WorldTileSet worldTileSet = obj.Result;
+            Debug.Log("Successfully loaded WorldTileSet.");
+            
+            worldTiles = new List<WorldTile>();
+            int counter = worldTileSet.WorldTiles.Length;
+            foreach (AssetReference worldTile in worldTileSet.WorldTiles)
+            {
+                Addressables.LoadAssetAsync<WorldTile>(worldTile).Completed += operation =>
+                {
+                    if (operation.Status == AsyncOperationStatus.Succeeded)
+                    {
+                        counter--;
+                        worldTiles.Add(operation.Result);
+                        Debug.Log($"Successfully loaded and instantiated WorldTile <{operation.Result.name}>.");
 
+                        if (counter == 0)
+                        {
+                            GenerateStartingMap();
+                        }
+                    }
+                };
+            }
+        }
+        else
+        {
+            Debug.LogError($"Something went wrong loading the WorldTileSet");
+        }
+    }
+    
     private void GenerateStartingMap() 
     {
+        tileMap = GetComponent<Tilemap>();
+        
         //First set the starting tile to sand
-        tileMap.SetTile(new Vector3Int(0, 0, 0), sandTile);
-        tileMap.SetTile(new Vector3Int(-1, 0, 0), waterTile);
-        tileMap.SetTile(new Vector3Int(-1, 1, 0), waterTile);
-        tileMap.SetTile(new Vector3Int(0, 1, 0), grassTile);
-        tileMap.SetTile(new Vector3Int(1, 0, 0), sandTile);
-        tileMap.SetTile(new Vector3Int(0, -1, 0), sandTile);
-        tileMap.SetTile(new Vector3Int(-1, -1, 0), waterTile);
+        tileMap.SetTile(new Vector3Int(0, 0, 0), worldTiles[1]);
+        tileMap.SetTile(new Vector3Int(-1, 0, 0), worldTiles[0]);
+        tileMap.SetTile(new Vector3Int(-1, 1, 0), worldTiles[0]);
+        tileMap.SetTile(new Vector3Int(0, 1, 0), worldTiles[2]);
+        tileMap.SetTile(new Vector3Int(1, 0, 0), worldTiles[1]);
+        tileMap.SetTile(new Vector3Int(0, -1, 0), worldTiles[1]);
+        tileMap.SetTile(new Vector3Int(-1, -1, 0), worldTiles[0]);
+        
+        tileMap.RefreshAllTiles();
     }
 
     private void GenerateTile(Vector3Int newPosition)
@@ -79,25 +98,12 @@ public class MapGenerator : MonoBehaviour
         tileMap.RefreshAllTiles();
     }
 
-    private Tile GenerateRandomTile()
+    private WorldTile GenerateRandomTile()
     {
-        int rng = Random.Range(0, allTiles.Length);
-
-        return allTiles[rng];
+        int rng = Random.Range(0, worldTiles.Count);
+        return worldTiles[rng];
     }
 
-    private Tile GenerateTileFromNeighbourTypes(Vector3Int newPosition)
-    {
-        // Get the six neighbours
-        TileBase[] tiles = GetNeighbourWeights(newPosition).Keys.ToArray();
-
-        if (tiles.Length == 0) return null;
-        
-        int rng = Random.Range(0, tiles.Length);
-
-        return tiles[rng] as Tile;
-    }
-    
     private Tile GenerateTileFromNeighbourWeights(Vector3Int newPosition)
     {
         
@@ -119,9 +125,8 @@ public class MapGenerator : MonoBehaviour
         //Build the Table
         Dictionary<int, Tile> percentageTileWeights = new Dictionary<int, Tile>();
 
-        int randomTileIndex = Random.Range(0, allTiles.Length);
         int cumulativePercentage = 4;
-        percentageTileWeights.Add(cumulativePercentage, allTiles[randomTileIndex]);
+        percentageTileWeights.Add(cumulativePercentage, GenerateRandomTile());
 
         foreach (KeyValuePair<TileBase, int> keyValuePair in neighbourWeights)
         {

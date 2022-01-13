@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fa4a2a483a74e5da361b51de7e92a77, type: 3}
+  m_Name: WorldTileSet
+  m_EditorClassIdentifier: 
+  WorldTiles:
+  - m_AssetGUID: dd028e5f8b4e24047aad891bf0385870
+    m_SubObjectName: 
+    m_SubObjectType: 
+  - m_AssetGUID: b8a27b7ae6c376842a64d4b63807568a
+    m_SubObjectName: 
+    m_SubObjectType: 
+  - m_AssetGUID: 0f5c8f43c572aa641905926e02f49adb
+    m_SubObjectName: 
+    m_SubObjectType: 
