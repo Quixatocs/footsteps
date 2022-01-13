@@ -46,7 +46,7 @@ public class MapGenerator : MonoBehaviour
         
         tileMap.RefreshAllTiles();
         
-        InvokeRepeating("GenGen", 0.5f, 0.01f);
+        //InvokeRepeating("GenGen", 0.5f, 0.01f);
     }
 
     private void GenGen()

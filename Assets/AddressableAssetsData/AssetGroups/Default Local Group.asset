@@ -16,7 +16,25 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 5ded94051d1656d49ac233dcc9ad2bf8
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: dd028e5f8b4e24047aad891bf0385870
+    m_Address: Assets/TileMaps/Tiles/Water.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: b8a27b7ae6c376842a64d4b63807568a
+    m_Address: Assets/TileMaps/Tiles/Sand.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 0f5c8f43c572aa641905926e02f49adb
+    m_Address: Assets/TileMaps/Tiles/Grass.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6fc6c05852e40f64783f822c55665ad0, type: 2}
   m_SchemaSet:
