@@ -506,6 +506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 298332885}
-  waterTile: {fileID: 11400000, guid: 28667fc021c42aa41a4759f8e2de8581, type: 2}
-  sandTile: {fileID: 11400000, guid: b5489852bc735e04fbe7e21f4324b86e, type: 2}
-  grassTile: {fileID: 11400000, guid: e1321d8e910a3c14c9dcbc8c6f9db019, type: 2}
+  worldTileSetReference:
+    m_AssetGUID: e3e967fb36e89e6418d30d1851c3aac9
+    m_SubObjectName: 
+    m_SubObjectType: 
