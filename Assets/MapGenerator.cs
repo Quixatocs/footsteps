@@ -53,7 +53,7 @@ public class MapGenerator : MonoBehaviour
                     {
                         counter--;
                         worldTiles.Add(operation.Result);
-                        Debug.Log($"Successfully loaded and instantiated WorldTile <{operation.Result.name}>.");
+                        Debug.Log($"Successfully loaded and instantiated WorldTile <{operation.Result.tileName}>.");
 
                         if (counter == 0)
                         {
@@ -95,7 +95,10 @@ public class MapGenerator : MonoBehaviour
         }
         
         tileMap.SetTile(newPosition, newTile);
-        Debug.Log($"<{newTile.name}>, <{newPosition}>");
+        UnityHexCoordinates newUnityCoordinate = new UnityHexCoordinates(newPosition.x, newPosition.y);
+        CubeHexCoordinates newCubeCoordinate = CoordinateUtilities.UnityHexToCubeHex(newUnityCoordinate);
+        UnityHexCoordinates reNewUnityCoordinate = CoordinateUtilities.CubeHexToUnityHex(newCubeCoordinate);
+        Debug.Log($"<{newTile.tileName}>, U<{newPosition}>, C<{newCubeCoordinate}>, U<{reNewUnityCoordinate}>");
         tileMap.RefreshAllTiles();
     }
 
@@ -207,7 +210,7 @@ public class MapGenerator : MonoBehaviour
     
     private List<Vector3Int> GetNeighbors(Vector3Int unityCell, int range)
     {
-        var centerCubePos = UnityCellToCube(unityCell);
+        //var centerCubePos = UnityCellToAxial(unityCell);
 
         var result = new List<Vector3Int>();
     
@@ -224,30 +227,12 @@ public class MapGenerator : MonoBehaviour
                 }
 
                 var cubePosOffset = new Vector3Int(x, y, z);
-                result.Add(CubeToUnityCell(centerCubePos + cubePosOffset));
+                //result.Add(CubeToUnityCell(centerCubePos + cubePosOffset));
             }
 
         }
 
         return result;
-    }
-    private Vector3Int UnityCellToCube(Vector3Int cell)
-    {
-        var yCell = cell.x; 
-        var xCell = cell.y;
-        var x = yCell - (xCell - (xCell & 1)) / 2;
-        var z = xCell;
-        var y = -x - z;
-        return new Vector3Int(x, y, z);
-    }
-    private Vector3Int CubeToUnityCell(Vector3Int cube)
-    {
-        var x = cube.x;
-        var z = cube.z;
-        var col = x + (z - (z & 1)) / 2;
-        var row = z;
-
-        return new Vector3Int(col, row,  0);
     }
     
     
