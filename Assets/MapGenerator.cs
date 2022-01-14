@@ -25,7 +25,7 @@ public class MapGenerator : MonoBehaviour
             Vector3 worldPoint = ray.GetPoint(-ray.origin.z / ray.direction.z);
             // get current grid location
             Vector3Int position = grid.WorldToCell(worldPoint);
-            Debug.Log(position);
+            
 
             GenerateTile(position);
         }
@@ -87,7 +87,7 @@ public class MapGenerator : MonoBehaviour
 
     private void GenerateTile(Vector3Int newPosition)
     {
-        Tile newTile = GenerateTileFromNeighbourWeights(newPosition);
+        WorldTile newTile = GenerateTileFromNeighbourWeights(newPosition);
 
         if (newTile == null)
         {
@@ -95,6 +95,7 @@ public class MapGenerator : MonoBehaviour
         }
         
         tileMap.SetTile(newPosition, newTile);
+        Debug.Log($"<{newTile.name}>, <{newPosition}>");
         tileMap.RefreshAllTiles();
     }
 
@@ -104,15 +105,15 @@ public class MapGenerator : MonoBehaviour
         return worldTiles[rng];
     }
 
-    private Tile GenerateTileFromNeighbourWeights(Vector3Int newPosition)
+    private WorldTile GenerateTileFromNeighbourWeights(Vector3Int newPosition)
     {
         
         // Get the six neighbours
-        Dictionary<TileBase, int> neighbourWeights = GetNeighbourWeights(newPosition);
+        Dictionary<WorldTile, int> neighbourWeights = GetNeighbourWeights(newPosition);
 
         if (neighbourWeights.Count == 0) return null;
         
-        Tile nextTile = null;
+        WorldTile nextTile = null;
         int totalValues = 0;
         
         foreach (int value in neighbourWeights.Values)
@@ -123,22 +124,22 @@ public class MapGenerator : MonoBehaviour
         int percentWeightUnit = Mathf.FloorToInt(96 / totalValues);
         
         //Build the Table
-        Dictionary<int, Tile> percentageTileWeights = new Dictionary<int, Tile>();
+        Dictionary<int, WorldTile> percentageTileWeights = new Dictionary<int, WorldTile>();
 
         int cumulativePercentage = 4;
         percentageTileWeights.Add(cumulativePercentage, GenerateRandomTile());
 
-        foreach (KeyValuePair<TileBase, int> keyValuePair in neighbourWeights)
+        foreach (KeyValuePair<WorldTile, int> keyValuePair in neighbourWeights)
         {
             cumulativePercentage += keyValuePair.Value * percentWeightUnit;
-            percentageTileWeights.Add(cumulativePercentage, keyValuePair.Key as Tile);
+            percentageTileWeights.Add(cumulativePercentage, keyValuePair.Key);
         }
 
         //TODO: check this out
         //Query the table
         int rng = Random.Range(0, 100);
 
-        foreach (KeyValuePair<int, Tile> keyValuePair in percentageTileWeights)
+        foreach (KeyValuePair<int, WorldTile> keyValuePair in percentageTileWeights)
         {
             if (keyValuePair.Key > rng)
             {
@@ -150,32 +151,32 @@ public class MapGenerator : MonoBehaviour
         return nextTile;
     }
 
-    private Dictionary<TileBase, int> GetNeighbourWeights(Vector3Int newPosition)
+    private Dictionary<WorldTile, int> GetNeighbourWeights(Vector3Int newPosition)
     {
         
-        List<TileBase> neighbours = new List<TileBase>();
+        List<WorldTile> neighbours = new List<WorldTile>();
 
-        TileBase left = tileMap.GetTile(new Vector3Int(newPosition.x - 1, newPosition.y, newPosition.z));
+        WorldTile left = (WorldTile)tileMap.GetTile(new Vector3Int(newPosition.x - 1, newPosition.y, newPosition.z));
         
-        TileBase leftUp = newPosition.y % 2 == 0 
-            ? tileMap.GetTile(new Vector3Int(newPosition.x - 1, newPosition.y + 1, newPosition.z))
-            : tileMap.GetTile(new Vector3Int(newPosition.x, newPosition.y + 1, newPosition.z));
+        WorldTile leftUp = newPosition.y % 2 == 0 
+            ? (WorldTile)tileMap.GetTile(new Vector3Int(newPosition.x - 1, newPosition.y + 1, newPosition.z))
+            : (WorldTile)tileMap.GetTile(new Vector3Int(newPosition.x, newPosition.y + 1, newPosition.z));
         
-        TileBase rightUp = newPosition.y % 2 == 1 
-            ? tileMap.GetTile(new Vector3Int(newPosition.x + 1, newPosition.y + 1, newPosition.z))
-            : tileMap.GetTile(new Vector3Int(newPosition.x, newPosition.y + 1, newPosition.z));
+        WorldTile rightUp = newPosition.y % 2 == 1 
+            ? (WorldTile)tileMap.GetTile(new Vector3Int(newPosition.x + 1, newPosition.y + 1, newPosition.z))
+            : (WorldTile)tileMap.GetTile(new Vector3Int(newPosition.x, newPosition.y + 1, newPosition.z));
         
-        TileBase right = tileMap.GetTile(new Vector3Int(newPosition.x + 1, newPosition.y, newPosition.z));
+        WorldTile right = (WorldTile)tileMap.GetTile(new Vector3Int(newPosition.x + 1, newPosition.y, newPosition.z));
         
-        TileBase rightDown = newPosition.y % 2 == 1 
-            ? tileMap.GetTile(new Vector3Int(newPosition.x + 1, newPosition.y - 1, newPosition.z))
-            : tileMap.GetTile(new Vector3Int(newPosition.x, newPosition.y - 1, newPosition.z));
+        WorldTile rightDown = newPosition.y % 2 == 1 
+            ? (WorldTile)tileMap.GetTile(new Vector3Int(newPosition.x + 1, newPosition.y - 1, newPosition.z))
+            : (WorldTile)tileMap.GetTile(new Vector3Int(newPosition.x, newPosition.y - 1, newPosition.z));
         
-        TileBase leftDown = newPosition.y % 2 == 0 
-            ? tileMap.GetTile(new Vector3Int(newPosition.x - 1, newPosition.y - 1, newPosition.z))
-            : tileMap.GetTile(new Vector3Int(newPosition.x, newPosition.y - 1, newPosition.z));
+        WorldTile leftDown = newPosition.y % 2 == 0 
+            ? (WorldTile)tileMap.GetTile(new Vector3Int(newPosition.x - 1, newPosition.y - 1, newPosition.z))
+            : (WorldTile)tileMap.GetTile(new Vector3Int(newPosition.x, newPosition.y - 1, newPosition.z));
         
-        Dictionary<TileBase, int> neighbourWeights = new Dictionary<TileBase, int>();
+        Dictionary<WorldTile, int> neighbourWeights = new Dictionary<WorldTile, int>();
         
         neighbours.Add(left);
         neighbours.Add(leftUp);
@@ -184,7 +185,7 @@ public class MapGenerator : MonoBehaviour
         neighbours.Add(rightDown);
         neighbours.Add(leftDown);
 
-        foreach (TileBase neighbour in neighbours)
+        foreach (WorldTile neighbour in neighbours)
         {
             if (neighbour != null)
             {
