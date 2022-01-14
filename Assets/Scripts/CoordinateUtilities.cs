@@ -9,21 +9,17 @@ public static class CoordinateUtilities
     
     public static UnityHexCoordinates AxialHexToUnityHex(AxialHexCoordinates axialHexCoordinates)
     {
-        return new UnityHexCoordinates(2 * axialHexCoordinates.R + axialHexCoordinates.Q, 
-            axialHexCoordinates.R);
+        return new UnityHexCoordinates(2 * axialHexCoordinates.R + axialHexCoordinates.Q, axialHexCoordinates.R);
     }
 
     public static CubeHexCoordinates AxialHexToCubeHex(AxialHexCoordinates axialHexCoordinates)
     {
-        return new CubeHexCoordinates(axialHexCoordinates.Q, 
-            axialHexCoordinates.R,
-            -axialHexCoordinates.Q - axialHexCoordinates.R);
+        return new CubeHexCoordinates(axialHexCoordinates.Q, axialHexCoordinates.R, -axialHexCoordinates.Q - axialHexCoordinates.R);
     }
 
     public static AxialHexCoordinates CubeHexToAxialHex(CubeHexCoordinates cubeHexCoordinates)
     {
-        return new AxialHexCoordinates(cubeHexCoordinates.Q, 
-            cubeHexCoordinates.R);
+        return new AxialHexCoordinates(cubeHexCoordinates.Q, cubeHexCoordinates.R);
     }
 
     public static CubeHexCoordinates UnityHexToCubeHex(UnityHexCoordinates unityHexCoordinates)
