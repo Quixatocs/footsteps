@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using Debug = UnityEngine.Debug;
 
 
 public class MapGenerator : MonoBehaviour 
@@ -69,20 +72,17 @@ public class MapGenerator : MonoBehaviour
         }
     }
     
-    private void GenerateStartingMap() 
+    private void GenerateStartingMap()
     {
+        Stopwatch stopwatch = new Stopwatch();
+        stopwatch.Start();
         tileMap = GetComponent<Tilemap>();
         
-        //First set the starting tile to sand
-        tileMap.SetTile(new Vector3Int(0, 0, 0), worldTiles[1]);
-        tileMap.SetTile(new Vector3Int(-1, 0, 0), worldTiles[0]);
-        tileMap.SetTile(new Vector3Int(-1, 1, 0), worldTiles[0]);
-        tileMap.SetTile(new Vector3Int(0, 1, 0), worldTiles[2]);
-        tileMap.SetTile(new Vector3Int(1, 0, 0), worldTiles[1]);
-        tileMap.SetTile(new Vector3Int(0, -1, 0), worldTiles[1]);
-        tileMap.SetTile(new Vector3Int(-1, -1, 0), worldTiles[0]);
-        
+        SpawnHexesInRange(new CubeHexCoordinates(0, 0, 0), 2);
+
         tileMap.RefreshAllTiles();
+        stopwatch.Stop();
+        Debug.Log($"SPAWING DONE IN: <{stopwatch.ElapsedMilliseconds}>ms");
     }
 
     private void GenerateTile(Vector3Int newPosition)
@@ -206,33 +206,25 @@ public class MapGenerator : MonoBehaviour
         return neighbourWeights;
     }
     
-    //TODO FIX THISS
-    
-    private List<Vector3Int> GetNeighbors(Vector3Int unityCell, int range)
+    private void SpawnHexesInRange(CubeHexCoordinates centerHex, int range)
     {
-        //var centerCubePos = UnityCellToAxial(unityCell);
-
-        var result = new List<Vector3Int>();
-    
-        int min = -range, max = range;
-
-        for (int x = min; x <= max; x++)
+        for (int q = centerHex.Q - range; q <= centerHex.Q + range; q++)
         {
-            for (int y = min; y <= max; y++)
+            for (int r = centerHex.R - range; r <= centerHex.R + range; r++)
             {
-                var z = -x - y;
-                if (z < min || z > max)
+                for (int s = centerHex.S - range; s <= centerHex.S + range; s++)
                 {
-                    continue;
+                    if (q + r + s != 0) continue;
+                    
+                    Vector3Int newPosition = CoordinateUtilities.CubeHexToUnityHex(new CubeHexCoordinates(q, r, s)).ToVector3Int();
+
+                    if (!tileMap.HasTile(newPosition))
+                    {
+                        GenerateTile(newPosition);
+                    }
                 }
-
-                var cubePosOffset = new Vector3Int(x, y, z);
-                //result.Add(CubeToUnityCell(centerCubePos + cubePosOffset));
             }
-
         }
-
-        return result;
     }
     
     

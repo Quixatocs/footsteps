@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public static class CoordinateUtilities
 {
     public static AxialHexCoordinates UnityHexToAxialHex(UnityHexCoordinates unityHexCoordinates)

@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 [Serializable]
 public struct UnityHexCoordinates
@@ -13,4 +14,9 @@ public struct UnityHexCoordinates
     }
     
     public override string ToString() => $"({X}, {Z})";
+
+    public Vector3Int ToVector3Int()
+    {
+        return new Vector3Int(X, Z, 0);
+    }
 }
