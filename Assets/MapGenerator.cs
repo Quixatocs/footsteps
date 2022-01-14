@@ -78,7 +78,7 @@ public class MapGenerator : MonoBehaviour
         stopwatch.Start();
         tileMap = GetComponent<Tilemap>();
         
-        SpawnHexesInRange(new CubeHexCoordinates(0, 0, 0), 2);
+        SpawnHexesInRange(new CubeHexCoordinates(0, 0, 0), 5);
 
         tileMap.RefreshAllTiles();
         stopwatch.Stop();
