@@ -10,7 +10,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using Debug = UnityEngine.Debug;
 
 
-public class MapGenerator : MonoBehaviour 
+public class Map : MonoBehaviour 
 {
     [SerializeField] public Grid grid;
 
@@ -18,23 +18,10 @@ public class MapGenerator : MonoBehaviour
     private List<WorldTile> worldTiles;
     
     public AssetReference worldTileSetReference;
+
+    public Action OnMapAssetsLoadingComplete;
     
-
-    private void Update() {
-
-        if (Input.GetMouseButtonDown(0)) {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            // get the collision point of the ray with the z = 0 plane
-            Vector3 worldPoint = ray.GetPoint(-ray.origin.z / ray.direction.z);
-            // get current grid location
-            Vector3Int position = grid.WorldToCell(worldPoint);
-            
-
-            GenerateTile(position);
-        }
-    }
-
-    void Start()
+    void Awake()
     {
         Addressables.LoadAssetAsync<WorldTileSet>(worldTileSetReference).Completed += OnWorldTileSetLoadDone;
     }
@@ -60,7 +47,7 @@ public class MapGenerator : MonoBehaviour
 
                         if (counter == 0)
                         {
-                            GenerateStartingMap();
+                            OnMapAssetsLoadingComplete?.Invoke();
                         }
                     }
                 };
@@ -72,17 +59,13 @@ public class MapGenerator : MonoBehaviour
         }
     }
     
-    private void GenerateStartingMap()
+    public void GenerateTilesAroundPlayer(CubeHexCoordinates playerPosition)
     {
-        Stopwatch stopwatch = new Stopwatch();
-        stopwatch.Start();
         tileMap = GetComponent<Tilemap>();
         
-        SpawnHexesInRange(new CubeHexCoordinates(0, 0, 0), 5);
+        SpawnHexesInRange(playerPosition, 2);
 
         tileMap.RefreshAllTiles();
-        stopwatch.Stop();
-        Debug.Log($"SPAWING DONE IN: <{stopwatch.ElapsedMilliseconds}>ms");
     }
 
     private void GenerateTile(Vector3Int newPosition)
@@ -138,7 +121,6 @@ public class MapGenerator : MonoBehaviour
             percentageTileWeights.Add(cumulativePercentage, keyValuePair.Key);
         }
 
-        //TODO: check this out
         //Query the table
         int rng = Random.Range(0, 100);
 
