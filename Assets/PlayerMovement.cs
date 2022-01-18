@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
 
     public Map map;
 
+    public static Action<Vector3> OnPlayerMoved;
+
     private void OnEnable()
     {
         map.OnMapAssetsLoadingComplete += OnMapInitialised;
@@ -22,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
             Vector3Int cell = map.grid.WorldToCell(worldPoint);
 
             transform.position = map.grid.CellToWorld(cell);
+            
+            OnPlayerMoved?.Invoke(transform.position);
             
             CubeHexCoordinates position = CoordinateUtilities.UnityHexToCubeHex(cell.ToUnityHexCoordinates());
 
