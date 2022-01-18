@@ -8,5 +8,7 @@ using UnityEngine.Tilemaps;
 public class WorldTile : Tile
 {
     public string tileName;
+    public Color visibleTint;
+    public Color fogTint;
     public TileNeighbourWeight[] tileNeighbourWeight;
 }

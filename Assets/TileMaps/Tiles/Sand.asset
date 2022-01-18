@@ -35,4 +35,5 @@ MonoBehaviour:
   m_Flags: 1
   m_ColliderType: 1
   tileName: Sand
+  fogTint: {r: 0.3301887, g: 0.30913284, b: 0.07008723, a: 1}
   tileNeighbourWeight: []

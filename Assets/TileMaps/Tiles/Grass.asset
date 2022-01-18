@@ -35,4 +35,5 @@ MonoBehaviour:
   m_Flags: 1
   m_ColliderType: 1
   tileName: Grass
+  fogTint: {r: 0.14073269, g: 0.3679245, b: 0.13363294, a: 1}
   tileNeighbourWeight: []

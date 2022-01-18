@@ -16,7 +16,8 @@ public class Map : MonoBehaviour
 
     private Tilemap tileMap;
     private List<WorldTile> worldTiles;
-    
+    private List<WorldTile> lastInRangeWorldTiles;
+
     public AssetReference worldTileSetReference;
 
     public Action OnMapAssetsLoadingComplete;
@@ -63,12 +64,14 @@ public class Map : MonoBehaviour
     {
         tileMap = GetComponent<Tilemap>();
         
-        SpawnHexesInRange(playerPosition, 2);
+        lastInRangeWorldTiles = SpawnHexesInRange(playerPosition, 2);
+
+        ApplyFogToTiles();
 
         tileMap.RefreshAllTiles();
     }
 
-    private void GenerateTile(Vector3Int newPosition)
+    private WorldTile GenerateTile(Vector3Int newPosition)
     {
         WorldTile newTile = GenerateTileFromNeighbourWeights(newPosition);
 
@@ -78,11 +81,8 @@ public class Map : MonoBehaviour
         }
         
         tileMap.SetTile(newPosition, newTile);
-        UnityHexCoordinates newUnityCoordinate = new UnityHexCoordinates(newPosition.x, newPosition.y);
-        CubeHexCoordinates newCubeCoordinate = CoordinateUtilities.UnityHexToCubeHex(newUnityCoordinate);
-        UnityHexCoordinates reNewUnityCoordinate = CoordinateUtilities.CubeHexToUnityHex(newCubeCoordinate);
-        Debug.Log($"<{newTile.tileName}>, U<{newPosition}>, C<{newCubeCoordinate}>, U<{reNewUnityCoordinate}>");
-        tileMap.RefreshAllTiles();
+
+        return newTile;
     }
 
     private WorldTile GenerateRandomTile()
@@ -188,8 +188,10 @@ public class Map : MonoBehaviour
         return neighbourWeights;
     }
     
-    private void SpawnHexesInRange(CubeHexCoordinates centerHex, int range)
+    private List<WorldTile> SpawnHexesInRange(CubeHexCoordinates centerHex, int range)
     {
+        List<WorldTile> tilesInRange = new List<WorldTile>();
+        
         for (int q = centerHex.Q - range; q <= centerHex.Q + range; q++)
         {
             for (int r = centerHex.R - range; r <= centerHex.R + range; r++)
@@ -200,12 +202,27 @@ public class Map : MonoBehaviour
                     
                     Vector3Int newPosition = CoordinateUtilities.CubeHexToUnityHex(new CubeHexCoordinates(q, r, s)).ToVector3Int();
 
-                    if (!tileMap.HasTile(newPosition))
+                    WorldTile inRangeTile = (WorldTile)tileMap.GetTile(newPosition);
+
+                    if (inRangeTile == null)
                     {
-                        GenerateTile(newPosition);
+                        inRangeTile = GenerateTile(newPosition);
                     }
+
+                    inRangeTile.color = inRangeTile.visibleTint;
+                    tilesInRange.Add(inRangeTile);
                 }
             }
+        }
+
+        return tilesInRange;
+    }
+
+    private void ApplyFogToTiles()
+    {
+        foreach (WorldTile worldTile in lastInRangeWorldTiles)
+        {
+            
         }
     }
     
