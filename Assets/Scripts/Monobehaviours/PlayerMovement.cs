@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
             
             OnPlayerMoved?.Invoke(transform.position);
             
-            CubeHexCoordinates position = CoordinateUtilities.UnityHexToCubeHex(cell.ToUnityHexCoordinates());
+            CubeHexCoords position = CoordUtils.UnityHexToCubeHex(cell.ToUnityHexCoordinates());
 
             UpdateMap(position);
         }
@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnMapInitialised()
     {
         map.OnMapAssetsLoadingComplete -= OnMapInitialised;
-        UpdateMap(new CubeHexCoordinates(0, 0, 0));
+        UpdateMap(new CubeHexCoords(0, 0, 0));
     }
 
     private void Move()
@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    private void UpdateMap(CubeHexCoordinates position)
+    private void UpdateMap(CubeHexCoords position)
     {
         map.GenerateTilesAroundPlayer(position);
     }
