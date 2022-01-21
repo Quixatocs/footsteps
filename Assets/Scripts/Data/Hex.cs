@@ -4,9 +4,13 @@ using UnityEngine;
 [Serializable]
 public class Hex
 {
+    public int q;
+    public int r;
+    public int s;
+    
     private Vector3Int unity;
     public Vector3Int Unity => unity;
-
+    
     private Vector3 hexCenterWorldPoint;
     public Vector3 HexCenterWorldPoint => hexCenterWorldPoint;
 
