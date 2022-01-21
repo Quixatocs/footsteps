@@ -88,7 +88,7 @@ public class Map : MonoBehaviour
         }
     }
 
-    public void GenerateTilesAroundPlayer(CubeHexCoords playerPosition)
+    public void GenerateTilesAroundPlayer(Vector3Int playerCubePosition)
     {
         tileMap = GetComponent<Tilemap>();
 

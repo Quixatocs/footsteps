@@ -36,9 +36,9 @@ public class PlayerMovement : MonoBehaviour
         UpdateMap(new CubeHexCoords(0, 0, 0));
     }
 
-    private void Move()
+    public void Move(Vector3Int cubePosition)
     {
-        
+        PlayerMoved.Raise(cubePosition);
     }
 
     private void UpdateMap(CubeHexCoords position)
