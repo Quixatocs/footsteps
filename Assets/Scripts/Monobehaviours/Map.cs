@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
@@ -14,22 +12,27 @@ public class Map : MonoBehaviour
 {
     
     public IntVariable playerVisionRange;
-    
-    [SerializeField] public Grid grid;
 
+    private Grid grid;
     private Tilemap tileMap;
     private List<WorldTile> worldTiles;
     private List<WorldTile> lastInRangeWorldTiles;
 
     public AssetReference worldTileSetReference;
 
-    public Action OnMapAssetsLoadingComplete;
+    public VoidEvent mapAssetsLoadingCompleteVoidEvent;
+    public Vector3IntEvent mapCellClickedEvent;
     
     void Awake()
     {
         Addressables.LoadAssetAsync<WorldTileSet>(worldTileSetReference).Completed += OnWorldTileSetLoadDone;
     }
-    
+
+    private void Start()
+    {
+        grid = GetComponent<Grid>();
+    }
+
     private void OnWorldTileSetLoadDone(AsyncOperationHandle<WorldTileSet> obj)
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
@@ -51,7 +54,7 @@ public class Map : MonoBehaviour
 
                         if (counter == 0)
                         {
-                            OnMapAssetsLoadingComplete?.Invoke();
+                            mapAssetsLoadingCompleteVoidEvent.Raise();
                         }
                     }
                 };
@@ -62,7 +65,27 @@ public class Map : MonoBehaviour
             Debug.LogError($"Something went wrong loading the WorldTileSet");
         }
     }
-    
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0)) {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Vector3 worldPoint = ray.GetPoint(-ray.origin.z / ray.direction.z);
+            Vector3Int cell = grid.WorldToCell(worldPoint);
+            
+            mapCellClickedEvent.Raise(CoordUtils.UnityHexToCubeHex(cell.ToUnityHexCoordinates()));
+            
+            //transform.position = map.grid.CellToWorld(cell);
+            
+            //PlayerMoved.Raise(cell);
+            
+            //CubeHexCoords position = CoordUtils.UnityHexToCubeHex(cell.ToUnityHexCoordinates());
+
+            //UpdateMap(position);
+            
+        }
+    }
+
     public void GenerateTilesAroundPlayer(CubeHexCoords playerPosition)
     {
         tileMap = GetComponent<Tilemap>();

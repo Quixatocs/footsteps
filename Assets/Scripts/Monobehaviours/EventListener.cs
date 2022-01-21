@@ -1,20 +1,19 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class GameEventListener : MonoBehaviour
+public class EventListener : MonoBehaviour
 {
-    public GameEvent Event;
+    public VoidEvent voidEvent;
     public UnityEvent Response;
 
     private void OnEnable()
     {
-        Event.RegisterListener(this);
+        voidEvent.RegisterListener(this);
     }
 
     private void OnDisable()
     {
-        Event.UnregisterListener(this);
+        voidEvent.UnregisterListener(this);
     }
 
     public void OnEventRaised()
