@@ -71,9 +71,11 @@ public class Map : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 worldPoint = ray.GetPoint(-ray.origin.z / ray.direction.z);
-            Vector3Int cell = grid.WorldToCell(worldPoint);
+
+            Hex cellClicked = new Hex();
+            cellClicked.SetFromUnity(grid.WorldToCell(worldPoint));
             
-            mapCellClickedEvent.Raise(CoordUtils.UnityHexToCubeHex(cell.ToUnityHexCoordinates()));
+            mapCellClickedEvent.Raise(cellClicked.Cube);
             
             //transform.position = map.grid.CellToWorld(cell);
             
