@@ -1,3 +1,5 @@
+#if false
+
 public interface IState
 {
     /// <summary>
@@ -25,3 +27,5 @@ public interface IState
     /// </summary>
     void ProgressState();
 }
+
+#endif

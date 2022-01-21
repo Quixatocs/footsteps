@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿#if false
+
+
+using System.Collections;
 using UnityEngine;
 
 public class StateMachine
@@ -52,3 +55,4 @@ public class StateMachine
         }
     }
 }
+#endif
