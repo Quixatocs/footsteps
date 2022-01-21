@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sand
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: 6ace5c7f75a18564fb1c2eff196499c7, type: 3}
-  m_Color: {r: 1, g: 0.93333334, b: 0.1764706, a: 1}
+  m_Color: {r: 0.3301887, g: 0.30913284, b: 0.07008723, a: 1}
   m_Transform:
     e00: 1
     e01: 0
