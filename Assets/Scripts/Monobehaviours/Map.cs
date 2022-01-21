@@ -218,19 +218,20 @@ public class Map : MonoBehaviour
         return neighbourWeights;
     }
     
-    private List<WorldTile> SpawnHexesInRange(CubeHexCoords centerHex, int range)
+    private List<WorldTile> SpawnHexesInRange(Hex centerHex, int range)
     {
         List<WorldTile> tilesInRange = new List<WorldTile>();
         
-        for (int q = centerHex.q - range; q <= centerHex.q + range; q++)
+        for (int x = centerHex.Cube.x - range; x <= centerHex.Cube.x + range; x++)
         {
-            for (int r = centerHex.r - range; r <= centerHex.r + range; r++)
+            for (int y = centerHex.Cube.y - range; y <= centerHex.Cube.y + range; y++)
             {
-                for (int s = centerHex.s - range; s <= centerHex.s + range; s++)
+                for (int z = centerHex.Cube.z - range; z <= centerHex.Cube.z + range; z++)
                 {
-                    if (q + r + s != 0) continue;
+                    if (x + y + z != 0) continue;
                     
-                    Vector3Int newPosition = CoordUtils.CubeHexToUnityHex(new CubeHexCoords(q, r, s)).ToVector3Int();
+                    
+                    Vector3Int newPosition = CoordUtils.CubeHexToUnityHex(new CubeHexCoords(x, y, z)).ToVector3Int();
 
                     WorldTile inRangeTile = (WorldTile)tileMap.GetTile(newPosition);
 
