@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
@@ -21,7 +20,7 @@ public class Map : MonoBehaviour
     public AssetReference worldTileSetReference;
 
     public VoidEvent mapAssetsLoadingCompleteVoidEvent;
-    public Vector3IntEvent mapCellClickedEvent;
+    public HexEvent hexClickedEvent;
     
     void Awake()
     {
@@ -72,10 +71,8 @@ public class Map : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 worldPoint = ray.GetPoint(-ray.origin.z / ray.direction.z);
 
-            Hex cellClicked = new Hex();
-            cellClicked.SetFromUnity(grid.WorldToCell(worldPoint));
-            
-            mapCellClickedEvent.Raise(cellClicked.Cube);
+            Hex clickedHex = new Hex(grid.WorldToCell(worldPoint), worldPoint);
+            hexClickedEvent.Raise(clickedHex);
             
             //transform.position = map.grid.CellToWorld(cell);
             
@@ -88,21 +85,21 @@ public class Map : MonoBehaviour
         }
     }
 
-    public void GenerateTilesAroundPlayer(Vector3Int playerCubePosition)
+    public void GenerateTilesAroundPlayer(Hex playerPositionHex)
     {
         tileMap = GetComponent<Tilemap>();
 
         if (lastInRangeWorldTiles != null)
         {
-            ApplyFogToTiles(playerPosition, playerVisionRange.Value);
+            ApplyFogToTiles(playerPositionHex, playerVisionRange.Value);
         }
         
-        lastInRangeWorldTiles = SpawnHexesInRange(playerPosition, playerVisionRange.Value);
+        lastInRangeWorldTiles = SpawnHexesInRange(playerPositionHex, playerVisionRange.Value);
 
         tileMap.RefreshAllTiles();
     }
 
-    private WorldTile GenerateTile(Vector3Int newPosition)
+    private WorldTile GenerateTile(Hex newPosition)
     {
         WorldTile newTile = GenerateTileFromNeighbourWeights(newPosition);
 
@@ -251,14 +248,14 @@ public class Map : MonoBehaviour
         return tilesInRange;
     }
 
-    private void ApplyFogToTiles(CubeHexCoords centerHex, int range)
+    private void ApplyFogToTiles(Hex centerHex, int range)
     {
         foreach (WorldTile worldTile in lastInRangeWorldTiles)
         {
-            if (CoordUtils.CubeDistance(worldTile.coords, centerHex) < range) continue;
+            if (centerHex.Distance(worldTile.coords) < range) continue;
 
             worldTile.color = worldTile.fogTint;
-            tileMap.SetTile(CoordUtils.CubeHexToUnityHex(worldTile.coords).ToVector3Int(), worldTile);
+            tileMap.SetTile(worldTile.coords.Unity, worldTile);
         }
     }
     

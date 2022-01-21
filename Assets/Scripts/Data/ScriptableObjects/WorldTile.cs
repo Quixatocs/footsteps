@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 [Serializable]
 public class WorldTile : Tile
 {
-    public CubeHexCoords coords;
+    public Hex coords;
     public string tileName;
     public Color visibleTint;
     public Color fogTint;

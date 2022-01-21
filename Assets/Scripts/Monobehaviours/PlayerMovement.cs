@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public static Action<Vector3> OnPlayerMoved;
-    public Vector3IntEvent PlayerMoved;
+    public HexEvent PlayerMoved;
     
     void Update()
     {
@@ -36,9 +36,9 @@ public class PlayerMovement : MonoBehaviour
         UpdateMap(new CubeHexCoords(0, 0, 0));
     }
 
-    public void Move(Vector3Int cubePosition)
+    public void Move(Hex position)
     {
-        PlayerMoved.Raise(cubePosition);
+        PlayerMoved.Raise(position);
     }
 
     private void UpdateMap(CubeHexCoords position)
