@@ -553,6 +553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce4e5ce703b271744bf2d08362178454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerVisionRange: {fileID: 11400000, guid: bb93158af5fc5d0498fae247a9074bf2, type: 2}
   grid: {fileID: 298332885}
   worldTileSetReference:
     m_AssetGUID: e3e967fb36e89e6418d30d1851c3aac9

@@ -12,7 +12,8 @@ using Debug = UnityEngine.Debug;
 
 public class Map : MonoBehaviour
 {
-    private const int visionRange = 2;
+    
+    public IntVariable playerVisionRange;
     
     [SerializeField] public Grid grid;
 
@@ -68,10 +69,10 @@ public class Map : MonoBehaviour
 
         if (lastInRangeWorldTiles != null)
         {
-            ApplyFogToTiles(playerPosition, visionRange);
+            ApplyFogToTiles(playerPosition, playerVisionRange.Value);
         }
         
-        lastInRangeWorldTiles = SpawnHexesInRange(playerPosition, visionRange);
+        lastInRangeWorldTiles = SpawnHexesInRange(playerPosition, playerVisionRange.Value);
 
         tileMap.RefreshAllTiles();
     }

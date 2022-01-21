@@ -1,9 +1,8 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 
-[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/New WorldTile", order = 1)]
+[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Map/WorldTile", order = 1)]
 [Serializable]
 public class WorldTile : Tile
 {
