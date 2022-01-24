@@ -16,6 +16,6 @@ public static class TileMapExtension
         var newUnityX = hex.q - (-hex.r + (-hex.r & 1)) / 2;
         var newUnityY = -hex.r;
         Vector3Int newUnityPosition = new Vector3Int(newUnityX, newUnityY, 0);
-        return tilemap.SetTile(newUnityPosition);
+        tilemap.SetTile(newUnityPosition, tile);
     }
 }
