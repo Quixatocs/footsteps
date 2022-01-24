@@ -30,11 +30,6 @@ public class Map : MonoBehaviour
         Addressables.LoadAssetAsync<WorldTileSet>(worldTileSetReference).Completed += OnWorldTileSetLoadDone;
     }
 
-    private void Start()
-    {
-        grid = GetComponent<Grid>();
-    }
-
     private void OnWorldTileSetLoadDone(AsyncOperationHandle<WorldTileSet> obj)
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
@@ -90,8 +85,6 @@ public class Map : MonoBehaviour
 
     public void GenerateTilesAroundPlayer(Hex playerPositionHex)
     {
-        tileMap = GetComponent<Tilemap>();
-
         if (lastInRangeWorldTiles != null)
         {
             ApplyFogToTiles(playerPositionHex, playerVisionRange.Value);
@@ -102,18 +95,18 @@ public class Map : MonoBehaviour
         tileMap.RefreshAllTiles();
     }
 
-    private WorldTile GenerateTile(Hex newPosition)
+    private WorldTile GenerateTile(Hex hex)
     {
-        WorldTile newTile = GenerateTileFromNeighbourWeights(newPosition);
+        WorldTile newTile = GenerateTileFromNeighbourWeights(hex);
 
         if (newTile == null)
         {
             newTile = GenerateRandomTile();
         }
 
-        newTile.coords = CoordUtils.UnityHexToCubeHex(newPosition.ToUnityHexCoordinates());
+        newTile.coords = hex;
         
-        tileMap.SetTile(newPosition, newTile);
+        tileMap.SetTile(hex, newTile);
 
         return newTile;
     }
@@ -124,11 +117,11 @@ public class Map : MonoBehaviour
         return worldTiles[rng].Copy();
     }
 
-    private WorldTile GenerateTileFromNeighbourWeights(Vector3Int newPosition)
+    private WorldTile GenerateTileFromNeighbourWeights(Hex hex)
     {
         
         // Get the six neighbours
-        Dictionary<WorldTile, int> neighbourWeights = GetNeighbourWeights(newPosition);
+        Dictionary<WorldTile, int> neighbourWeights = GetNeighbourWeights(hex);
 
         if (neighbourWeights.Count == 0) return null;
         
@@ -169,11 +162,12 @@ public class Map : MonoBehaviour
         return nextTile;
     }
 
-    private Dictionary<WorldTile, int> GetNeighbourWeights(Vector3Int newPosition)
+    private Dictionary<WorldTile, int> GetNeighbourWeights(Hex hex)
     {
         
         List<WorldTile> neighbours = new List<WorldTile>();
 
+        Vector3Int newPosition = hex.ToVector3Int();
         WorldTile left = (WorldTile)tileMap.GetTile(new Vector3Int(newPosition.x - 1, newPosition.y, newPosition.z));
         
         WorldTile leftUp = newPosition.y % 2 == 0 

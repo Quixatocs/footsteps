@@ -40,6 +40,11 @@ public class Hex
         this.coords = new Vector3Int(newQ, newR, -newQ - newR);
     }
 
+    public Vector3Int ToVector3Int()
+    {
+        return coords;
+    }
+
     public Hex Subtract(Hex other)
     {
         return new Hex(new Vector3Int(coords.x - other.coords.x, coords.y - other.coords.y, coords.z - other.coords.z));
