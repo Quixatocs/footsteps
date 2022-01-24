@@ -4,51 +4,50 @@ using UnityEngine;
 [Serializable]
 public class Hex
 {
-    public int q;
-    public int r;
-    public int s;
+    private Vector3Int coords;
     
-    private Vector3Int unity;
-    public Vector3Int Unity => unity;
+    public int q => coords.x;
+    public int r => coords.y;
+    public int s => coords.z;
+
+    private Vector3 worldSpacePosition;
     
-    private Vector3 hexCenterWorldPoint;
-    public Vector3 HexCenterWorldPoint => hexCenterWorldPoint;
-
-    public Vector3Int Cube
+    public Hex(Vector3Int coords, bool isCube = true)
     {
-        get
-        {
-            var newCubeX = unity.x + (unity.y + (unity.y & 1)) / 2;
-            var newCubeY = -unity.y;
-            return new Vector3Int(newCubeX, newCubeY, -newCubeX - newCubeY);
-        }
-        set
-        {
-            var newUnityX = value.x - (-value.y + (-value.y & 1)) / 2;
-            var newUnityY = -value.y;
-            unity = new Vector3Int(newUnityX, newUnityY, 0);
-        }
-    }
+        this.coords = coords;
 
-    public Hex(Vector3Int unity)
-    {
-        this.unity = unity;
+        if (isCube) return;
+        
+        var newQ = coords.x + (coords.z + (coords.z & 1)) / 2;
+        var newR = -coords.z;
+        this.coords = new Vector3Int(newQ, newR, -newQ - newR);
     }
     
-    public Hex(Vector3Int unity, Vector3 hexCenterWorldPoint)
+    public Hex(int q, int r, int s)
     {
-        this.unity = unity;
-        this.hexCenterWorldPoint = hexCenterWorldPoint;
+        coords = new Vector3Int(q, r, s);
+    }
+    
+    public Hex(Vector3Int coords, Vector3 worldSpacePosition, bool isCube = true)
+    {
+        this.coords = coords;
+        this.worldSpacePosition = worldSpacePosition;
+
+        if (isCube) return;
+        
+        var newQ = coords.x + (coords.z + (coords.z & 1)) / 2;
+        var newR = -coords.z;
+        this.coords = new Vector3Int(newQ, newR, -newQ - newR);
     }
 
     public Hex Subtract(Hex other)
     {
-        return new Hex(new Vector3Int(Cube.x - other.Cube.x, Cube.y - other.Cube.y, Cube.z - other.Cube.z));
+        return new Hex(new Vector3Int(coords.x - other.coords.x, coords.y - other.coords.y, coords.z - other.coords.z));
     }
 
     public int Distance(Hex other)
     {
         Hex vector = Subtract(other);
-        return Mathf.Max(Mathf.Abs(vector.Cube.x), Math.Abs(vector.Cube.y), Math.Abs(vector.Cube.z));
+        return Mathf.Max(Mathf.Abs(vector.coords.x), Math.Abs(vector.coords.y), Math.Abs(vector.coords.z));
     }
 }

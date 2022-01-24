@@ -12,8 +12,11 @@ public class Map : MonoBehaviour
     
     public IntVariable playerVisionRange;
 
+    [SerializeField]
     private Grid grid;
+    [SerializeField]
     private Tilemap tileMap;
+    
     private List<WorldTile> worldTiles;
     private List<WorldTile> lastInRangeWorldTiles;
 
@@ -71,7 +74,7 @@ public class Map : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 worldPoint = ray.GetPoint(-ray.origin.z / ray.direction.z);
 
-            Hex clickedHex = new Hex(grid.WorldToCell(worldPoint), worldPoint);
+            Hex clickedHex = new Hex(grid.WorldToCell(worldPoint), worldPoint, false);
             hexClickedEvent.Raise(clickedHex);
             
             //transform.position = map.grid.CellToWorld(cell);
@@ -222,22 +225,21 @@ public class Map : MonoBehaviour
     {
         List<WorldTile> tilesInRange = new List<WorldTile>();
         
-        for (int x = centerHex.Cube.x - range; x <= centerHex.Cube.x + range; x++)
+        for (int q = centerHex.q - range; q <= centerHex.q + range; q++)
         {
-            for (int y = centerHex.Cube.y - range; y <= centerHex.Cube.y + range; y++)
+            for (int r = centerHex.r - range; r <= centerHex.r + range; r++)
             {
-                for (int z = centerHex.Cube.z - range; z <= centerHex.Cube.z + range; z++)
+                for (int s = centerHex.s - range; s <= centerHex.s + range; s++)
                 {
-                    if (x + y + z != 0) continue;
+                    if (q + r + s != 0) continue;
                     
-                    
-                    Vector3Int newPosition = CoordUtils.CubeHexToUnityHex(new CubeHexCoords(x, y, z)).ToVector3Int();
+                    Hex newHexPosition = new Hex(q, r, s);
 
-                    WorldTile inRangeTile = (WorldTile)tileMap.GetTile(newPosition);
+                    WorldTile inRangeTile = (WorldTile)tileMap.GetTile(newHexPosition);
 
                     if (inRangeTile == null)
                     {
-                        inRangeTile = GenerateTile(newPosition);
+                        inRangeTile = GenerateTile(newHexPosition);
                     }
 
                     inRangeTile.color = inRangeTile.visibleTint;
@@ -256,7 +258,7 @@ public class Map : MonoBehaviour
             if (centerHex.Distance(worldTile.coords) < range) continue;
 
             worldTile.color = worldTile.fogTint;
-            tileMap.SetTile(worldTile.coords.Unity, worldTile);
+            tileMap.SetTile(worldTile.coords, worldTile);
         }
     }
     

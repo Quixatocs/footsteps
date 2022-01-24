@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c2c764442cf46c190f9a9b2046290ee, type: 3}
-  m_Name: eeeeeeeeeeeeeee
+  m_Name: MapAssetsLoadingCompleteEvent
   m_EditorClassIdentifier: 
