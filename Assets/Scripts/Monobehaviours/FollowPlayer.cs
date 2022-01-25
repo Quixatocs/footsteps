@@ -4,12 +4,12 @@ public class FollowPlayer : MonoBehaviour
 {
     private void OnEnable()
     {
-        PlayerMovement.OnPlayerMoved += MoveToPlayer;
+        //PlayerMovement.OnPlayerMoved += MoveToPlayer;
     }
     
     private void OnDisable()
     {
-        PlayerMovement.OnPlayerMoved -= MoveToPlayer;
+        //PlayerMovement.OnPlayerMoved -= MoveToPlayer;
     }
 
     private void MoveToPlayer(Vector3 newPosition)

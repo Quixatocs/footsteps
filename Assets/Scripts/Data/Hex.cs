@@ -10,7 +10,7 @@ public class Hex
     public int r => coords.y;
     public int s => coords.z;
 
-    private Vector3 worldSpacePosition;
+    public Vector3 worldSpacePosition;
     
     public Hex(Vector3Int coords, bool isCube = true)
     {

@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
-    public static Action<Vector3> OnPlayerMoved;
     public HexEvent PlayerMoved;
     
     void Update()
@@ -38,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(Hex position)
     {
+        transform.position = position.worldSpacePosition;
         PlayerMoved.Raise(position);
     }
 
