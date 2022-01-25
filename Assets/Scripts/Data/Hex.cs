@@ -10,8 +10,6 @@ public class Hex
     public int r => coords.y;
     public int s => coords.z;
 
-    public Vector3 worldSpacePosition;
-    
     public Hex(Vector3Int coords, bool isCube = true)
     {
         this.coords = coords;
@@ -27,22 +25,17 @@ public class Hex
     {
         coords = new Vector3Int(q, r, s);
     }
-    
-    public Hex(Vector3Int coords, Vector3 worldSpacePosition, bool isCube = true)
-    {
-        this.coords = coords;
-        this.worldSpacePosition = worldSpacePosition;
-
-        if (isCube) return;
-        
-        var newQ = coords.x + (coords.z + (coords.z & 1)) / 2;
-        var newR = -coords.z;
-        this.coords = new Vector3Int(newQ, newR, -newQ - newR);
-    }
 
     public Vector3Int ToVector3Int()
     {
         return coords;
+    }
+
+    public Vector3Int ToUnityCoords()
+    {
+        var newX = coords.x - (-coords.y + (-coords.y & 1)) / 2;
+        var newY = -coords.y;
+        return new Vector3Int(newX, newY, 0);
     }
 
     public Hex Subtract(Hex other)

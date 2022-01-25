@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public Grid grid;
     public HexEvent PlayerMoved;
     
     void Update()
@@ -34,10 +35,10 @@ public class PlayerMovement : MonoBehaviour
         UpdateMap(new CubeHexCoords(0, 0, 0));
     }
 
-    public void Move(Hex position)
+    public void Move(Hex hex)
     {
-        transform.position = position.worldSpacePosition;
-        PlayerMoved.Raise(position);
+        transform.position = grid.CellToWorld(hex);
+        PlayerMoved.Raise(hex);
     }
 
     private void UpdateMap(CubeHexCoords position)

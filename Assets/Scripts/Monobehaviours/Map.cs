@@ -69,7 +69,7 @@ public class Map : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 worldPoint = ray.GetPoint(-ray.origin.z / ray.direction.z);
 
-            Hex clickedHex = new Hex(grid.WorldToCell(worldPoint), worldPoint, false);
+            Hex clickedHex = new Hex(grid.WorldToCell(worldPoint), false);
             hexClickedEvent.Raise(clickedHex);
             
             //transform.position = map.grid.CellToWorld(cell);

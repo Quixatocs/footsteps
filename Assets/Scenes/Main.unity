@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35cfcda3668ed7645a6d564205338781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grid: {fileID: 663265249}
   PlayerMoved: {fileID: 11400000, guid: bf6031d5ecf54404188063f14af58778, type: 2}
 --- !u!114 &430027716
 MonoBehaviour:
