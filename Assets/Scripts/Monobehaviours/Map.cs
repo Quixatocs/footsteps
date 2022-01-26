@@ -71,26 +71,17 @@ public class Map : MonoBehaviour
 
             Hex clickedHex = new Hex(grid.WorldToCell(worldPoint), false);
             hexClickedEvent.Raise(clickedHex);
-            
-            //transform.position = map.grid.CellToWorld(cell);
-            
-            //PlayerMoved.Raise(cell);
-            
-            //CubeHexCoords position = CoordUtils.UnityHexToCubeHex(cell.ToUnityHexCoordinates());
-
-            //UpdateMap(position);
-            
         }
     }
 
-    public void GenerateTilesAroundPlayer(Hex playerPositionHex)
+    public void GenerateTilesAroundPlayer(Hex hex)
     {
         if (lastInRangeWorldTiles != null)
         {
-            ApplyFogToTiles(playerPositionHex, playerVisionRange.Value);
+            ApplyFogToTiles(hex, playerVisionRange.Value);
         }
         
-        lastInRangeWorldTiles = SpawnHexesInRange(playerPositionHex, playerVisionRange.Value);
+        lastInRangeWorldTiles = SpawnHexesInRange(hex, playerVisionRange.Value);
 
         tileMap.RefreshAllTiles();
     }
@@ -119,7 +110,7 @@ public class Map : MonoBehaviour
 
     private WorldTile GenerateTileFromNeighbourWeights(Hex hex)
     {
-        
+        //TODO GO THROUGH THIS WITH THE HEX COORDS
         // Get the six neighbours
         Dictionary<WorldTile, int> neighbourWeights = GetNeighbourWeights(hex);
 
