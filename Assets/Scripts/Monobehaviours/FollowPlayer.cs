@@ -2,18 +2,11 @@
 
 public class FollowPlayer : MonoBehaviour
 {
-    private void OnEnable()
+    [SerializeField]
+    private Grid grid;
+    public void MoveToPlayer(Hex hex)
     {
-        //PlayerMovement.OnPlayerMoved += MoveToPlayer;
-    }
-    
-    private void OnDisable()
-    {
-        //PlayerMovement.OnPlayerMoved -= MoveToPlayer;
-    }
-
-    private void MoveToPlayer(Vector3 newPosition)
-    {
+        Vector3 newPosition = grid.HexToWorld(hex);
         transform.position = new Vector3(newPosition.x, newPosition.y, transform.position.z);
     }
 }
