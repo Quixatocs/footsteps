@@ -9,21 +9,25 @@ using Debug = UnityEngine.Debug;
 
 public class Map : MonoBehaviour
 {
-    
-    public IntVariable playerVisionRange;
-
+    [Header("Scene Settings")]
     [SerializeField]
     private Grid grid;
     [SerializeField]
     private Tilemap tileMap;
     
-    private List<WorldTile> worldTiles;
-    private List<WorldTile> lastInRangeWorldTiles;
-
-    public AssetReference worldTileSetReference;
-
+    [Header("Asset References")]
+    [SerializeField]
+    private AssetReference worldTileSetReference;
+    
+    [Header("Variables")]
+    public IntVariable playerVisionRange;
+    
+    [Header("Events")]
     public VoidEvent mapAssetsLoadingCompleteVoidEvent;
     public HexEvent hexClickedEvent;
+    
+    private List<WorldTile> worldTiles;
+    private List<WorldTile> lastInRangeWorldTiles;
     
     void Awake()
     {

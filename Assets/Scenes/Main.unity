@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35cfcda3668ed7645a6d564205338781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grid: {fileID: 663265249}
+  playerCurrentHex: {fileID: 11400000, guid: df854edbc715a904ea3fdd64df122ae3, type: 2}
   PlayerMoved: {fileID: 11400000, guid: bf6031d5ecf54404188063f14af58778, type: 2}
 --- !u!114 &430027716
 MonoBehaviour:
@@ -641,12 +641,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce4e5ce703b271744bf2d08362178454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerVisionRange: {fileID: 11400000, guid: bb93158af5fc5d0498fae247a9074bf2, type: 2}
   grid: {fileID: 663265249}
   tileMap: {fileID: 663265248}
   worldTileSetReference:
     m_AssetGUID: e3e967fb36e89e6418d30d1851c3aac9
     m_SubObjectName: 
     m_SubObjectType: 
+  playerVisionRange: {fileID: 11400000, guid: bb93158af5fc5d0498fae247a9074bf2, type: 2}
   mapAssetsLoadingCompleteVoidEvent: {fileID: 11400000, guid: 718b5dba5733c5848aae7bbe4a0bdb20, type: 2}
   hexClickedEvent: {fileID: 11400000, guid: a426f8ec035c0d645ba5be278ef0e38a, type: 2}

@@ -2,6 +2,7 @@
 
 public class FollowPlayer : MonoBehaviour
 {
+    [Header("Scene Settings")]
     [SerializeField]
     private Grid grid;
     public void MoveToPlayer(Hex hex)
