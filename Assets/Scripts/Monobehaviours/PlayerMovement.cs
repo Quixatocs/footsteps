@@ -3,6 +3,7 @@
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Scene Settings")]
+    [SerializeField]
     private Grid grid;
     
     [Header("Variables")]
@@ -10,6 +11,11 @@ public class PlayerMovement : MonoBehaviour
     
     [Header("Events")]
     public HexEvent PlayerMoved;
+
+    public void InitialisePlayerPosition()
+    {
+        Move(playerCurrentHex.Value);
+    }
     
     public void Move(Hex hex)
     {
