@@ -159,6 +159,7 @@ public class Map : MonoBehaviour
         List<WorldTile> neighbours = new List<WorldTile>();
 
         Vector3Int newPosition = hex.ToVector3Int();
+        //TODO YEAH THIS BIT ISNT GOING TO WORK AS ITS USING CUBE TO GET UNITY TILES
         WorldTile left = (WorldTile)tileMap.GetTile(new Vector3Int(newPosition.x - 1, newPosition.y, newPosition.z));
         
         WorldTile leftUp = newPosition.y % 2 == 0 
