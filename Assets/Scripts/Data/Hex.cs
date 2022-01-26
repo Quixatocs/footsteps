@@ -16,8 +16,8 @@ public class Hex
 
         if (isCube) return;
         
-        var newQ = coords.x + (coords.z + (coords.z & 1)) / 2;
-        var newR = -coords.z;
+        var newQ = coords.x + (coords.y + (coords.y & 1)) / 2;
+        var newR = -coords.y;
         this.coords = new Vector3Int(newQ, newR, -newQ - newR);
     }
     

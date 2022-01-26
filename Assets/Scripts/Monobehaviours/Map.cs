@@ -68,8 +68,7 @@ public class Map : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 worldPoint = ray.GetPoint(-ray.origin.z / ray.direction.z);
-
-            Hex clickedHex = new Hex(grid.WorldToCell(worldPoint), false);
+            Hex clickedHex = grid.WorldToHex(worldPoint); 
             hexClickedEvent.Raise(clickedHex);
         }
     }
@@ -81,7 +80,7 @@ public class Map : MonoBehaviour
             ApplyFogToTiles(hex, playerVisionRange.Value);
         }
         
-        lastInRangeWorldTiles = SpawnHexesInRange(hex, playerVisionRange.Value);
+        lastInRangeWorldTiles = GetTilesInRange(hex, playerVisionRange.Value, true);
 
         tileMap.RefreshAllTiles();
     }
@@ -110,7 +109,6 @@ public class Map : MonoBehaviour
 
     private WorldTile GenerateTileFromNeighbourWeights(Hex hex)
     {
-        //TODO GO THROUGH THIS WITH THE HEX COORDS
         // Get the six neighbours
         Dictionary<WorldTile, int> neighbourWeights = GetNeighbourWeights(hex);
 
@@ -155,40 +153,9 @@ public class Map : MonoBehaviour
 
     private Dictionary<WorldTile, int> GetNeighbourWeights(Hex hex)
     {
-        
-        List<WorldTile> neighbours = new List<WorldTile>();
-
-        Vector3Int newPosition = hex.ToVector3Int();
-        //TODO YEAH THIS BIT ISNT GOING TO WORK AS ITS USING CUBE TO GET UNITY TILES
-        WorldTile left = (WorldTile)tileMap.GetTile(new Vector3Int(newPosition.x - 1, newPosition.y, newPosition.z));
-        
-        WorldTile leftUp = newPosition.y % 2 == 0 
-            ? (WorldTile)tileMap.GetTile(new Vector3Int(newPosition.x - 1, newPosition.y + 1, newPosition.z))
-            : (WorldTile)tileMap.GetTile(new Vector3Int(newPosition.x, newPosition.y + 1, newPosition.z));
-        
-        WorldTile rightUp = newPosition.y % 2 == 1 
-            ? (WorldTile)tileMap.GetTile(new Vector3Int(newPosition.x + 1, newPosition.y + 1, newPosition.z))
-            : (WorldTile)tileMap.GetTile(new Vector3Int(newPosition.x, newPosition.y + 1, newPosition.z));
-        
-        WorldTile right = (WorldTile)tileMap.GetTile(new Vector3Int(newPosition.x + 1, newPosition.y, newPosition.z));
-        
-        WorldTile rightDown = newPosition.y % 2 == 1 
-            ? (WorldTile)tileMap.GetTile(new Vector3Int(newPosition.x + 1, newPosition.y - 1, newPosition.z))
-            : (WorldTile)tileMap.GetTile(new Vector3Int(newPosition.x, newPosition.y - 1, newPosition.z));
-        
-        WorldTile leftDown = newPosition.y % 2 == 0 
-            ? (WorldTile)tileMap.GetTile(new Vector3Int(newPosition.x - 1, newPosition.y - 1, newPosition.z))
-            : (WorldTile)tileMap.GetTile(new Vector3Int(newPosition.x, newPosition.y - 1, newPosition.z));
+        List<WorldTile> neighbours = GetTilesInRange(hex, 1);
         
         Dictionary<WorldTile, int> neighbourWeights = new Dictionary<WorldTile, int>();
-        
-        neighbours.Add(left);
-        neighbours.Add(leftUp);
-        neighbours.Add(rightUp);
-        neighbours.Add(right);
-        neighbours.Add(rightDown);
-        neighbours.Add(leftDown);
-
         foreach (WorldTile neighbour in neighbours)
         {
             if (neighbour != null)
@@ -206,8 +173,8 @@ public class Map : MonoBehaviour
 
         return neighbourWeights;
     }
-    
-    private List<WorldTile> SpawnHexesInRange(Hex centerHex, int range)
+
+    private List<WorldTile> GetTilesInRange(Hex centerHex, int range, bool canSpawn = false)
     {
         List<WorldTile> tilesInRange = new List<WorldTile>();
         
@@ -223,13 +190,16 @@ public class Map : MonoBehaviour
 
                     WorldTile inRangeTile = (WorldTile)tileMap.GetTile(newHexPosition);
 
-                    if (inRangeTile == null)
+                    if (inRangeTile == null && canSpawn)
                     {
                         inRangeTile = GenerateTile(newHexPosition);
                     }
 
-                    inRangeTile.color = inRangeTile.visibleTint;
-                    tilesInRange.Add(inRangeTile);
+                    if (inRangeTile != null)
+                    {
+                        inRangeTile.color = inRangeTile.visibleTint;
+                        tilesInRange.Add(inRangeTile); 
+                    }
                 }
             }
         }
@@ -246,6 +216,7 @@ public class Map : MonoBehaviour
             worldTile.color = worldTile.fogTint;
             tileMap.SetTile(worldTile.coords, worldTile);
         }
+        tileMap.RefreshAllTiles();
     }
     
 }
