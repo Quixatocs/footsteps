@@ -1,58 +1,35 @@
-﻿#if false
+﻿using UnityEngine;
 
-
-using System.Collections;
-using UnityEngine;
-
-public class StateMachine
+[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Control/StateMachine", order = 1)]
+public class StateMachine : ScriptableObject
 {
 
-    private IState currentState;
+    private StateVariable currentState;
 
-    public IState CurrentState => currentState;
+    public StateVariable CurrentState => currentState;
 
-    protected void SetState(IState nextState) {
+    public void SetState(StateVariable nextState) {
         
-        // Exit previous state
         if (currentState != null) {
-            currentState.OnExit();
+            currentState.Value.OnExit();
         }
         
         currentState = nextState;
         
         if (currentState != null) {
-            currentState.OnEnter(this);
-            
-            if (stateCompleteCheck == null) {
-                stateCompleteCheck = StartCoroutine(CheckComplete());
-            }
-        }
-        else {
-            if (stateCompleteCheck != null) {
-                StopCoroutine(stateCompleteCheck);
-                stateCompleteCheck = null;
-            }
+            currentState.Value.OnEnter();
         }
     }
-
 
     /// <summary>
     /// Checks if the current state is complete
     /// </summary>
-    private IEnumerator CheckComplete() {
-        while (true) {
-            yield return new WaitForEndOfFrame();
+    public void CheckComplete() {
             
-            if (currentState == null) { 
-                // We are leaving the state machine so we can stop running the check
-                stateCompleteCheck = null;
-                yield break;
-            }
-            
-            if (currentState.IsComplete) {
-                SetState(currentState.NextState);
-            }
+        if (currentState == null) return;
+        
+        if (currentState.Value.IsComplete) {
+            SetState(currentState.Value.NextState);
         }
     }
 }
-#endif
