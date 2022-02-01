@@ -3,10 +3,7 @@
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Control/StateMachine", order = 1)]
 public class StateMachine : ScriptableObject
 {
-
-    private StateVariable currentState;
-
-    public StateVariable CurrentState => currentState;
+    public StateVariable currentState;
 
     public void SetState(StateVariable nextState) {
         

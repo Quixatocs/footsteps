@@ -1,11 +1,16 @@
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/States/WaitForHexSelectState", order = 1)]
+[Serializable]
 public class WaitForHexSelectState : State
 {
-    public Vector3Event MapClickedEvent;
+    public HexEvent hexClickedEvent;
+    public WorldObjectManager WorldObjectManager;
+    private Grid grid;
     public override void OnEnter()
     {
+        grid = WorldObjectManager.GetComponent<Grid>();
     }
 
     public override void OnExit()
@@ -17,7 +22,8 @@ public class WaitForHexSelectState : State
         if (Input.GetMouseButtonDown(0)) {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 worldPoint = ray.GetPoint(-ray.origin.z / ray.direction.z);
-            MapClickedEvent.Raise(worldPoint);
+            Hex clickedHex = grid.WorldToHex(worldPoint); 
+            hexClickedEvent.Raise(clickedHex);
         }
     }
 }
