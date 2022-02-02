@@ -11,7 +11,10 @@ public class WaitForHexSelectState : State
     public override void OnEnter()
     {
         IsComplete = false;
-        grid = WorldObjectManager.GetComponent<Grid>();
+        if (grid == null)
+        {
+            grid = WorldObjectManager.GetComponent<Grid>();
+        }
     }
 
     public override void OnExit()

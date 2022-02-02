@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5721c296e56f40d892de93d0aa63cba8, type: 3}
   m_Name: WaitForMovementHexSelectState
   m_EditorClassIdentifier: 
-  IsComplete: 1
+  IsComplete: 0
   NextState: {fileID: 11400000, guid: 1cef27d5c8f1dee42bc72b15245f4335, type: 2}
   hexClickedEvent: {fileID: 11400000, guid: a426f8ec035c0d645ba5be278ef0e38a, type: 2}
   WorldObjectManager: {fileID: 11400000, guid: 3628bd214742ed04b9261ea92d9c8022, type: 2}

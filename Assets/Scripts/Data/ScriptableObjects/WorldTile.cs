@@ -10,6 +10,7 @@ public class WorldTile : Tile
     public string tileName;
     public Color visibleTint;
     public Color fogTint;
+    public WorldTileDelta[] worldTileDeltas;
     public TileNeighbourWeight[] tileNeighbourWeight;
 
     public WorldTile Copy()
@@ -21,6 +22,7 @@ public class WorldTile : Tile
         copiedTile.tileName = tileName;
         copiedTile.visibleTint = visibleTint;
         copiedTile.fogTint = fogTint;
+        copiedTile.worldTileDeltas = worldTileDeltas;
         copiedTile.tileNeighbourWeight = tileNeighbourWeight;
 
         return copiedTile;

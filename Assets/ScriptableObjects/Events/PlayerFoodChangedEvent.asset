@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9a1167080de60c4ab3fceb92e798018, type: 3}
-  m_Name: ChoicesUI
+  m_Script: {fileID: 11500000, guid: dabb1a56620f45cca01dab4cdd8581c0, type: 3}
+  m_Name: PlayerFoodChangedEvent
   m_EditorClassIdentifier: 
-  Value: {fileID: 0}

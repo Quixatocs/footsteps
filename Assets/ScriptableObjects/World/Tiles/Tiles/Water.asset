@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de8246415dd2f104184744c6ab033c17, type: 3}
-  m_Name: Sand
+  m_Name: Water
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: 6ace5c7f75a18564fb1c2eff196499c7, type: 3}
-  m_Color: {r: 0.3301887, g: 0.30913284, b: 0.07008723, a: 1}
+  m_Color: {r: 0.1764706, g: 0.26666668, b: 1, a: 1}
   m_Transform:
     e00: 1
     e01: 0
@@ -34,7 +34,9 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
   m_ColliderType: 1
-  tileName: Sand
-  visibleTint: {r: 1, g: 0.93333334, b: 0.1764706, a: 1}
-  fogTint: {r: 0.3301887, g: 0.30913284, b: 0.07008723, a: 1}
+  tileName: Water
+  visibleTint: {r: 0.1764706, g: 0.26666668, b: 1, a: 1}
+  fogTint: {r: 0.06421324, g: 0.09747685, b: 0.3679245, a: 1}
+  worldTileDeltas:
+  - {fileID: 11400000, guid: 418e0d31648b7474a9cfa526486e4065, type: 2}
   tileNeighbourWeight: []

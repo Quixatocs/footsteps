@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/WorldObjectManager/WorldObjectManager", order = 1)]
+[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/WorldManagers/WorldObjectManager", order = 1)]
 public class WorldObjectManager : ScriptableObject
 {
     private GameObject worldObjectManager;

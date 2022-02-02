@@ -1,10 +1,10 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/States/EnableUIState", order = 1)]
 public class EnableUIState : State
 {
     public BoolEvent uiActivationEvent;
+    public UIObjectManager uiObjectManager;
 
     public override void OnEnter()
     {

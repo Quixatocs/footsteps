@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1cd83c8c4cf41679b90d060a1a9ef0e, type: 3}
   m_Name: ChoicesUIState
   m_EditorClassIdentifier: 
-  IsComplete: 0
+  IsComplete: 1
   NextState: {fileID: 11400000, guid: 5ba4ebf5e204aa14aa94056d2496aa7c, type: 2}
   uiActivationEvent: {fileID: 11400000, guid: 8086c7e230b76564bbda1aa8b0e508e8, type: 2}
-  uiCloseEvent: {fileID: 0}
+  uiObjectManager: {fileID: 0}
