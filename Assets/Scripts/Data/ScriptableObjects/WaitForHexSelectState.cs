@@ -22,7 +22,9 @@ public class WaitForHexSelectState : State
         if (Input.GetMouseButtonDown(0)) {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 worldPoint = ray.GetPoint(-ray.origin.z / ray.direction.z);
+            
             Hex clickedHex = grid.WorldToHex(worldPoint); 
+            Debug.Log($"STATE: V3: <{worldPoint}> HX: <{clickedHex.ToVector3Int()}> UN: <{clickedHex.ToUnityCoords()}>");
             hexClickedEvent.Raise(clickedHex);
         }
     }

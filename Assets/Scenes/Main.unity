@@ -561,6 +561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateMachineVariable: {fileID: 11400000, guid: f68f42ac991ef9f49aed17766603032c, type: 2}
+  initialState: {fileID: 11400000, guid: 5ba4ebf5e204aa14aa94056d2496aa7c, type: 2}
 --- !u!4 &1033000005
 Transform:
   m_ObjectHideFlags: 0

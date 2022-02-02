@@ -3,7 +3,7 @@
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Control/StateMachine", order = 1)]
 public class StateMachine : ScriptableObject
 {
-    public StateVariable currentState;
+    private StateVariable currentState;
 
     public void SetState(StateVariable nextState) {
         
@@ -18,10 +18,17 @@ public class StateMachine : ScriptableObject
         }
     }
 
+    public void StateUpdate()
+    {
+        if (currentState == null) return;
+        
+        currentState.Value.OnUpdate();
+    }
+
     /// <summary>
     /// Checks if the current state is complete
     /// </summary>
-    public void CheckComplete() {
+    public void CheckCurrentStateCompleted() {
             
         if (currentState == null) return;
         

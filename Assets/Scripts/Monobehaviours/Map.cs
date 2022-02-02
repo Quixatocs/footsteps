@@ -67,16 +67,6 @@ public class Map : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0)) {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Vector3 worldPoint = ray.GetPoint(-ray.origin.z / ray.direction.z);
-            Hex clickedHex = grid.WorldToHex(worldPoint); 
-            hexClickedEvent.Raise(clickedHex);
-        }
-    }
-
     public void GenerateTilesAroundPlayer(Hex hex)
     {
         if (lastInRangeWorldTiles != null)
