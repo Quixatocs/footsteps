@@ -1,21 +1,29 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/States/EnableUIState", order = 1)]
 public class EnableUIState : State
 {
-    public UIVariable ui;
+    public BoolEvent uiActivationEvent;
 
     public override void OnEnter()
     {
-        ui.Value.SetActive(true);
+        IsComplete = false;
+        uiActivationEvent.Raise(true);
     }
     
     public override void OnExit()
     {
-        ui.Value.SetActive(false);
+        uiActivationEvent.Raise(false);
     }
 
     public override void OnUpdate()
     {
     }
+
+    public void ReturnFromUI()
+    {
+        IsComplete = true;
+    }
+    
 }

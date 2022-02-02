@@ -10,7 +10,7 @@ public class StateMachine : ScriptableObject
         if (currentState != null) {
             currentState.Value.OnExit();
         }
-        
+        Debug.Log($"Exiting: <{currentState}> | Entering <{nextState}>");
         currentState = nextState;
         
         if (currentState != null) {
