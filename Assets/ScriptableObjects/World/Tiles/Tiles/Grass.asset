@@ -37,7 +37,9 @@ MonoBehaviour:
   tileName: Grass
   visibleTint: {r: 0.37254903, g: 1, b: 0.3529412, a: 1}
   fogTint: {r: 0.14073269, g: 0.3679245, b: 0.13363294, a: 1}
-  worldTileDeltas:
-  - {fileID: 11400000, guid: 418e0d31648b7474a9cfa526486e4065, type: 2}
-  - {fileID: 11400000, guid: 761319ecf10a01c42910049d8fe64041, type: 2}
+  costs:
+  - {fileID: 11400000, guid: 6abebd98d721a4f44a8afd71005f426d, type: 2}
+  - {fileID: 11400000, guid: c2b3d9cb3868665448874761ef7973f8, type: 2}
+  harvestables:
+  - {fileID: 11400000, guid: 92f3cb3d773b97f4d991948c9e3a583c, type: 2}
   tileNeighbourWeight: []

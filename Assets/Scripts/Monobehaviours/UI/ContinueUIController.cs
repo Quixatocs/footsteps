@@ -26,11 +26,11 @@ public class ContinueUIController : MonoBehaviour
         }
         
         WorldTile currentTile = (WorldTile)tileMap.GetTile(playerCurrentHex.Value);
-        WorldTileDelta[] currentDeltas = currentTile.worldTileDeltas;
+        IntDelta[] currentTileCosts = currentTile.costs;
         
-        foreach (WorldTileDelta currentDelta in currentDeltas)
+        foreach (IntDelta cost in currentTileCosts)
         {
-            button.onClick.AddListener(() => currentDelta.ApplyDelta());
+            button.onClick.AddListener(() => cost.ApplyDelta());
         }
     }
 

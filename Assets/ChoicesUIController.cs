@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Text;
+using TMPro;
+using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
@@ -8,34 +11,50 @@ public class ChoicesUIController : MonoBehaviour
     [SerializeField]
     private GameObject choicesButtonPrefab;
     [SerializeField]
-    private GameObject canvas;
+    private GameObject buttonHolderParent;
 
     public HexVariable playerCurrentHex; 
 
     private Tilemap tileMap;
 
-    private GameObject buttonHolder;
+    private List<GameObject> buttonGOs;
     
     private void OnEnable()
     {
-        buttonHolder = Instantiate(choicesButtonPrefab, canvas.transform);
-        Button button = buttonHolder.GetComponent<Button>();
+        buttonGOs = new List<GameObject>();
+        
         if (tileMap == null)
         {
             tileMap = WorldObjectManager.GetComponent<Tilemap>();
         }
         
         WorldTile currentTile = (WorldTile)tileMap.GetTile(playerCurrentHex.Value);
-        WorldTileDelta[] currentDeltas = currentTile.worldTileDeltas;
+        IntDelta[] currentTileHarvestables = currentTile.harvestables;
         
-        foreach (WorldTileDelta currentDelta in currentDeltas)
+        foreach (IntDelta harvestable in currentTileHarvestables)
         {
-            button.onClick.AddListener(() => currentDelta.ApplyDelta());
+            GameObject buttonGO = Instantiate(choicesButtonPrefab, buttonHolderParent.transform);
+            buttonGOs.Add(buttonGO);
+            Button button = buttonGO.GetComponent<Button>();
+            button.onClick.AddListener(() => harvestable.ApplyDelta());
+            TMP_Text buttonText = buttonGO.GetComponentInChildren<TMP_Text>();
+            
+            StringBuilder buttonTextBuilder = new StringBuilder();
+            buttonTextBuilder.Append(harvestable.stat.name)
+                .Replace("(IntVariable)", "")
+                .Append(" : ")
+                .Append(harvestable.baseAmount);
+                
+            buttonText.text = buttonTextBuilder.ToString();
         }
     }
 
     private void OnDisable()
     {
-        Destroy(buttonHolder);
+        foreach (GameObject GO in buttonGOs)
+        {
+            Destroy(GO);
+        }
+        buttonGOs.Clear();
     }
 }
