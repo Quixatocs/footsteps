@@ -7,11 +7,11 @@ public class WorldTileDelta : ScriptableObject
 {
     public int baseAmount;
     public IntVariable stat;
-    public IntEvent deltaAppliedEvent;
+    public VoidEvent deltaAppliedEvent;
 
     public void ApplyDelta()
     {
         stat.Value -= baseAmount;
-        deltaAppliedEvent.Raise(stat.Value);
+        deltaAppliedEvent.Raise();
     }
 }

@@ -473,17 +473,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 499490658}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e16993f340a42d8999330056cdf8ba9, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d897f75dbb74c50b5cc1eb14fa996b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: d09356d768d22f348b2433ec7dbe3b8d, type: 2}
+  voidEvent: {fileID: 11400000, guid: d09356d768d22f348b2433ec7dbe3b8d, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 499490661}
         m_TargetAssemblyTypeName: FoodDisplayTextUIController, Assembly-CSharp
         m_MethodName: UpdateUI
-        m_Mode: 0
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -501,9 +501,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 499490658}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d12761c1cea08545bbdce474cdc47ed, type: 3}
+  m_Script: {fileID: 11500000, guid: 5814ad0f87c45304bbb3f179832a62df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerStat: {fileID: 11400000, guid: 0df5fbe816bb16049a9c522c9834d4bb, type: 2}
+  prefix: F
 --- !u!114 &499490662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,7 +526,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Food:'
+  m_text: 'F:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1237,17 +1239,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1901045342}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e16993f340a42d8999330056cdf8ba9, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d897f75dbb74c50b5cc1eb14fa996b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 95d1ceee5e9a65346802da88fc1ca4dc, type: 2}
+  voidEvent: {fileID: 11400000, guid: 95d1ceee5e9a65346802da88fc1ca4dc, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1901045345}
         m_TargetAssemblyTypeName: WaterDisplayTextUIController, Assembly-CSharp
         m_MethodName: UpdateUI
-        m_Mode: 0
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1268,6 +1270,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5814ad0f87c45304bbb3f179832a62df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerStat: {fileID: 11400000, guid: d14e25f6d4f87f346811f7c63efbe1db, type: 2}
+  prefix: W
 --- !u!114 &1901045346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1288,7 +1292,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Water:'
+  m_text: 'W:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

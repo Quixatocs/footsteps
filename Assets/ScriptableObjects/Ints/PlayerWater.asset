@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df117d8201b394943b6e0dc4a45c9710, type: 3}
   m_Name: PlayerWater
   m_EditorClassIdentifier: 
-  Value: 0
+  DefaultValue: 10
+  Value: 10
