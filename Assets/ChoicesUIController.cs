@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class ChoicesUIController : MonoBehaviour
 {
@@ -19,11 +18,24 @@ public class ChoicesUIController : MonoBehaviour
     
     private void OnEnable()
     {
-        //TODO add choices based on Tile and also other things at the tile location and build buttons
+        buttonHolder = Instantiate(choicesButtonPrefab, canvas.transform);
+        Button button = buttonHolder.GetComponent<Button>();
+        if (tileMap == null)
+        {
+            tileMap = WorldObjectManager.GetComponent<Tilemap>();
+        }
+        
+        WorldTile currentTile = (WorldTile)tileMap.GetTile(playerCurrentHex.Value);
+        WorldTileDelta[] currentDeltas = currentTile.worldTileDeltas;
+        
+        foreach (WorldTileDelta currentDelta in currentDeltas)
+        {
+            button.onClick.AddListener(() => currentDelta.ApplyDelta());
+        }
     }
 
     private void OnDisable()
     {
-        //TODO destroy all buttons and listeners etc
+        Destroy(buttonHolder);
     }
 }

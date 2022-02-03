@@ -30,7 +30,7 @@ public class ContinueUIController : MonoBehaviour
         
         foreach (WorldTileDelta currentDelta in currentDeltas)
         {
-            button.onClick.AddListener((() => currentDelta.ApplyDelta()));
+            button.onClick.AddListener(() => currentDelta.ApplyDelta());
         }
     }
 

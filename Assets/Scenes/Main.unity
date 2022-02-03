@@ -968,8 +968,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 735461863}
-  - component: {fileID: 735461864}
   - component: {fileID: 735461865}
+  - component: {fileID: 735461864}
   m_Layer: 0
   m_Name: UIObjects
   m_TagString: Untagged
