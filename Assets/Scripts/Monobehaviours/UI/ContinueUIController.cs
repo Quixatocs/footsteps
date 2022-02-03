@@ -2,11 +2,11 @@
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
-public class ChoicesUIController : MonoBehaviour
+public class ContinueUIController : MonoBehaviour
 {
     public WorldObjectManager WorldObjectManager;
     [SerializeField]
-    private GameObject choicesButtonPrefab;
+    private GameObject continueButtonPrefab;
     [SerializeField]
     private GameObject canvas;
 
@@ -18,7 +18,7 @@ public class ChoicesUIController : MonoBehaviour
     
     private void OnEnable()
     {
-        buttonHolder = Instantiate(choicesButtonPrefab, canvas.transform);
+        buttonHolder = Instantiate(continueButtonPrefab, canvas.transform);
         Button button = buttonHolder.GetComponent<Button>();
         if (tileMap == null)
         {
@@ -37,7 +37,6 @@ public class ChoicesUIController : MonoBehaviour
     private void OnDisable()
     {
         Destroy(buttonHolder);
-        //Button button = buttonHolder.GetComponent<Button>();
-        //button.onClick.RemoveAllListeners();
     }
+    
 }

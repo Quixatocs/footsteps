@@ -9,6 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c2c764442cf46c190f9a9b2046290ee, type: 3}
-  m_Name: PlayerWaterChangedEvent
+  m_Script: {fileID: 11500000, guid: d7fba34eaed74ee59a904cc913f8543f, type: 3}
+  m_Name: DaySurvived
   m_EditorClassIdentifier: 
+  baseAmount: 1
+  stat: {fileID: 11400000, guid: 3f201d9cdff10aa46bd8498491c5caef, type: 2}
+  deltaAppliedEvent: {fileID: 11400000, guid: 19279c9c5e3ccc045a98b219c750bfa7, type: 2}

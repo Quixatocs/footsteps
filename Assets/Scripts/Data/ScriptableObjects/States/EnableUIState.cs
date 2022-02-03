@@ -4,7 +4,6 @@ using UnityEngine;
 public class EnableUIState : State
 {
     public BoolEvent uiActivationEvent;
-    public UIObjectManager uiObjectManager;
 
     public override void OnEnter()
     {

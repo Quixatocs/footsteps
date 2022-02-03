@@ -9,6 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5018b336e6549809ea46d058a8c5831, type: 3}
-  m_Name: PlayerMovedEvent
+  m_Script: {fileID: 11500000, guid: df117d8201b394943b6e0dc4a45c9710, type: 3}
+  m_Name: Water
   m_EditorClassIdentifier: 
+  DefaultValue: 10
+  Value: 10

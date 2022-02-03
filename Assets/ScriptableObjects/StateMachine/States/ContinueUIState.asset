@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1cd83c8c4cf41679b90d060a1a9ef0e, type: 3}
-  m_Name: ChoicesUIState
+  m_Name: ContinueUIState
   m_EditorClassIdentifier: 
   IsComplete: 1
-  NextState: {fileID: 11400000, guid: 216d06f1df1da0149b8d28642632795f, type: 2}
-  uiActivationEvent: {fileID: 11400000, guid: 8086c7e230b76564bbda1aa8b0e508e8, type: 2}
+  NextState: {fileID: 11400000, guid: 5ba4ebf5e204aa14aa94056d2496aa7c, type: 2}
+  uiActivationEvent: {fileID: 11400000, guid: 9c2a37a250346724ab859957aae28b37, type: 2}

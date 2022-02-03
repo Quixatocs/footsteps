@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df117d8201b394943b6e0dc4a45c9710, type: 3}
-  m_Name: PlayerVisionRange
+  m_Script: {fileID: 11500000, guid: 1c2c764442cf46c190f9a9b2046290ee, type: 3}
+  m_Name: FoodChangedEvent
   m_EditorClassIdentifier: 
-  DefaultValue: 2
-  Value: 0
