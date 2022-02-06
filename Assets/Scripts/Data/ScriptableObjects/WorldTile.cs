@@ -17,6 +17,7 @@ public class WorldTile : Tile
     public WorldTile Copy()
     {
         WorldTile copiedTile = CreateInstance<WorldTile>();
+        
         copiedTile.sprite = sprite;
         copiedTile.color = color;
         copiedTile.coords = coords;
