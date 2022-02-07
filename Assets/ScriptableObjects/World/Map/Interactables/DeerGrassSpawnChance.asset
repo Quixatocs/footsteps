@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c2370d8fb44499a53f7c4c89db3be4, type: 3}
   m_Name: DeerGrassSpawnChance
   m_EditorClassIdentifier: 
-  WorldTile: {fileID: 0}
-  Chance: 0
+  Interactable: {fileID: 11400000, guid: 0505540f10b0347499ffa8d6d9e445c5, type: 2}
+  Chance: 100

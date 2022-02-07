@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
@@ -9,11 +10,14 @@ using Debug = UnityEngine.Debug;
 
 public class Map : MonoBehaviour
 {
+    public WorldObjectManager WorldObjectManager;
+    
     [Header("Scene Settings")]
     [SerializeField]
-    private Grid grid;
-    [SerializeField]
     private Tilemap tileMap;
+    
+
+    [SerializeField] private GameObject interactablePrefab;
     
     [Header("Asset References")]
     [SerializeField]
@@ -24,14 +28,28 @@ public class Map : MonoBehaviour
     
     [Header("Events")]
     public VoidEvent mapAssetsLoadingCompleteVoidEvent;
-    public HexEvent hexClickedEvent;
     
     private List<WorldTile> worldTiles;
     private List<WorldTile> lastInRangeWorldTiles;
+
+    private Grid grid;
     
     void Awake()
     {
         Addressables.LoadAssetAsync<WorldTileSet>(worldTileSetReference).Completed += OnWorldTileSetLoadDone;
+    }
+
+    private void Start()
+    {
+        if (tileMap == null)
+        {
+            tileMap = WorldObjectManager.GetComponent<Tilemap>();
+        }
+
+        if (grid == null)
+        {
+            grid = WorldObjectManager.GetComponent<Grid>();
+        }
     }
 
     private void OnWorldTileSetLoadDone(AsyncOperationHandle<WorldTileSet> obj)
@@ -91,8 +109,18 @@ public class Map : MonoBehaviour
         newTile.coords = hex;
         
         tileMap.SetTile(hex, newTile);
+        DrawTileInteractables(hex, newTile);
 
         return newTile;
+    }
+
+    private void DrawTileInteractables(Hex hex, WorldTile tile)
+    {
+        if (tile.runtimeInteractables == null || tile.runtimeInteractables.Count == 0) return;
+
+        Vector3 worldPosition = grid.HexToWorld(hex);
+        GameObject imageHolder = Instantiate(interactablePrefab, worldPosition, Quaternion.identity, tileMap.gameObject.transform);
+        imageHolder.name = "TESTTESTTEST";
     }
 
     private WorldTile GenerateRandomTile()

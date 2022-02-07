@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7fba34eaed74ee59a904cc913f8543f, type: 3}
   m_Name: HighFoodHarvestable
   m_EditorClassIdentifier: 
-  baseAmount: 0
-  stat: {fileID: 0}
-  deltaAppliedEvent: {fileID: 0}
+  baseAmount: 3
+  stat: {fileID: 11400000, guid: 0df5fbe816bb16049a9c522c9834d4bb, type: 2}
+  deltaAppliedEvent: {fileID: 11400000, guid: d09356d768d22f348b2433ec7dbe3b8d, type: 2}

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Map/WorldTile", order = 1)]
 [Serializable]
@@ -12,7 +14,11 @@ public class WorldTile : Tile
     public Color fogTint;
     public IntDelta[] costs;
     public IntDelta[] harvestables;
+    public InteractableSpawnChance[] interactableSpawnChances;
     public TileNeighbourWeight[] tileNeighbourWeight;
+    
+    [NonSerialized]
+    public List<Interactable> runtimeInteractables;
 
     public WorldTile Copy()
     {
@@ -26,8 +32,27 @@ public class WorldTile : Tile
         copiedTile.fogTint = fogTint;
         copiedTile.costs = costs;
         copiedTile.harvestables = harvestables;
+        copiedTile.interactableSpawnChances = interactableSpawnChances;
         copiedTile.tileNeighbourWeight = tileNeighbourWeight;
 
+        copiedTile.runtimeInteractables = GenerateRuntimeInteractables();
+
         return copiedTile;
+    }
+
+    public List<Interactable> GenerateRuntimeInteractables()
+    {
+        List<Interactable> runtimeInteractables = new List<Interactable>();
+
+        foreach (InteractableSpawnChance interactableSpawnChance in interactableSpawnChances)
+        {
+            int rng = Random.Range(0, 1000);
+            if (rng < interactableSpawnChance.Chance)
+            {
+                runtimeInteractables.Add(interactableSpawnChance.Interactable);
+            }
+        }
+
+        return runtimeInteractables;
     }
 }

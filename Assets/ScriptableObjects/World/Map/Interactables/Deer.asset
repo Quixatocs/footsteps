@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1867ecf1855b4b1aa6bd4c2db87e9fef, type: 3}
-  m_Name: Data
+  m_Name: Deer
   m_EditorClassIdentifier: 
-  spawnableTiles: []
-  harvestable: {fileID: 0}
+  sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  spawnChances:
+  - {fileID: 11400000, guid: 3bb30bc7778d6a04a963817ea15f9caf, type: 2}
+  harvestable: {fileID: 11400000, guid: bcc94cfb269387045a32e6bddd93fc2b, type: 2}

@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Interactable : ScriptableObject
 {
     public Sprite sprite;
-    public WorldTileSpawnChance[] spawnChances;
+    public InteractableSpawnChance[] spawnChances;
     
     public virtual Interactable Copy()
     {
