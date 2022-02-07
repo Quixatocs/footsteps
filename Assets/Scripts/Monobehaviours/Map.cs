@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
@@ -11,10 +12,6 @@ using Debug = UnityEngine.Debug;
 public class Map : MonoBehaviour
 {
     public WorldObjectManager WorldObjectManager;
-    
-    [Header("Scene Settings")]
-    [SerializeField]
-    private Tilemap tileMap;
     
 
     [SerializeField] private GameObject interactablePrefab;
@@ -32,6 +29,7 @@ public class Map : MonoBehaviour
     private List<WorldTile> worldTiles;
     private List<WorldTile> lastInRangeWorldTiles;
 
+    private Tilemap tileMap;
     private Grid grid;
     
     void Awake()
@@ -118,9 +116,14 @@ public class Map : MonoBehaviour
     {
         if (tile.runtimeInteractables == null || tile.runtimeInteractables.Count == 0) return;
 
-        Vector3 worldPosition = grid.HexToWorld(hex);
-        GameObject imageHolder = Instantiate(interactablePrefab, worldPosition, Quaternion.identity, tileMap.gameObject.transform);
-        imageHolder.name = "TESTTESTTEST";
+        foreach (Interactable interactable in tile.runtimeInteractables)
+        {
+            Vector3 worldPosition = grid.HexToWorld(hex);
+            GameObject imageHolder = Instantiate(interactablePrefab, worldPosition, Quaternion.identity, tileMap.gameObject.transform);
+            imageHolder.name = interactable.name;
+            imageHolder.GetComponent<SpriteRenderer>().sprite = interactable.sprite;
+            interactable.MapIcon = imageHolder;
+        }
     }
 
     private WorldTile GenerateRandomTile()

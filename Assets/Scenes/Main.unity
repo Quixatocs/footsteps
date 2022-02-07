@@ -1651,7 +1651,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WorldObjectManager: {fileID: 11400000, guid: 3628bd214742ed04b9261ea92d9c8022, type: 2}
-  tileMap: {fileID: 663265248}
   interactablePrefab: {fileID: 3032549205781402714, guid: f632cfc3c49ccbd4eb790adf7a8ad9c8, type: 3}
   worldTileSetReference:
     m_AssetGUID: e3e967fb36e89e6418d30d1851c3aac9

@@ -7,6 +7,9 @@ public abstract class Interactable : ScriptableObject
     public Sprite sprite;
     public InteractableSpawnChance[] spawnChances;
     
+    [NonSerialized]
+    public GameObject MapIcon;
+    
     public virtual Interactable Copy()
     {
         Interactable copiedInteractable = CreateInstance<Interactable>();
@@ -17,5 +20,8 @@ public abstract class Interactable : ScriptableObject
         return copiedInteractable;
     }
 
-    public abstract void Interact();
+    public virtual void Interact()
+    {
+        Destroy(MapIcon);
+    }
 }
