@@ -49,7 +49,7 @@ public class WorldTile : Tile
             int rng = Random.Range(0, 1000);
             if (rng < interactableSpawnChance.Chance)
             {
-                runtimeInteractables.Add(interactableSpawnChance.Interactable);
+                runtimeInteractables.Add(interactableSpawnChance.Interactable.Copy());
             }
         }
 

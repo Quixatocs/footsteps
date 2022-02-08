@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1867ecf1855b4b1aa6bd4c2db87e9fef, type: 3}
   m_Name: Deer
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300264, guid: 14aefffd3622c7347aad64f2bed35801, type: 3}
+  sprite: {fileID: 21300030, guid: 14aefffd3622c7347aad64f2bed35801, type: 3}
   spawnChances:
   - {fileID: 11400000, guid: 3bb30bc7778d6a04a963817ea15f9caf, type: 2}
   Harvestable: {fileID: 11400000, guid: bcc94cfb269387045a32e6bddd93fc2b, type: 2}

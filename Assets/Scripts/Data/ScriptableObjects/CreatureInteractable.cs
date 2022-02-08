@@ -8,15 +8,17 @@ public class CreatureInteractable : Interactable
 
     public override Interactable Copy()
     {
-        CreatureInteractable copiedCreatureInteractable = base.Copy() as CreatureInteractable;
-        copiedCreatureInteractable.Harvestable = Harvestable;
+        CreatureInteractable copiedInteractable = CreateInstance<CreatureInteractable>();
+        copiedInteractable.sprite = sprite;
+        copiedInteractable.spawnChances = spawnChances;
+        copiedInteractable.Harvestable = Harvestable;
 
-        return copiedCreatureInteractable;
+        return copiedInteractable;
     }
 
     public override void Interact()
     {
-        Harvestable.ApplyDelta();
         base.Interact();
+        Harvestable.ApplyDelta();
     }
 }

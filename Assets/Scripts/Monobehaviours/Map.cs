@@ -106,8 +106,8 @@ public class Map : MonoBehaviour
 
         newTile.coords = hex;
         
-        tileMap.SetTile(hex, newTile);
         DrawTileInteractables(hex, newTile);
+        tileMap.SetTile(hex, newTile);
 
         return newTile;
     }
@@ -119,8 +119,8 @@ public class Map : MonoBehaviour
         foreach (Interactable interactable in tile.runtimeInteractables)
         {
             Vector3 worldPosition = grid.HexToWorld(hex);
-            GameObject imageHolder = Instantiate(interactablePrefab, worldPosition, Quaternion.identity, tileMap.gameObject.transform);
-            imageHolder.name = interactable.name;
+            GameObject imageHolder = Instantiate(interactablePrefab, worldPosition + grid.cellSize * 0.25f, Quaternion.identity, tileMap.gameObject.transform);
+            imageHolder.name = hex.ToVector3Int().ToString();
             imageHolder.GetComponent<SpriteRenderer>().sprite = interactable.sprite;
             interactable.MapIcon = imageHolder;
         }

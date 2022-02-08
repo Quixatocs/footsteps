@@ -9,16 +9,8 @@ public abstract class Interactable : ScriptableObject
     
     [NonSerialized]
     public GameObject MapIcon;
-    
-    public virtual Interactable Copy()
-    {
-        Interactable copiedInteractable = CreateInstance<Interactable>();
 
-        copiedInteractable.sprite = sprite;
-        copiedInteractable.spawnChances = spawnChances;
-        
-        return copiedInteractable;
-    }
+    public abstract Interactable Copy();
 
     public virtual void Interact()
     {
