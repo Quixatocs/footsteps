@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1867ecf1855b4b1aa6bd4c2db87e9fef, type: 3}
   m_Name: Lizard
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 4ecbbeb5068b9431fbe58f5d84e2368a, type: 3}
+  sprite: {fileID: 21300000, guid: 845f908185fca40c68251cc3a89e1eb0, type: 3}
   Harvestable: {fileID: 11400000, guid: 92f3cb3d773b97f4d991948c9e3a583c, type: 2}
