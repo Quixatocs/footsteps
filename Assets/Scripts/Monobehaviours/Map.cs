@@ -119,7 +119,7 @@ public class Map : MonoBehaviour
         foreach (Interactable interactable in tile.runtimeInteractables)
         {
             Vector3 worldPosition = grid.HexToWorld(hex);
-            GameObject imageHolder = Instantiate(interactablePrefab, worldPosition + grid.cellSize * 0.25f, Quaternion.identity, tileMap.gameObject.transform);
+            GameObject imageHolder = Instantiate(interactablePrefab, worldPosition + grid.cellSize * 0.15f, Quaternion.identity, tileMap.gameObject.transform);
             imageHolder.name = hex.ToVector3Int().ToString();
             imageHolder.GetComponent<SpriteRenderer>().sprite = interactable.sprite;
             interactable.MapIcon = imageHolder;

@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1867ecf1855b4b1aa6bd4c2db87e9fef, type: 3}
+  m_Name: Fish
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 135a4749683c14c778b18a5d2039f311, type: 3}
+  Harvestable: {fileID: 11400000, guid: 92f3cb3d773b97f4d991948c9e3a583c, type: 2}

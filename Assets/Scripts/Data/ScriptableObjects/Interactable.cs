@@ -5,7 +5,6 @@ using UnityEngine;
 public abstract class Interactable : ScriptableObject
 {
     public Sprite sprite;
-    public InteractableSpawnChance[] spawnChances;
     
     [NonSerialized]
     public GameObject MapIcon;

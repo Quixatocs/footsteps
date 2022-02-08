@@ -9,8 +9,8 @@ public class CreatureInteractable : Interactable
     public override Interactable Copy()
     {
         CreatureInteractable copiedInteractable = CreateInstance<CreatureInteractable>();
+        copiedInteractable.name = name;
         copiedInteractable.sprite = sprite;
-        copiedInteractable.spawnChances = spawnChances;
         copiedInteractable.Harvestable = Harvestable;
 
         return copiedInteractable;

@@ -42,4 +42,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c2b3d9cb3868665448874761ef7973f8, type: 2}
   harvestables:
   - {fileID: 11400000, guid: 6b820fe6a77165a41b33fb496cf4b49e, type: 2}
+  interactableSpawnChances:
+  - {fileID: 11400000, guid: d0442c1da0a777545834c5015c7f93f9, type: 2}
   tileNeighbourWeight: []

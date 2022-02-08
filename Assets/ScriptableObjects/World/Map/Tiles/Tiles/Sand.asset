@@ -43,5 +43,6 @@ MonoBehaviour:
   harvestables:
   - {fileID: 11400000, guid: d49294f1ce8579849a267cc6a1b27cd5, type: 2}
   - {fileID: 11400000, guid: cbe7146832d9b9140b1c089fb16548f7, type: 2}
-  interactableSpawnChances: []
+  interactableSpawnChances:
+  - {fileID: 11400000, guid: 90509a0432cdf594687c89142f50ee77, type: 2}
   tileNeighbourWeight: []
