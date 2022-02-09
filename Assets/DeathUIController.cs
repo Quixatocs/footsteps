@@ -1,12 +1,57 @@
 ﻿using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
 
 public class DeathUIController : MonoBehaviour
 {
+    [Header("Asset References")]
+    [SerializeField]
+    private AssetReference FoodReference;
+    [SerializeField]
+    private AssetReference WaterReference;
+    [SerializeField]
+    private AssetReference DaysReference;
+    
+    [Header("Variables")]
     public IntVariable Food;
     public IntVariable Water;
     public IntVariable Days;
 
+    private void Awake()
+    {
+        Addressables.LoadAssetAsync<IntVariable>(FoodReference).Completed += OnFoodAssetLoaded;
+        Addressables.LoadAssetAsync<IntVariable>(WaterReference).Completed += OnWaterAssetLoaded;
+        Addressables.LoadAssetAsync<IntVariable>(DaysReference).Completed += OnDaysAssetLoaded;
+    }
+    
+    private void OnFoodAssetLoaded(AsyncOperationHandle<IntVariable> obj)
+    {
+        if (obj.Status == AsyncOperationStatus.Succeeded)
+        {
+            Food = obj.Result;
+            Debug.Log($"Successfully loaded asset <{Food.name}>");
+        }
+    }
+    
+    private void OnWaterAssetLoaded(AsyncOperationHandle<IntVariable> obj)
+    {
+        if (obj.Status == AsyncOperationStatus.Succeeded)
+        {
+            Water = obj.Result;
+            Debug.Log($"Successfully loaded asset <{Water.name}>");
+        }
+    }
+    
+    private void OnDaysAssetLoaded(AsyncOperationHandle<IntVariable> obj)
+    {
+        if (obj.Status == AsyncOperationStatus.Succeeded)
+        {
+            Days = obj.Result;
+            Debug.Log($"Successfully loaded asset <{Days.name}>");
+        }
+    }
+    
     public void ResetScene()
     {
         SceneManager.LoadScene(0);

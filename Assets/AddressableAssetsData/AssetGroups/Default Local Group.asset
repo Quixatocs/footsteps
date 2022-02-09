@@ -41,6 +41,234 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 3f201d9cdff10aa46bd8498491c5caef
+    m_Address: Assets/ScriptableObjects/Ints/DaysSurvived.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 0df5fbe816bb16049a9c522c9834d4bb
+    m_Address: Assets/ScriptableObjects/Ints/Food.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: d14e25f6d4f87f346811f7c63efbe1db
+    m_Address: Assets/ScriptableObjects/Ints/Water.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: bb93158af5fc5d0498fae247a9074bf2
+    m_Address: Assets/ScriptableObjects/Ints/VisionRange.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: df854edbc715a904ea3fdd64df122ae3
+    m_Address: Assets/ScriptableObjects/Hexs/PlayerCurrentHex.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 8086c7e230b76564bbda1aa8b0e508e8
+    m_Address: Assets/ScriptableObjects/Events/ChoicesUIActivationEvent.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 9c2a37a250346724ab859957aae28b37
+    m_Address: Assets/ScriptableObjects/Events/ContinueUIActivationEvent.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 19279c9c5e3ccc045a98b219c750bfa7
+    m_Address: Assets/ScriptableObjects/Events/DaysSurvivedChangedEvent.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: a82291df97831654ba9b66f056fb538f
+    m_Address: Assets/ScriptableObjects/Events/DeathUIActivationEvent.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: d09356d768d22f348b2433ec7dbe3b8d
+    m_Address: Assets/ScriptableObjects/Events/FoodChangedEvent.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: a426f8ec035c0d645ba5be278ef0e38a
+    m_Address: Assets/ScriptableObjects/Events/HexClickedEvent.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 718b5dba5733c5848aae7bbe4a0bdb20
+    m_Address: Assets/ScriptableObjects/Events/MapAssetsLoadingCompleteEvent.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: bf6031d5ecf54404188063f14af58778
+    m_Address: Assets/ScriptableObjects/Events/MovedEvent.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 9335a245b4a08474383d7738a21c7ac4
+    m_Address: Assets/ScriptableObjects/Events/PlayerDeathEvent.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 95d1ceee5e9a65346802da88fc1ca4dc
+    m_Address: Assets/ScriptableObjects/Events/WaterChangedEvent.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: c98230a98e54e994fb259a48a658f07f
+    m_Address: Assets/ScriptableObjects/StateMachine/Controllers/GameStateController.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: f68f42ac991ef9f49aed17766603032c
+    m_Address: Assets/ScriptableObjects/StateMachine/Controllers/GameStateControllerVariable.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 3628bd214742ed04b9261ea92d9c8022
+    m_Address: Assets/ScriptableObjects/World/WorldObjectManager.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 6abebd98d721a4f44a8afd71005f426d
+    m_Address: Assets/ScriptableObjects/World/Map/Tiles/TileDeltas/Costs/LowFoodCost.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: c2b3d9cb3868665448874761ef7973f8
+    m_Address: Assets/ScriptableObjects/World/Map/Tiles/TileDeltas/Costs/LowWaterCost.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 8e4d1cdbf90bc3549811f193fa327ad4
+    m_Address: Assets/ScriptableObjects/World/Map/Tiles/TileDeltas/Costs/MediumWaterCost.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 6b820fe6a77165a41b33fb496cf4b49e
+    m_Address: Assets/ScriptableObjects/World/Map/Tiles/TileDeltas/Harvestables/MediumWaterHarvestable.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 92f3cb3d773b97f4d991948c9e3a583c
+    m_Address: Assets/ScriptableObjects/World/Map/Tiles/TileDeltas/Harvestables/MediumFoodHarvestable.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: d49294f1ce8579849a267cc6a1b27cd5
+    m_Address: Assets/ScriptableObjects/World/Map/Tiles/TileDeltas/Harvestables/LowWaterHarvestable.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: cbe7146832d9b9140b1c089fb16548f7
+    m_Address: Assets/ScriptableObjects/World/Map/Tiles/TileDeltas/Harvestables/LowFoodHarvestable.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: bcc94cfb269387045a32e6bddd93fc2b
+    m_Address: Assets/ScriptableObjects/World/Map/Tiles/TileDeltas/Harvestables/HighFoodHarvestable.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 0505540f10b0347499ffa8d6d9e445c5
+    m_Address: Assets/ScriptableObjects/World/Map/Interactables/Deer.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 3bb30bc7778d6a04a963817ea15f9caf
+    m_Address: Assets/ScriptableObjects/World/Map/Interactables/DeerGrassSpawnChance.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: ce5c1e65a435eed4cbee2b63a2db26f9
+    m_Address: Assets/ScriptableObjects/World/Map/Interactables/Fish.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: d0442c1da0a777545834c5015c7f93f9
+    m_Address: Assets/ScriptableObjects/World/Map/Interactables/FishWaterSpawnChance.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 7b91ddcca1cf38b49b049c9de175ac5a
+    m_Address: Assets/ScriptableObjects/World/Map/Interactables/Lizard.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 90509a0432cdf594687c89142f50ee77
+    m_Address: Assets/ScriptableObjects/World/Map/Interactables/LizardSandSpawnChance.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 67f96dd2c252d7649b079de2a1c4868c
+    m_Address: Assets/ScriptableObjects/StateMachine/States/ChoicesUIState.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 1cef27d5c8f1dee42bc72b15245f4335
+    m_Address: Assets/ScriptableObjects/StateMachine/States/ChoicesUIStateVariable.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 29b96bcb651a0d849aaa2bf9d0a9220b
+    m_Address: Assets/ScriptableObjects/StateMachine/States/ContinueUIState.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 216d06f1df1da0149b8d28642632795f
+    m_Address: Assets/ScriptableObjects/StateMachine/States/ContinueUIStateVariable.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 632c46ee4c4117f49939c01a5a6d8c5a
+    m_Address: Assets/ScriptableObjects/StateMachine/States/WaitForMovementHexSelectState.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 5ba4ebf5e204aa14aa94056d2496aa7c
+    m_Address: Assets/ScriptableObjects/StateMachine/States/WaitForMovementHexSelectStateVariable.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6fc6c05852e40f64783f822c55665ad0, type: 2}
   m_SchemaSet:

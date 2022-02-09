@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
@@ -19,15 +17,15 @@ public class Map : MonoBehaviour
     [Header("Asset References")]
     [SerializeField]
     private AssetReference worldTileSetReference;
-    
-    [Header("Variables")]
-    public IntVariable playerVisionRange;
+    [SerializeField]
+    private AssetReference playerVisionRangeReference;
     
     [Header("Events")]
     public VoidEvent mapAssetsLoadingCompleteVoidEvent;
     
     private List<WorldTile> worldTiles;
     private List<WorldTile> lastInRangeWorldTiles;
+    private IntVariable visionRange;
 
     private Tilemap tileMap;
     private Grid grid;
@@ -35,18 +33,15 @@ public class Map : MonoBehaviour
     void Awake()
     {
         Addressables.LoadAssetAsync<WorldTileSet>(worldTileSetReference).Completed += OnWorldTileSetLoadDone;
+        Addressables.LoadAssetAsync<IntVariable>(playerVisionRangeReference).Completed += OnVisionRangeAssetLoaded;
     }
-
-    private void Start()
+    
+    private void OnVisionRangeAssetLoaded(AsyncOperationHandle<IntVariable> obj)
     {
-        if (tileMap == null)
+        if (obj.Status == AsyncOperationStatus.Succeeded)
         {
-            tileMap = WorldObjectManager.GetComponent<Tilemap>();
-        }
-
-        if (grid == null)
-        {
-            grid = WorldObjectManager.GetComponent<Grid>();
+            visionRange = obj.Result;
+            Debug.Log($"Successfully loaded asset <{visionRange.name}>");
         }
     }
 
@@ -55,7 +50,7 @@ public class Map : MonoBehaviour
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
             WorldTileSet worldTileSet = obj.Result;
-            Debug.Log("Successfully loaded WorldTileSet.");
+            Debug.Log($"Successfully loaded asset <{worldTileSet.name}>");
             
             worldTiles = new List<WorldTile>();
             int counter = worldTileSet.WorldTiles.Length;
@@ -82,15 +77,30 @@ public class Map : MonoBehaviour
             Debug.LogError($"Something went wrong loading the WorldTileSet");
         }
     }
+    
+    
+    
+    private void Start()
+    {
+        if (tileMap == null)
+        {
+            tileMap = WorldObjectManager.GetComponent<Tilemap>();
+        }
+
+        if (grid == null)
+        {
+            grid = WorldObjectManager.GetComponent<Grid>();
+        }
+    }
 
     public void GenerateTilesAroundPlayer(Hex hex)
     {
         if (lastInRangeWorldTiles != null)
         {
-            ApplyFogToTiles(hex, playerVisionRange.Value);
+            ApplyFogToTiles(hex, visionRange.Value);
         }
         
-        lastInRangeWorldTiles = GetTilesInRange(hex, playerVisionRange.Value, true);
+        lastInRangeWorldTiles = GetTilesInRange(hex, visionRange.Value, true);
 
         tileMap.RefreshAllTiles();
     }
