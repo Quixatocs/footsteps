@@ -2419,7 +2419,6 @@ MonoBehaviour:
     m_AssetGUID: bb93158af5fc5d0498fae247a9074bf2
     m_SubObjectName: 
     m_SubObjectType: 
-  VisionRange: {fileID: 11400000, guid: bb93158af5fc5d0498fae247a9074bf2, type: 2}
   mapAssetsLoadingCompleteVoidEvent: {fileID: 11400000, guid: 718b5dba5733c5848aae7bbe4a0bdb20, type: 2}
 --- !u!1001 &5783762974518102096
 PrefabInstance:
