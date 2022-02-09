@@ -269,6 +269,12 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 2c12d243a08c2504e906d4a5554a1a17
+    m_Address: Assets/ScriptableObjects/Deltas/DaySurvived.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6fc6c05852e40f64783f822c55665ad0, type: 2}
   m_SchemaSet:

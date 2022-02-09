@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 1096804848406420156}
   - component: {fileID: 1096804848406420155}
   - component: {fileID: 1096804848406420154}
+  - component: {fileID: -2497916416680018050}
+  - component: {fileID: -2429877654028440265}
   m_Layer: 5
   m_Name: ContinueButton
   m_TagString: Untagged
@@ -120,8 +122,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 2c12d243a08c2504e906d4a5554a1a17, type: 2}
-        m_TargetAssemblyTypeName: IntDelta, Assembly-CSharp
+      - m_Target: {fileID: -2429877654028440265}
+        m_TargetAssemblyTypeName: TriggerIntDelta, Assembly-CSharp
         m_MethodName: ApplyDelta
         m_Mode: 1
         m_Arguments:
@@ -132,8 +134,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: 29b96bcb651a0d849aaa2bf9d0a9220b, type: 2}
-        m_TargetAssemblyTypeName: EnableUIState, Assembly-CSharp
+      - m_Target: {fileID: -2497916416680018050}
+        m_TargetAssemblyTypeName: UITriggerStateExit, Assembly-CSharp
         m_MethodName: ReturnFromUI
         m_Mode: 1
         m_Arguments:
@@ -144,6 +146,38 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &-2497916416680018050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096804848406420152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3047c9998a446b74f8ec318df0c48e54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableUIStateReference:
+    m_AssetGUID: 29b96bcb651a0d849aaa2bf9d0a9220b
+    m_SubObjectName: 
+    m_SubObjectType: 
+--- !u!114 &-2429877654028440265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096804848406420152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bffea4ee0775fe44bafdb319bc2bd4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intDeltaReference:
+    m_AssetGUID: 2c12d243a08c2504e906d4a5554a1a17
+    m_SubObjectName: 
+    m_SubObjectType: 
 --- !u!1 &1096804848869310909
 GameObject:
   m_ObjectHideFlags: 0
