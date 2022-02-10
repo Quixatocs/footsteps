@@ -2,30 +2,72 @@
 using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public class ChoicesUIController : MonoBehaviour
 {
-    public WorldObjectManager WorldObjectManager;
+    [Header("Asset References")]
+    [SerializeField]
+    private AssetReference worldObjectManagerReference;
+    [SerializeField]
+    private AssetReference playerCurrentHexReference;
+    
+    [Header("Scene References")]
     [SerializeField]
     private GameObject choicesButtonPrefab;
     [SerializeField]
     private GameObject buttonHolderParent;
+    
 
-    public HexVariable playerCurrentHex; 
-
+    private WorldObjectManager worldObjectManager;
+    private HexVariable playerCurrentHex; 
     private Tilemap tileMap;
-
     private List<GameObject> buttonGOs;
     
     private void OnEnable()
+    {
+        Addressables.LoadAssetAsync<WorldObjectManager>(worldObjectManagerReference).Completed += OnWorldObjectManagerAssetLoaded;
+        Addressables.LoadAssetAsync<HexVariable>(playerCurrentHexReference).Completed += OnPlayerCurrentHexAssetLoaded;
+    }
+
+    private void OnWorldObjectManagerAssetLoaded(AsyncOperationHandle<WorldObjectManager> obj)
+    {
+        if (obj.Status == AsyncOperationStatus.Succeeded)
+        {
+            worldObjectManager = obj.Result;
+            Debug.Log($"Successfully loaded asset <{worldObjectManager.name}>");
+
+            if (playerCurrentHex != null)
+            {
+                OnInitialisedAssets();
+            }
+        }
+    }
+    
+    private void OnPlayerCurrentHexAssetLoaded(AsyncOperationHandle<HexVariable> obj)
+    {
+        if (obj.Status == AsyncOperationStatus.Succeeded)
+        {
+            playerCurrentHex = obj.Result;
+            Debug.Log($"Successfully loaded asset <{playerCurrentHex.name}>");
+            
+            if (worldObjectManager != null)
+            {
+                OnInitialisedAssets();
+            }
+        }
+    }
+
+    private void OnInitialisedAssets()
     {
         buttonGOs = new List<GameObject>();
         
         if (tileMap == null)
         {
-            tileMap = WorldObjectManager.GetComponent<Tilemap>();
+            tileMap = worldObjectManager.GetComponent<Tilemap>();
         }
         
         WorldTile currentTile = (WorldTile)tileMap.GetTile(playerCurrentHex.Value);
@@ -67,6 +109,7 @@ public class ChoicesUIController : MonoBehaviour
             buttonText.text = buttonTextBuilder.ToString();
         }
     }
+    
 
     private void OnDisable()
     {

@@ -143,10 +143,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adbcbd92c9df7034ead6f20ba6274af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WorldObjectManager: {fileID: 11400000, guid: 3628bd214742ed04b9261ea92d9c8022, type: 2}
+  worldObjectManagerReference:
+    m_AssetGUID: 3628bd214742ed04b9261ea92d9c8022
+    m_SubObjectName: 
+    m_SubObjectType: 
+  playerCurrentHexReference:
+    m_AssetGUID: df854edbc715a904ea3fdd64df122ae3
+    m_SubObjectName: 
+    m_SubObjectType: 
   choicesButtonPrefab: {fileID: 1096804848406420152, guid: 8da781cd4b3f0c1458caa65de63e7cb0, type: 3}
   buttonHolderParent: {fileID: 7688727227978088099}
-  playerCurrentHex: {fileID: 11400000, guid: df854edbc715a904ea3fdd64df122ae3, type: 2}
 --- !u!1 &7688727227978088099
 GameObject:
   m_ObjectHideFlags: 0

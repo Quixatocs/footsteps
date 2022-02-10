@@ -9,12 +9,14 @@ using Debug = UnityEngine.Debug;
 
 public class Map : MonoBehaviour
 {
-    public WorldObjectManager WorldObjectManager;
+    
     
 
     [SerializeField] private GameObject interactablePrefab;
     
     [Header("Asset References")]
+    [SerializeField]
+    private AssetReference worldObjectManagerReference;
     [SerializeField]
     private AssetReference worldTileSetReference;
     [SerializeField]
@@ -23,6 +25,7 @@ public class Map : MonoBehaviour
     [Header("Events")]
     public VoidEvent mapAssetsLoadingCompleteVoidEvent;
     
+    private WorldObjectManager worldObjectManager;
     private List<WorldTile> worldTiles;
     private List<WorldTile> lastInRangeWorldTiles;
     private IntVariable visionRange;
@@ -32,17 +35,28 @@ public class Map : MonoBehaviour
     
     void Start()
     {
+        Addressables.LoadAssetAsync<WorldObjectManager>(worldObjectManagerReference).Completed += OnWorldObjectManagerAssetLoaded;
         Addressables.LoadAssetAsync<WorldTileSet>(worldTileSetReference).Completed += OnWorldTileSetLoadDone;
         Addressables.LoadAssetAsync<IntVariable>(playerVisionRangeReference).Completed += OnVisionRangeAssetLoaded;
-        
-        if (tileMap == null)
+    }
+    
+    private void OnWorldObjectManagerAssetLoaded(AsyncOperationHandle<WorldObjectManager> obj)
+    {
+        if (obj.Status == AsyncOperationStatus.Succeeded)
         {
-            tileMap = WorldObjectManager.GetComponent<Tilemap>();
-        }
+            worldObjectManager = obj.Result;
+            Debug.Log($"Successfully loaded asset <{worldObjectManager.name}>");
+            
+            
+            if (tileMap == null)
+            {
+                tileMap = worldObjectManager.GetComponent<Tilemap>();
+            }
 
-        if (grid == null)
-        {
-            grid = WorldObjectManager.GetComponent<Grid>();
+            if (grid == null)
+            {
+                grid = worldObjectManager.GetComponent<Grid>();
+            }
         }
     }
     
