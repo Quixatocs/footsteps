@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class State : ScriptableObject
 {
     public bool IsComplete;
-    public StateVariable NextState;
+    public State NextState;
     public abstract void OnEnter();
 
     public abstract void OnExit();

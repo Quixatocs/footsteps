@@ -3,18 +3,19 @@
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Control/StateMachine", order = 1)]
 public class StateMachine : ScriptableObject
 {
-    private StateVariable currentState;
+    private State currentState;
 
-    public void SetState(StateVariable nextState) {
+    public void SetState(State nextState) {
         
         if (currentState != null) {
-            currentState.Value.OnExit();
+            currentState.OnExit();
         }
+
         Debug.Log($"Exiting: <{currentState}> | Entering <{nextState}>");
         currentState = nextState;
         
         if (currentState != null) {
-            currentState.Value.OnEnter();
+            currentState.OnEnter();
         }
     }
 
@@ -22,7 +23,7 @@ public class StateMachine : ScriptableObject
     {
         if (currentState == null) return;
         
-        currentState.Value.OnUpdate();
+        currentState.OnUpdate();
     }
 
     /// <summary>
@@ -32,8 +33,8 @@ public class StateMachine : ScriptableObject
             
         if (currentState == null) return;
         
-        if (currentState.Value.IsComplete) {
-            SetState(currentState.Value.NextState);
+        if (currentState.IsComplete) {
+            SetState(currentState.NextState);
         }
     }
 }

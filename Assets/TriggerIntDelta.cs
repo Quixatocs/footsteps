@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.UI;
 
 public class TriggerIntDelta : MonoBehaviour
 {
@@ -9,10 +10,18 @@ public class TriggerIntDelta : MonoBehaviour
     private AssetReference intDeltaReference;
 
     private IntDelta intDelta;
+    private Button button;
     
-    private void Awake()
+    private void OnEnable()
     {
         Addressables.LoadAssetAsync<IntDelta>(intDeltaReference).Completed += OnIntDeltaAssetLoaded;
+
+        if (button == null)
+        {
+            button = GetComponent<Button>();
+        }
+        
+        button.interactable = false;
     }
 
     private void OnIntDeltaAssetLoaded(AsyncOperationHandle<IntDelta> obj)
@@ -21,6 +30,8 @@ public class TriggerIntDelta : MonoBehaviour
         {
             intDelta = obj.Result;
             Debug.Log($"Successfully loaded asset <{intDelta.name}>");
+            
+            button.interactable = true;
         }
     }
 

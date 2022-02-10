@@ -30,10 +30,20 @@ public class Map : MonoBehaviour
     private Tilemap tileMap;
     private Grid grid;
     
-    void Awake()
+    void Start()
     {
         Addressables.LoadAssetAsync<WorldTileSet>(worldTileSetReference).Completed += OnWorldTileSetLoadDone;
         Addressables.LoadAssetAsync<IntVariable>(playerVisionRangeReference).Completed += OnVisionRangeAssetLoaded;
+        
+        if (tileMap == null)
+        {
+            tileMap = WorldObjectManager.GetComponent<Tilemap>();
+        }
+
+        if (grid == null)
+        {
+            grid = WorldObjectManager.GetComponent<Grid>();
+        }
     }
     
     private void OnVisionRangeAssetLoaded(AsyncOperationHandle<IntVariable> obj)
@@ -75,21 +85,6 @@ public class Map : MonoBehaviour
         else
         {
             Debug.LogError($"Something went wrong loading the WorldTileSet");
-        }
-    }
-    
-    
-    
-    private void Start()
-    {
-        if (tileMap == null)
-        {
-            tileMap = WorldObjectManager.GetComponent<Tilemap>();
-        }
-
-        if (grid == null)
-        {
-            grid = WorldObjectManager.GetComponent<Grid>();
         }
     }
 

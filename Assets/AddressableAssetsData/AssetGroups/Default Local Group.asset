@@ -137,12 +137,6 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
-  - m_GUID: f68f42ac991ef9f49aed17766603032c
-    m_Address: Assets/ScriptableObjects/StateMachine/Controllers/GameStateControllerVariable.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
   - m_GUID: 3628bd214742ed04b9261ea92d9c8022
     m_Address: Assets/ScriptableObjects/World/WorldObjectManager.asset
     m_ReadOnly: 0
@@ -239,32 +233,14 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
-  - m_GUID: 1cef27d5c8f1dee42bc72b15245f4335
-    m_Address: Assets/ScriptableObjects/StateMachine/States/ChoicesUIStateVariable.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
   - m_GUID: 29b96bcb651a0d849aaa2bf9d0a9220b
     m_Address: Assets/ScriptableObjects/StateMachine/States/ContinueUIState.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
-  - m_GUID: 216d06f1df1da0149b8d28642632795f
-    m_Address: Assets/ScriptableObjects/StateMachine/States/ContinueUIStateVariable.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
   - m_GUID: 632c46ee4c4117f49939c01a5a6d8c5a
     m_Address: Assets/ScriptableObjects/StateMachine/States/WaitForMovementHexSelectState.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
-  - m_GUID: 5ba4ebf5e204aa14aa94056d2496aa7c
-    m_Address: Assets/ScriptableObjects/StateMachine/States/WaitForMovementHexSelectStateVariable.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}

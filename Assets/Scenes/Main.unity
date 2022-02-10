@@ -1142,7 +1142,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17627e823f494544b1636f4f7d7e599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WorldObjectManager: {fileID: 11400000, guid: 3628bd214742ed04b9261ea92d9c8022, type: 2}
+  worldObjectManagerReference:
+    m_AssetGUID: 3628bd214742ed04b9261ea92d9c8022
+    m_SubObjectName: 
+    m_SubObjectType: 
 --- !u!1 &706952687
 GameObject:
   m_ObjectHideFlags: 0
@@ -1688,8 +1691,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a88e5cdabd17493298e3484518a7ba6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateMachineVariable: {fileID: 11400000, guid: f68f42ac991ef9f49aed17766603032c, type: 2}
-  initialState: {fileID: 11400000, guid: 5ba4ebf5e204aa14aa94056d2496aa7c, type: 2}
+  stateMachineReference:
+    m_AssetGUID: c98230a98e54e994fb259a48a658f07f
+    m_SubObjectName: 
+    m_SubObjectType: 
+  initialStateReference:
+    m_AssetGUID: 632c46ee4c4117f49939c01a5a6d8c5a
+    m_SubObjectName: 
+    m_SubObjectType: 
 --- !u!4 &1033000005
 Transform:
   m_ObjectHideFlags: 0
@@ -2070,9 +2079,6 @@ MonoBehaviour:
     m_AssetGUID: 3f201d9cdff10aa46bd8498491c5caef
     m_SubObjectName: 
     m_SubObjectType: 
-  Food: {fileID: 11400000, guid: 0df5fbe816bb16049a9c522c9834d4bb, type: 2}
-  Water: {fileID: 11400000, guid: d14e25f6d4f87f346811f7c63efbe1db, type: 2}
-  Days: {fileID: 11400000, guid: 3f201d9cdff10aa46bd8498491c5caef, type: 2}
 --- !u!1 &1761055394
 GameObject:
   m_ObjectHideFlags: 0
