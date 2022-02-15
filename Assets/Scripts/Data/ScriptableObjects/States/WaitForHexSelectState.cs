@@ -2,8 +2,6 @@ using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.Serialization;
-using Random = UnityEngine.Random;
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/States/WaitForHexSelectState", order = 1)]
 [Serializable]
@@ -22,9 +20,9 @@ public class WaitForHexSelectState : State
     public override void OnEnter()
     {
         IsComplete = false;
+        Addressables.LoadAssetAsync<State>(NextStateReference).Completed += OnNextStateAssetLoaded;
         Addressables.LoadAssetAsync<WorldObjectManager>(worldObjectManagerReference).Completed += OnWorldObjectManagerAssetLoaded;
         Addressables.LoadAssetAsync<HexEvent>(playerCurrentHexEventReference).Completed += OnPlayerCurrentHexAssetLoaded;
-        Addressables.LoadAssetAsync<State>(NextStateReference).Completed += OnNextStateAssetLoaded;
     }
 
     private void OnNextStateAssetLoaded(AsyncOperationHandle<State> obj)
