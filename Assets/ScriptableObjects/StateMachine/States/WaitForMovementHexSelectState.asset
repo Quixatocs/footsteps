@@ -13,6 +13,15 @@ MonoBehaviour:
   m_Name: WaitForMovementHexSelectState
   m_EditorClassIdentifier: 
   IsComplete: 0
-  NextState: {fileID: 11400000, guid: 67f96dd2c252d7649b079de2a1c4868c, type: 2}
-  hexClickedEvent: {fileID: 11400000, guid: a426f8ec035c0d645ba5be278ef0e38a, type: 2}
-  WorldObjectManager: {fileID: 11400000, guid: 3628bd214742ed04b9261ea92d9c8022, type: 2}
+  NextStateReference:
+    m_AssetGUID: 67f96dd2c252d7649b079de2a1c4868c
+    m_SubObjectName: 
+    m_SubObjectType: 
+  worldObjectManagerReference:
+    m_AssetGUID: 3628bd214742ed04b9261ea92d9c8022
+    m_SubObjectName: 
+    m_SubObjectType: 
+  playerCurrentHexEventReference:
+    m_AssetGUID: a426f8ec035c0d645ba5be278ef0e38a
+    m_SubObjectName: 
+    m_SubObjectType: 
