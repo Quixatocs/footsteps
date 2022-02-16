@@ -740,7 +740,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d334bb5c53c489496230965ade81ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: a426f8ec035c0d645ba5be278ef0e38a, type: 2}
+  EventReference:
+    m_AssetGUID: bf6031d5ecf54404188063f14af58778
+    m_SubObjectName: 
+    m_SubObjectType: 
   Response:
     m_PersistentCalls:
       m_Calls:
@@ -1329,7 +1332,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050aefc708054b048334e82c1cc936d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 8086c7e230b76564bbda1aa8b0e508e8, type: 2}
+  EventReference:
+    m_AssetGUID: 8086c7e230b76564bbda1aa8b0e508e8
+    m_SubObjectName: 
+    m_SubObjectType: 
   Response:
     m_PersistentCalls:
       m_Calls:
@@ -1357,7 +1363,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050aefc708054b048334e82c1cc936d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 9c2a37a250346724ab859957aae28b37, type: 2}
+  EventReference:
+    m_AssetGUID: 9c2a37a250346724ab859957aae28b37
+    m_SubObjectName: 
+    m_SubObjectType: 
   Response:
     m_PersistentCalls:
       m_Calls:
@@ -1385,7 +1394,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050aefc708054b048334e82c1cc936d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: a82291df97831654ba9b66f056fb538f, type: 2}
+  EventReference:
+    m_AssetGUID: a82291df97831654ba9b66f056fb538f
+    m_SubObjectName: 
+    m_SubObjectType: 
   Response:
     m_PersistentCalls:
       m_Calls:
@@ -1643,7 +1655,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d334bb5c53c489496230965ade81ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: bf6031d5ecf54404188063f14af58778, type: 2}
+  EventReference:
+    m_AssetGUID: bf6031d5ecf54404188063f14af58778
+    m_SubObjectName: 
+    m_SubObjectType: 
   Response:
     m_PersistentCalls:
       m_Calls:
@@ -2387,7 +2402,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d334bb5c53c489496230965ade81ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: bf6031d5ecf54404188063f14af58778, type: 2}
+  EventReference:
+    m_AssetGUID: a426f8ec035c0d645ba5be278ef0e38a
+    m_SubObjectName: 
+    m_SubObjectType: 
   Response:
     m_PersistentCalls:
       m_Calls:
