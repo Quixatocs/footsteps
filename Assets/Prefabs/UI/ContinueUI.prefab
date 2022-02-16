@@ -142,7 +142,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1f8350b63def84bb157910017e16db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WorldObjectManager: {fileID: 11400000, guid: 3628bd214742ed04b9261ea92d9c8022, type: 2}
+  worldObjectManagerReference:
+    m_AssetGUID: 3628bd214742ed04b9261ea92d9c8022
+    m_SubObjectName: 
+    m_SubObjectType: 
+  playerCurrentHexReference:
+    m_AssetGUID: df854edbc715a904ea3fdd64df122ae3
+    m_SubObjectName: 
+    m_SubObjectType: 
   continueButtonPrefab: {fileID: 1096804848406420152, guid: e0bfa02890534e94cb6f8de43025a952, type: 3}
   canvas: {fileID: 430184858123396624}
-  playerCurrentHex: {fileID: 11400000, guid: df854edbc715a904ea3fdd64df122ae3, type: 2}

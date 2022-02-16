@@ -10,12 +10,10 @@ public class IntVariableDisplayUITextController : MonoBehaviour
     [SerializeField]
     private AssetReference PlayerStatReference;
     
-    [Header("Variables")]
-    public IntVariable PlayerStat;
-    
     [Header("Component Properties")]
     public string prefix;
     
+    private IntVariable PlayerStat;
     private TMP_Text text;
     
     private void Awake()

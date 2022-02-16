@@ -23,6 +23,7 @@ public class Map : MonoBehaviour
     private AssetReference playerVisionRangeReference;
     
     [Header("Events")]
+    //TODO THIS EVENT NEEDS DOING
     public VoidEvent mapAssetsLoadingCompleteVoidEvent;
     
     private WorldObjectManager worldObjectManager;

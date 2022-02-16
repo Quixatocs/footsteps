@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: ContinueUIState
   m_EditorClassIdentifier: 
   IsComplete: 1
-  NextState: {fileID: 11400000, guid: 632c46ee4c4117f49939c01a5a6d8c5a, type: 2}
-  uiActivationEvent: {fileID: 11400000, guid: 9c2a37a250346724ab859957aae28b37, type: 2}
+  NextStateReference:
+    m_AssetGUID: 632c46ee4c4117f49939c01a5a6d8c5a
+    m_SubObjectName: 
+    m_SubObjectType: 
+  UIActivationEventReference:
+    m_AssetGUID: 9c2a37a250346724ab859957aae28b37
+    m_SubObjectName: 
+    m_SubObjectType: 
