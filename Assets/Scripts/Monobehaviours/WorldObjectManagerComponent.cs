@@ -9,21 +9,19 @@ public class WorldObjectManagerComponent : MonoBehaviour
     private AssetReference worldObjectManagerReference;
 
     private WorldObjectManager worldObjectManager;
-    
-    public WorldObjectManager WorldObjectManager => worldObjectManager;
 
-    private void Start()
+    private void Awake()
     {
-        Addressables.LoadAssetAsync<WorldObjectManager>(worldObjectManagerReference).Completed += OnWorldTileSetLoadDone;
+        Addressables.LoadAssetAsync<WorldObjectManager>(worldObjectManagerReference).Completed += OnWorldObjectManagerAssetLoaded;
     }
 
-    private void OnWorldTileSetLoadDone(AsyncOperationHandle<WorldObjectManager> obj)
+    private void OnWorldObjectManagerAssetLoaded(AsyncOperationHandle<WorldObjectManager> obj)
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
             worldObjectManager = obj.Result;
+            worldObjectManager.SetWorldObjectManager(gameObject);
             Debug.Log($"Successfully loaded asset <{worldObjectManager.name}>");
-            WorldObjectManager.SetWorldObjectManager(gameObject);
         }
     }
     

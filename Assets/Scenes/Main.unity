@@ -350,7 +350,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d897f75dbb74c50b5cc1eb14fa996b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voidEvent: {fileID: 11400000, guid: d09356d768d22f348b2433ec7dbe3b8d, type: 2}
+  EventReference:
+    m_AssetGUID: 19279c9c5e3ccc045a98b219c750bfa7
+    m_SubObjectName: 
+    m_SubObjectType: 
   Response:
     m_PersistentCalls:
       m_Calls:
@@ -725,9 +728,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35cfcda3668ed7645a6d564205338781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grid: {fileID: 663265249}
-  playerCurrentHex: {fileID: 11400000, guid: df854edbc715a904ea3fdd64df122ae3, type: 2}
-  PlayerMoved: {fileID: 11400000, guid: bf6031d5ecf54404188063f14af58778, type: 2}
+  worldObjectManagerReference:
+    m_AssetGUID: 3628bd214742ed04b9261ea92d9c8022
+    m_SubObjectName: 
+    m_SubObjectType: 
+  playerCurrentHexReference:
+    m_AssetGUID: df854edbc715a904ea3fdd64df122ae3
+    m_SubObjectName: 
+    m_SubObjectType: 
+  playerMovedEventReference:
+    m_AssetGUID: bf6031d5ecf54404188063f14af58778
+    m_SubObjectName: 
+    m_SubObjectType: 
 --- !u!114 &430027716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -741,7 +753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EventReference:
-    m_AssetGUID: bf6031d5ecf54404188063f14af58778
+    m_AssetGUID: a426f8ec035c0d645ba5be278ef0e38a
     m_SubObjectName: 
     m_SubObjectType: 
   Response:
@@ -771,7 +783,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d897f75dbb74c50b5cc1eb14fa996b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voidEvent: {fileID: 11400000, guid: 718b5dba5733c5848aae7bbe4a0bdb20, type: 2}
+  EventReference:
+    m_AssetGUID: 718b5dba5733c5848aae7bbe4a0bdb20
+    m_SubObjectName: 
+    m_SubObjectType: 
   Response:
     m_PersistentCalls:
       m_Calls:
@@ -838,7 +853,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d897f75dbb74c50b5cc1eb14fa996b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voidEvent: {fileID: 11400000, guid: d09356d768d22f348b2433ec7dbe3b8d, type: 2}
+  EventReference:
+    m_AssetGUID: d09356d768d22f348b2433ec7dbe3b8d
+    m_SubObjectName: 
+    m_SubObjectType: 
   Response:
     m_PersistentCalls:
       m_Calls:
@@ -1740,7 +1758,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d897f75dbb74c50b5cc1eb14fa996b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voidEvent: {fileID: 11400000, guid: 95d1ceee5e9a65346802da88fc1ca4dc, type: 2}
+  EventReference:
+    m_AssetGUID: 95d1ceee5e9a65346802da88fc1ca4dc
+    m_SubObjectName: 
+    m_SubObjectType: 
   Response:
     m_PersistentCalls:
       m_Calls:
@@ -1768,7 +1789,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d897f75dbb74c50b5cc1eb14fa996b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voidEvent: {fileID: 11400000, guid: d09356d768d22f348b2433ec7dbe3b8d, type: 2}
+  EventReference:
+    m_AssetGUID: d09356d768d22f348b2433ec7dbe3b8d
+    m_SubObjectName: 
+    m_SubObjectType: 
   Response:
     m_PersistentCalls:
       m_Calls:
@@ -2227,7 +2251,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d897f75dbb74c50b5cc1eb14fa996b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voidEvent: {fileID: 11400000, guid: 95d1ceee5e9a65346802da88fc1ca4dc, type: 2}
+  EventReference:
+    m_AssetGUID: 95d1ceee5e9a65346802da88fc1ca4dc
+    m_SubObjectName: 
+    m_SubObjectType: 
   Response:
     m_PersistentCalls:
       m_Calls:

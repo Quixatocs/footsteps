@@ -4,23 +4,23 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Event/VoidEvent", order = 1)]
 public class VoidEvent : ScriptableObject
 {
-    private List<EventListener> listeners = new List<EventListener>();
+    private List<VoidEventListener> listeners = new List<VoidEventListener>();
 
     public void Raise()
     {
-        List<EventListener> listenersCopy = new List<EventListener>(listeners);
+        List<VoidEventListener> listenersCopy = new List<VoidEventListener>(listeners);
         for (int i = listenersCopy.Count - 1; i >= 0; i--)
         {
             listenersCopy[i].OnEventRaised();
         }
     }
 
-    public void RegisterListener(EventListener listener)
+    public void RegisterListener(VoidEventListener listener)
     {
         listeners.Add(listener);
     }
     
-    public void UnregisterListener(EventListener listener)
+    public void UnregisterListener(VoidEventListener listener)
     {
         listeners.Remove(listener);
     }

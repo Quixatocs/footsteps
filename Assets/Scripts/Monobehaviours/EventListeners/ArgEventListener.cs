@@ -9,30 +9,29 @@ public class ArgEventListener<T> : MonoBehaviour
     [SerializeField]
     private AssetReference EventReference;
     
-    private ArgEvent<T> @event;
+    private ArgEvent<T> argEvent;
     
     public UnityEvent<T> Response;
 
     private void OnEnable()
     {
         Addressables.LoadAssetAsync<ArgEvent<T>>(EventReference).Completed += OnEventAssetLoaded;
-        
     }
 
     private void OnEventAssetLoaded(AsyncOperationHandle<ArgEvent<T>> obj)
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
-            @event = obj.Result;
-            Debug.Log($"Successfully loaded asset <{@event.name}>");
+            argEvent = obj.Result;
+            Debug.Log($"Successfully loaded asset <{argEvent.name}>");
 
-            @event.RegisterListener(this);
+            argEvent.RegisterListener(this);
         }
     }
     
     private void OnDisable()
     {
-        @event.UnregisterListener(this);
+        argEvent.UnregisterListener(this);
     }
 
     public void OnEventRaised(T arg)
