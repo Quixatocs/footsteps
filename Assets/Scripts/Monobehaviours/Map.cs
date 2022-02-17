@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEditor.Experimental;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
@@ -9,9 +10,6 @@ using Debug = UnityEngine.Debug;
 
 public class Map : MonoBehaviour
 {
-    
-    
-
     [SerializeField] private GameObject interactablePrefab;
     
     [Header("Asset References")]
@@ -21,30 +19,42 @@ public class Map : MonoBehaviour
     private AssetReference worldTileSetReference;
     [SerializeField]
     private AssetReference playerVisionRangeReference;
-    
-    [Header("Events")]
-    //TODO THIS EVENT NEEDS DOING
-    public VoidEvent mapAssetsLoadingCompleteVoidEvent;
+    [SerializeField]
+    private AssetReference mapAssetsLoadingCompleteVoidEventReference;
+    [SerializeField]
+    private AssetReference playerCurrentHexReference;
     
     private WorldObjectManager worldObjectManager;
     private List<WorldTile> worldTiles;
     private List<WorldTile> lastInRangeWorldTiles;
     private IntVariable visionRange;
+    private VoidEvent mapAssetsLoadingCompleteVoidEvent;
+    private HexVariable playerCurrentHex;
 
     private Tilemap tileMap;
     private Grid grid;
+
+    private int count;
     
-    void Start()
+    void Awake()
     {
+        ++count;
         Addressables.LoadAssetAsync<WorldObjectManager>(worldObjectManagerReference).Completed += OnWorldObjectManagerAssetLoaded;
-        Addressables.LoadAssetAsync<WorldTileSet>(worldTileSetReference).Completed += OnWorldTileSetLoadDone;
+        ++count;
+        Addressables.LoadAssetAsync<WorldTileSet>(worldTileSetReference).Completed += OnWorldTileSetAssetLoaded;
+        ++count;
         Addressables.LoadAssetAsync<IntVariable>(playerVisionRangeReference).Completed += OnVisionRangeAssetLoaded;
+        ++count;
+        Addressables.LoadAssetAsync<VoidEvent>(mapAssetsLoadingCompleteVoidEventReference).Completed += OnMapAssetsLoadingCompleteVoidEventAssetLoaded;
+        ++count;
+        Addressables.LoadAssetAsync<HexVariable>(playerCurrentHexReference).Completed += OnPlayerCurrentHexAssetLoaded;
     }
     
     private void OnWorldObjectManagerAssetLoaded(AsyncOperationHandle<WorldObjectManager> obj)
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
+            --count;
             worldObjectManager = obj.Result;
             Debug.Log($"Successfully loaded asset <{worldObjectManager.name}>");
             
@@ -58,6 +68,11 @@ public class Map : MonoBehaviour
             {
                 grid = worldObjectManager.GetComponent<Grid>();
             }
+
+            if (count <= 0)
+            {
+                GenerateTilesAroundPlayer(playerCurrentHex.Value);
+            }
         }
     }
     
@@ -65,12 +80,18 @@ public class Map : MonoBehaviour
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
+            --count;
             visionRange = obj.Result;
             Debug.Log($"Successfully loaded asset <{visionRange.name}>");
+            
+            if (count <= 0)
+            {
+                GenerateTilesAroundPlayer(playerCurrentHex.Value);
+            }
         }
     }
 
-    private void OnWorldTileSetLoadDone(AsyncOperationHandle<WorldTileSet> obj)
+    private void OnWorldTileSetAssetLoaded(AsyncOperationHandle<WorldTileSet> obj)
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
@@ -91,7 +112,13 @@ public class Map : MonoBehaviour
 
                         if (counter == 0)
                         {
+                            --count;
                             mapAssetsLoadingCompleteVoidEvent.Raise();
+                            
+                            if (count <= 0)
+                            {
+                                GenerateTilesAroundPlayer(playerCurrentHex.Value);
+                            }
                         }
                     }
                 };
@@ -100,6 +127,36 @@ public class Map : MonoBehaviour
         else
         {
             Debug.LogError($"Something went wrong loading the WorldTileSet");
+        }
+    }
+    
+    private void OnMapAssetsLoadingCompleteVoidEventAssetLoaded(AsyncOperationHandle<VoidEvent> obj)
+    {
+        if (obj.Status == AsyncOperationStatus.Succeeded)
+        {
+            --count;
+            mapAssetsLoadingCompleteVoidEvent = obj.Result;
+            Debug.Log($"Successfully loaded asset <{mapAssetsLoadingCompleteVoidEvent.name}>");
+
+            if (count <= 0)
+            {
+                GenerateTilesAroundPlayer(playerCurrentHex.Value);
+            }
+        }
+    }
+    
+    private void OnPlayerCurrentHexAssetLoaded(AsyncOperationHandle<HexVariable> obj)
+    {
+        if (obj.Status == AsyncOperationStatus.Succeeded)
+        {
+            --count;
+            playerCurrentHex = obj.Result;
+            Debug.Log($"Successfully loaded asset <{playerCurrentHex.name}>");
+            
+            if (count <= 0)
+            {
+                GenerateTilesAroundPlayer(playerCurrentHex.Value);
+            }
         }
     }
 

@@ -15,6 +15,7 @@ public class IntVariableDisplayUITextController : MonoBehaviour
     
     private IntVariable PlayerStat;
     private TMP_Text text;
+    private bool isInitialised;
     
     private void Awake()
     {
@@ -27,6 +28,7 @@ public class IntVariableDisplayUITextController : MonoBehaviour
         {
             PlayerStat = obj.Result;
             Debug.Log($"Successfully loaded asset <{PlayerStat.name}>.");
+            isInitialised = true;
             UpdateUI();
         }
     }
@@ -43,6 +45,8 @@ public class IntVariableDisplayUITextController : MonoBehaviour
             text = GetComponent<TMP_Text>();
         }
 
+        if (!isInitialised) return;
+       
         text.text = $"{prefix}: {PlayerStat.Value}";
     }
 }

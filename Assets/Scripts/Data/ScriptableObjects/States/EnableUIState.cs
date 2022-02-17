@@ -38,7 +38,7 @@ public class EnableUIState : State
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
             uiActivationEvent = obj.Result;
-            Debug.Log($"Successfully loaded asset <{nextState.name}>");
+            Debug.Log($"Successfully loaded asset <{uiActivationEvent.name}>");
 
             if (nextState != null)
             {

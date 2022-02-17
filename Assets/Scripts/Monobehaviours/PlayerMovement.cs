@@ -70,11 +70,6 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log($"Successfully loaded asset <{PlayerMovedHexEvent.name}>");
         }
     }
-
-    public void InitialisePlayerPosition()
-    {
-        Move(playerCurrentHex.Value);
-    }
     
     public void Move(Hex hex)
     {

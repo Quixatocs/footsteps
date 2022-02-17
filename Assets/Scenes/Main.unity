@@ -385,7 +385,6 @@ MonoBehaviour:
     m_AssetGUID: 3f201d9cdff10aa46bd8498491c5caef
     m_SubObjectName: 
     m_SubObjectType: 
-  PlayerStat: {fileID: 11400000, guid: 3f201d9cdff10aa46bd8498491c5caef, type: 2}
   prefix: D
 --- !u!114 &272536831
 MonoBehaviour:
@@ -692,7 +691,6 @@ GameObject:
   m_Component:
   - component: {fileID: 430027714}
   - component: {fileID: 430027715}
-  - component: {fileID: 430027717}
   - component: {fileID: 430027716}
   m_Layer: 0
   m_Name: Player
@@ -763,37 +761,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &430027717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 430027713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d897f75dbb74c50b5cc1eb14fa996b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EventReference:
-    m_AssetGUID: 718b5dba5733c5848aae7bbe4a0bdb20
-    m_SubObjectName: 
-    m_SubObjectType: 
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 430027715}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: InitialisePlayerPosition
-        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -888,7 +855,6 @@ MonoBehaviour:
     m_AssetGUID: 0df5fbe816bb16049a9c522c9834d4bb
     m_SubObjectName: 
     m_SubObjectType: 
-  PlayerStat: {fileID: 11400000, guid: 0df5fbe816bb16049a9c522c9834d4bb, type: 2}
   prefix: F
 --- !u!114 &499490662
 MonoBehaviour:
@@ -1828,9 +1794,10 @@ MonoBehaviour:
     m_AssetGUID: d14e25f6d4f87f346811f7c63efbe1db
     m_SubObjectName: 
     m_SubObjectType: 
-  Food: {fileID: 11400000, guid: 0df5fbe816bb16049a9c522c9834d4bb, type: 2}
-  Water: {fileID: 11400000, guid: d14e25f6d4f87f346811f7c63efbe1db, type: 2}
-  DeathUIActivationEvent: {fileID: 11400000, guid: a82291df97831654ba9b66f056fb538f, type: 2}
+  DeathUIActivationEventReference:
+    m_AssetGUID: a82291df97831654ba9b66f056fb538f
+    m_SubObjectName: 
+    m_SubObjectType: 
 --- !u!1 &1035682359
 GameObject:
   m_ObjectHideFlags: 0
@@ -2286,7 +2253,6 @@ MonoBehaviour:
     m_AssetGUID: d14e25f6d4f87f346811f7c63efbe1db
     m_SubObjectName: 
     m_SubObjectType: 
-  PlayerStat: {fileID: 11400000, guid: d14e25f6d4f87f346811f7c63efbe1db, type: 2}
   prefix: W
 --- !u!114 &1901045346
 MonoBehaviour:
@@ -2430,7 +2396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EventReference:
-    m_AssetGUID: a426f8ec035c0d645ba5be278ef0e38a
+    m_AssetGUID: bf6031d5ecf54404188063f14af58778
     m_SubObjectName: 
     m_SubObjectType: 
   Response:
@@ -2473,7 +2439,14 @@ MonoBehaviour:
     m_AssetGUID: bb93158af5fc5d0498fae247a9074bf2
     m_SubObjectName: 
     m_SubObjectType: 
-  mapAssetsLoadingCompleteVoidEvent: {fileID: 11400000, guid: 718b5dba5733c5848aae7bbe4a0bdb20, type: 2}
+  mapAssetsLoadingCompleteVoidEventReference:
+    m_AssetGUID: 718b5dba5733c5848aae7bbe4a0bdb20
+    m_SubObjectName: 
+    m_SubObjectType: 
+  playerCurrentHexReference:
+    m_AssetGUID: df854edbc715a904ea3fdd64df122ae3
+    m_SubObjectName: 
+    m_SubObjectType: 
 --- !u!1001 &5783762974518102096
 PrefabInstance:
   m_ObjectHideFlags: 0

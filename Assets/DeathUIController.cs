@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
@@ -14,10 +13,9 @@ public class DeathUIController : MonoBehaviour
     [SerializeField]
     private AssetReference DaysReference;
     
-    //TODO Remove nonSerialized
-    [NonSerialized] private IntVariable Food;
-    [NonSerialized] private  IntVariable Water;
-    [NonSerialized] private  IntVariable Days;
+    private IntVariable Food;
+    private  IntVariable Water;
+    private  IntVariable Days;
 
     private void Awake()
     {
