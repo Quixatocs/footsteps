@@ -25,12 +25,21 @@ public class ChoicesUIController : MonoBehaviour
     private WorldObjectManager worldObjectManager;
     private HexVariable playerCurrentHex; 
     private Tilemap tileMap;
-    private List<GameObject> buttonGOs;
+    private readonly List<GameObject> buttonGOs = new List<GameObject>();
+
+    private bool isInitialised;
     
     private void OnEnable()
     {
-        Addressables.LoadAssetAsync<WorldObjectManager>(worldObjectManagerReference).Completed += OnWorldObjectManagerAssetLoaded;
-        Addressables.LoadAssetAsync<HexVariable>(playerCurrentHexReference).Completed += OnPlayerCurrentHexAssetLoaded;
+        if (!isInitialised)
+        {
+            Addressables.LoadAssetAsync<WorldObjectManager>(worldObjectManagerReference).Completed += OnWorldObjectManagerAssetLoaded;
+            Addressables.LoadAssetAsync<HexVariable>(playerCurrentHexReference).Completed += OnPlayerCurrentHexAssetLoaded;
+        }
+        else
+        {
+            SetUpButtons();
+        }
     }
 
     private void OnWorldObjectManagerAssetLoaded(AsyncOperationHandle<WorldObjectManager> obj)
@@ -40,9 +49,15 @@ public class ChoicesUIController : MonoBehaviour
             worldObjectManager = obj.Result;
             Debug.Log($"Successfully loaded asset <{worldObjectManager.name}>");
 
+            if (tileMap == null)
+            {
+                tileMap = worldObjectManager.GetComponent<Tilemap>();
+            }
+            
             if (playerCurrentHex != null)
             {
-                OnInitialisedAssets();
+                isInitialised = true;
+                SetUpButtons();
             }
         }
     }
@@ -56,19 +71,15 @@ public class ChoicesUIController : MonoBehaviour
             
             if (worldObjectManager != null)
             {
-                OnInitialisedAssets();
+                isInitialised = true;
+                SetUpButtons();
             }
         }
     }
 
-    private void OnInitialisedAssets()
+    private void SetUpButtons()
     {
-        buttonGOs = new List<GameObject>();
-        
-        if (tileMap == null)
-        {
-            tileMap = worldObjectManager.GetComponent<Tilemap>();
-        }
+        buttonGOs.Clear();
         
         WorldTile currentTile = (WorldTile)tileMap.GetTile(playerCurrentHex.Value);
         IntDelta[] currentTileHarvestables = currentTile.harvestables;
