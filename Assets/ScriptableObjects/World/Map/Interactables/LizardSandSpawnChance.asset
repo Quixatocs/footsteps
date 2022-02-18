@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: LizardSandSpawnChance
   m_EditorClassIdentifier: 
   Interactable: {fileID: 11400000, guid: 7b91ddcca1cf38b49b049c9de175ac5a, type: 2}
-  Chance: 200
+  Chance: 60

@@ -8,8 +8,8 @@ public abstract class State : ScriptableObject
     public bool IsComplete;
     public AssetReference NextStateReference;
 
-    [NonSerialized]
-    public State nextState;
+    public Transition[] transitions;
+
     protected bool IsInitialised;
 
     public abstract void OnEnter();

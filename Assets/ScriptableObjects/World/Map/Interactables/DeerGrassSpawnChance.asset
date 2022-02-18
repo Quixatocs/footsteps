@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DeerGrassSpawnChance
   m_EditorClassIdentifier: 
   Interactable: {fileID: 11400000, guid: 0505540f10b0347499ffa8d6d9e445c5, type: 2}
-  Chance: 100
+  Chance: 40

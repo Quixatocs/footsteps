@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: FishWaterSpawnChance
   m_EditorClassIdentifier: 
   Interactable: {fileID: 11400000, guid: ce5c1e65a435eed4cbee2b63a2db26f9, type: 2}
-  Chance: 300
+  Chance: 100
