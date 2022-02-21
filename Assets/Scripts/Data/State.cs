@@ -6,13 +6,19 @@ using UnityEngine.AddressableAssets;
 public abstract class State : ScriptableObject
 {
     public bool IsComplete;
-    public AssetReference NextStateReference;
 
     public Transition[] transitions;
 
     protected bool IsInitialised;
-
-    public abstract void OnEnter();
+    
+    public virtual void OnEnter()
+    {
+        IsComplete = false;
+        foreach (Transition transition in transitions)
+        {
+            transition.LoadNextStateAsset();
+        }
+    }
 
     public abstract void OnExit();
 
@@ -28,7 +34,7 @@ public abstract class State : ScriptableObject
 
         if (transitions.Length == 1)
         {
-            return transitions[0].NextState;
+            return transitions[0].GetNextState();
         }
 
         if (transitions.Length > 1)
@@ -37,7 +43,7 @@ public abstract class State : ScriptableObject
             {
                 if (transition.IsOpenTransition())
                 {
-                    return transition.NextState;
+                    return transition.GetNextState();
                 }
             }
         }

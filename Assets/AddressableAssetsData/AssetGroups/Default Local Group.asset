@@ -251,6 +251,12 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 3d32549e83f8fda42ba535c2dc47c891
+    m_Address: Assets/ScriptableObjects/StateMachine/States/DeathUIState.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6fc6c05852e40f64783f822c55665ad0, type: 2}
   m_SchemaSet:

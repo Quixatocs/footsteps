@@ -13,10 +13,35 @@ MonoBehaviour:
   m_Name: ContinueUIState
   m_EditorClassIdentifier: 
   IsComplete: 1
-  NextStateReference:
-    m_AssetGUID: 632c46ee4c4117f49939c01a5a6d8c5a
-    m_SubObjectName: 
-    m_SubObjectType: 
+  transitions:
+  - NextStateReference:
+      m_AssetGUID: 3d32549e83f8fda42ba535c2dc47c891
+      m_SubObjectName: 
+      m_SubObjectType: 
+    Comparer: 1
+    Stat: {fileID: 11400000, guid: 0df5fbe816bb16049a9c522c9834d4bb, type: 2}
+    Constant: 0
+  - NextStateReference:
+      m_AssetGUID: 3d32549e83f8fda42ba535c2dc47c891
+      m_SubObjectName: 
+      m_SubObjectType: 
+    Comparer: 1
+    Stat: {fileID: 11400000, guid: d14e25f6d4f87f346811f7c63efbe1db, type: 2}
+    Constant: 0
+  - NextStateReference:
+      m_AssetGUID: 632c46ee4c4117f49939c01a5a6d8c5a
+      m_SubObjectName: 
+      m_SubObjectType: 
+    Comparer: 2
+    Stat: {fileID: 11400000, guid: 0df5fbe816bb16049a9c522c9834d4bb, type: 2}
+    Constant: -1
+  - NextStateReference:
+      m_AssetGUID: 632c46ee4c4117f49939c01a5a6d8c5a
+      m_SubObjectName: 
+      m_SubObjectType: 
+    Comparer: 2
+    Stat: {fileID: 11400000, guid: d14e25f6d4f87f346811f7c63efbe1db, type: 2}
+    Constant: -1
   UIActivationEventReference:
     m_AssetGUID: 9c2a37a250346724ab859957aae28b37
     m_SubObjectName: 

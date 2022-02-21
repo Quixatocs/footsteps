@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: WaitForMovementHexSelectState
   m_EditorClassIdentifier: 
   IsComplete: 0
-  NextStateReference:
-    m_AssetGUID: 67f96dd2c252d7649b079de2a1c4868c
-    m_SubObjectName: 
-    m_SubObjectType: 
+  transitions:
+  - NextStateReference:
+      m_AssetGUID: 67f96dd2c252d7649b079de2a1c4868c
+      m_SubObjectName: 
+      m_SubObjectType: 
+    Comparer: 0
+    Stat: {fileID: 0}
+    Constant: 0
   worldObjectManagerReference:
     m_AssetGUID: 3628bd214742ed04b9261ea92d9c8022
     m_SubObjectName: 

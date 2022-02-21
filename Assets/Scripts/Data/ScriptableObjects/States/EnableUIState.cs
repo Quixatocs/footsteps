@@ -13,24 +13,8 @@ public class EnableUIState : State
 
     public override void OnEnter()
     {
-        IsComplete = false;
-        Addressables.LoadAssetAsync<State>(NextStateReference).Completed += OnNextStateAssetLoaded;
+        base.OnEnter();
         Addressables.LoadAssetAsync<BoolEvent>(UIActivationEventReference).Completed += OnUIActivationEventAssetLoaded;
-    }
-    
-    private void OnNextStateAssetLoaded(AsyncOperationHandle<State> obj)
-    {
-        if (obj.Status == AsyncOperationStatus.Succeeded)
-        {
-            nextState = obj.Result;
-            Debug.Log($"Successfully loaded asset <{nextState.name}>");
-
-            if (uiActivationEvent != null)
-            {
-                IsInitialised = true;
-                uiActivationEvent.Raise(true);
-            }
-        }
     }
     
     private void OnUIActivationEventAssetLoaded(AsyncOperationHandle<BoolEvent> obj)
@@ -40,11 +24,8 @@ public class EnableUIState : State
             uiActivationEvent = obj.Result;
             Debug.Log($"Successfully loaded asset <{uiActivationEvent.name}>");
 
-            if (nextState != null)
-            {
-                IsInitialised = true;
-                uiActivationEvent.Raise(true);
-            }
+            IsInitialised = true;
+            uiActivationEvent.Raise(true);
         }
     }
     

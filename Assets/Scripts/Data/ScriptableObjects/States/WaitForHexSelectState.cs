@@ -19,24 +19,9 @@ public class WaitForHexSelectState : State
 
     public override void OnEnter()
     {
-        IsComplete = false;
-        Addressables.LoadAssetAsync<State>(NextStateReference).Completed += OnNextStateAssetLoaded;
+        base.OnEnter();
         Addressables.LoadAssetAsync<WorldObjectManager>(worldObjectManagerReference).Completed += OnWorldObjectManagerAssetLoaded;
         Addressables.LoadAssetAsync<HexEvent>(playerCurrentHexEventReference).Completed += OnPlayerCurrentHexAssetLoaded;
-    }
-
-    private void OnNextStateAssetLoaded(AsyncOperationHandle<State> obj)
-    {
-        if (obj.Status == AsyncOperationStatus.Succeeded)
-        {
-            nextState = obj.Result;
-            Debug.Log($"Successfully loaded asset <{nextState.name}>");
-
-            if (worldObjectManager != null && hexClickedEvent != null)
-            {
-                IsInitialised = true;
-            }
-        }
     }
     
     private void OnWorldObjectManagerAssetLoaded(AsyncOperationHandle<WorldObjectManager> obj)
@@ -51,7 +36,7 @@ public class WaitForHexSelectState : State
                 grid = worldObjectManager.GetComponent<Grid>();
             }
 
-            if (hexClickedEvent != null && nextState != null)
+            if (hexClickedEvent != null)
             {
                 IsInitialised = true;
             }
@@ -65,7 +50,7 @@ public class WaitForHexSelectState : State
             hexClickedEvent = obj.Result;
             Debug.Log($"Successfully loaded asset <{hexClickedEvent.name}>");
 
-            if (worldObjectManager != null && nextState != null)
+            if (worldObjectManager != null)
             {
                 IsInitialised = true;
             }

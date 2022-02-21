@@ -10,18 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1cd83c8c4cf41679b90d060a1a9ef0e, type: 3}
-  m_Name: ChoicesUIState
+  m_Name: DeathUIState
   m_EditorClassIdentifier: 
-  IsComplete: 1
-  transitions:
-  - NextStateReference:
-      m_AssetGUID: 29b96bcb651a0d849aaa2bf9d0a9220b
-      m_SubObjectName: 
-      m_SubObjectType: 
-    Comparer: 0
-    Stat: {fileID: 0}
-    Constant: 0
+  IsComplete: 0
+  transitions: []
   UIActivationEventReference:
-    m_AssetGUID: 8086c7e230b76564bbda1aa8b0e508e8
+    m_AssetGUID: a82291df97831654ba9b66f056fb538f
     m_SubObjectName: 
     m_SubObjectType: 
