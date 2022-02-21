@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using Random = UnityEngine.Random;
 
 [Serializable]
 public abstract class State : ScriptableObject
@@ -19,7 +18,7 @@ public abstract class State : ScriptableObject
 
     public abstract void OnUpdate();
 
-    public virtual State GetNextState()
+    public State GetNextState()
     {
         if (transitions == null || transitions.Length == 0)
         {

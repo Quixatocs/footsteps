@@ -34,7 +34,7 @@ public class StateMachine : ScriptableObject
         if (currentState == null) return;
         
         if (currentState.IsComplete) {
-            SetState(currentState.nextState);
+            SetState(currentState.GetNextState());
         }
     }
 }
