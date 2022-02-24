@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -39,12 +40,14 @@ public class Transition
         } 
     }
 
-    public void LoadNextStateAsset()
+    public AsyncOperationHandle<State> LoadNextStateAsset()
     {
-        Addressables.LoadAssetAsync<State>(NextStateReference).Completed += OnNextStateAssetLoaded;
+        AsyncOperationHandle<State> op = NextStateReference.LoadAssetAsync<State>();
+        op.Completed += OnLoadNextStateAssetComplete;
+        return op;
     }
-
-    private void OnNextStateAssetLoaded(AsyncOperationHandle<State> obj)
+    
+    private void OnLoadNextStateAssetComplete(AsyncOperationHandle<State> obj)
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {

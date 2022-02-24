@@ -13,7 +13,7 @@ public class DeactivateUIState : State
 
     public override void OnEnter()
     {
-        base.OnEnter();
+        IsComplete = false;
         Addressables.LoadAssetAsync<BoolEvent>(UIDeactivationEventReference).Completed += OnUIDeactivationEventAssetLoaded;
     }
     

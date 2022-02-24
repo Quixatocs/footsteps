@@ -19,7 +19,7 @@ public class WaitForHexSelectState : State
 
     public override void OnEnter()
     {
-        base.OnEnter();
+        IsComplete = false;
         Addressables.LoadAssetAsync<WorldObjectManager>(worldObjectManagerReference).Completed += OnWorldObjectManagerAssetLoaded;
         Addressables.LoadAssetAsync<HexEvent>(playerCurrentHexEventReference).Completed += OnPlayerCurrentHexAssetLoaded;
     }

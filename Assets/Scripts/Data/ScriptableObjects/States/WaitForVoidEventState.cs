@@ -17,7 +17,7 @@ public class WaitForVoidEventState : State
 
     public override void OnEnter()
     {
-        base.OnEnter();
+        IsComplete = false;
         isTriggered = false;
 
         if (voidEventListener == null)

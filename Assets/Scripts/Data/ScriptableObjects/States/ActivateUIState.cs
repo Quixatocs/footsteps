@@ -13,7 +13,7 @@ public class ActivateUIState : State
 
     public override void OnEnter()
     {
-        base.OnEnter();
+        IsComplete = false;
         Addressables.LoadAssetAsync<BoolEvent>(UIActivationEventReference).Completed += OnUIActivationEventAssetLoaded;
     }
     
