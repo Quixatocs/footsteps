@@ -2,7 +2,8 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-public class EnableUIState : State
+[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/States/ActivateUIState", order = 1)]
+public class ActivateUIState : State
 {
     [Header("Asset References")]
     [SerializeField]
@@ -25,21 +26,16 @@ public class EnableUIState : State
 
             IsInitialised = true;
             uiActivationEvent.Raise(true);
+            IsComplete = true;
         }
     }
     
     public override void OnExit()
     {
-        uiActivationEvent.Raise(false);
     }
 
     public override void OnUpdate()
     {
-    }
-
-    public void ReturnFromUI()
-    {
-        IsComplete = true;
     }
     
 }

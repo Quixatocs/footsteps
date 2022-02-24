@@ -2,19 +2,21 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Events;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.Serialization;
 
-public class VoidEventListener : MonoBehaviour
+public class VoidEventListenerMono : MonoBehaviour, IVoidEventListener
 {
+    [FormerlySerializedAs("EventReference")]
     [Header("Asset References")]
     [SerializeField]
-    private AssetReference EventReference;
+    private AssetReference voidEventReference;
     
     private VoidEvent voidEvent;
     public UnityEvent Response;
 
     private void OnEnable()
     {
-        Addressables.LoadAssetAsync<VoidEvent>(EventReference).Completed += OnEventAssetLoaded;
+        Addressables.LoadAssetAsync<VoidEvent>(voidEventReference).Completed += OnEventAssetLoaded;
     }
     
     private void OnEventAssetLoaded(AsyncOperationHandle<VoidEvent> obj)
