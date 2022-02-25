@@ -9,18 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5721c296e56f40d892de93d0aa63cba8, type: 3}
-  m_Name: WaitForMovementHexSelectState
+  m_Script: {fileID: 11500000, guid: 6ab98b396339442692144e03bfe97287, type: 3}
+  m_Name: DeactivateCostsUIState
   m_EditorClassIdentifier: 
   nextStateReference:
-    m_AssetGUID: 3a9fbd3191c444046beade93769afaf2
+    m_AssetGUID: 
     m_SubObjectName: 
     m_SubObjectType: 
-  worldObjectManagerReference:
-    m_AssetGUID: 3628bd214742ed04b9261ea92d9c8022
-    m_SubObjectName: 
-    m_SubObjectType: 
-  playerCurrentHexEventReference:
-    m_AssetGUID: a426f8ec035c0d645ba5be278ef0e38a
+  UIDeactivationEventReference:
+    m_AssetGUID: 9c2a37a250346724ab859957aae28b37
     m_SubObjectName: 
     m_SubObjectType: 

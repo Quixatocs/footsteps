@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 2351872221176868861}
   - component: {fileID: 5926697381210167828}
   m_Layer: 0
-  m_Name: ContinueUI
+  m_Name: CostsUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,6 +148,10 @@ MonoBehaviour:
     m_SubObjectType: 
   playerCurrentHexReference:
     m_AssetGUID: df854edbc715a904ea3fdd64df122ae3
+    m_SubObjectName: 
+    m_SubObjectType: 
+  costsClickedEventReference:
+    m_AssetGUID: 2cf0814b37bbf454893389b025adf927
     m_SubObjectName: 
     m_SubObjectType: 
   continueButtonPrefab: {fileID: 1096804848406420152, guid: e0bfa02890534e94cb6f8de43025a952, type: 3}

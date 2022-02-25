@@ -4,13 +4,15 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
-public class ContinueUIController : MonoBehaviour
+public class CostsUIController : MonoBehaviour
 {
     [Header("Asset References")]
     [SerializeField]
     private AssetReference worldObjectManagerReference;
     [SerializeField]
     private AssetReference playerCurrentHexReference;
+    [SerializeField]
+    private AssetReference costsClickedEventReference;
     
     [Header("Scene References")]
     [SerializeField]
@@ -19,10 +21,11 @@ public class ContinueUIController : MonoBehaviour
     private GameObject canvas;
 
     private WorldObjectManager worldObjectManager;
-    private HexVariable playerCurrentHex; 
+    private HexVariable playerCurrentHex;
+    private VoidEvent choiceClickedEvent;
     private Tilemap tileMap;
     private GameObject buttonHolder;
-    private int count;
+    private int assetLoadCount;
     
     private void OnEnable()
     {
@@ -31,24 +34,22 @@ public class ContinueUIController : MonoBehaviour
     
     private void LoadAssets()
     {
-        ++count;
+        ++assetLoadCount;
         Addressables.LoadAssetAsync<WorldObjectManager>(worldObjectManagerReference).Completed += OnWorldObjectManagerAssetLoaded;
-        ++count;
+        ++assetLoadCount;
         Addressables.LoadAssetAsync<HexVariable>(playerCurrentHexReference).Completed += OnPlayerCurrentHexAssetLoaded;
+        ++assetLoadCount;
+        Addressables.LoadAssetAsync<VoidEvent>(costsClickedEventReference).Completed += OnCostsClickedEventAssetLoaded;
     }
     
     private void OnWorldObjectManagerAssetLoaded(AsyncOperationHandle<WorldObjectManager> obj)
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
-            --count;
             worldObjectManager = obj.Result;
             Debug.Log($"Successfully loaded asset <{worldObjectManager.name}>");
 
-            if (count <= 0)
-            {
-                Initialise();
-            }
+            ContinueOnAllAssetsLoaded();
         }
     }
     
@@ -56,14 +57,29 @@ public class ContinueUIController : MonoBehaviour
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
-            --count;
             playerCurrentHex = obj.Result;
             Debug.Log($"Successfully loaded asset <{playerCurrentHex.name}>");
 
-            if (count <= 0)
-            {
-                Initialise();
-            }
+            ContinueOnAllAssetsLoaded();
+        }
+    }
+    
+    private void OnCostsClickedEventAssetLoaded(AsyncOperationHandle<VoidEvent> obj)
+    {
+        if (obj.Status == AsyncOperationStatus.Succeeded)
+        {
+            choiceClickedEvent = obj.Result;
+            Debug.Log($"Successfully loaded asset <{choiceClickedEvent.name}>");
+
+            ContinueOnAllAssetsLoaded();
+        }
+    }
+    
+    private void ContinueOnAllAssetsLoaded()
+    {
+        if (--assetLoadCount == 0)
+        {
+            Initialise();
         }
     }
 

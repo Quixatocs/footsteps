@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -14,27 +15,34 @@ public class ChoicesUIController : MonoBehaviour
     private AssetReference worldObjectManagerReference;
     [SerializeField]
     private AssetReference playerCurrentHexReference;
+    [SerializeField]
+    private AssetReference choiceClickedEventReference;
     
     [Header("Scene References")]
     [SerializeField]
     private GameObject choicesButtonPrefab;
     [SerializeField]
     private GameObject buttonHolderParent;
-    
 
     private WorldObjectManager worldObjectManager;
     private HexVariable playerCurrentHex; 
+    private VoidEvent choiceClickedEvent;
     private Tilemap tileMap;
     private readonly List<GameObject> buttonGOs = new List<GameObject>();
 
     private bool isInitialised;
+    private int assetLoadCount;
     
     private void OnEnable()
     {
         if (!isInitialised)
         {
+            ++assetLoadCount;
             Addressables.LoadAssetAsync<WorldObjectManager>(worldObjectManagerReference).Completed += OnWorldObjectManagerAssetLoaded;
+            ++assetLoadCount;
             Addressables.LoadAssetAsync<HexVariable>(playerCurrentHexReference).Completed += OnPlayerCurrentHexAssetLoaded;
+            ++assetLoadCount;
+            Addressables.LoadAssetAsync<VoidEvent>(choiceClickedEventReference).Completed += OnChoiceClickedEventAssetLoaded;
         }
         else
         {
@@ -54,11 +62,7 @@ public class ChoicesUIController : MonoBehaviour
                 tileMap = worldObjectManager.GetComponent<Tilemap>();
             }
             
-            if (playerCurrentHex != null)
-            {
-                isInitialised = true;
-                SetUpButtons();
-            }
+            ContinueOnAllAssetsLoaded();
         }
     }
     
@@ -69,11 +73,27 @@ public class ChoicesUIController : MonoBehaviour
             playerCurrentHex = obj.Result;
             Debug.Log($"Successfully loaded asset <{playerCurrentHex.name}>");
             
-            if (worldObjectManager != null)
-            {
-                isInitialised = true;
-                SetUpButtons();
-            }
+            ContinueOnAllAssetsLoaded();
+        }
+    }
+    
+    private void OnChoiceClickedEventAssetLoaded(AsyncOperationHandle<VoidEvent> obj)
+    {
+        if (obj.Status == AsyncOperationStatus.Succeeded)
+        {
+            choiceClickedEvent = obj.Result;
+            Debug.Log($"Successfully loaded asset <{choiceClickedEvent.name}>");
+
+            ContinueOnAllAssetsLoaded();
+        }
+    }
+
+    private void ContinueOnAllAssetsLoaded()
+    {
+        if (--assetLoadCount == 0)
+        {
+            isInitialised = true;
+            SetUpButtons();
         }
     }
 
@@ -89,7 +109,11 @@ public class ChoicesUIController : MonoBehaviour
             GameObject buttonGO = Instantiate(choicesButtonPrefab, buttonHolderParent.transform);
             buttonGOs.Add(buttonGO);
             Button button = buttonGO.GetComponent<Button>();
-            button.onClick.AddListener(() => harvestable.ApplyDelta());
+            button.onClick.AddListener(() =>
+                {
+                    harvestable.ApplyDelta();
+                    choiceClickedEvent.Raise();
+                });
             TMP_Text buttonText = buttonGO.GetComponentInChildren<TMP_Text>();
             
             StringBuilder buttonTextBuilder = new StringBuilder();
@@ -110,6 +134,7 @@ public class ChoicesUIController : MonoBehaviour
                 {
                     interactable.Interact();
                     currentTile.runtimeInteractables.Remove(interactable);
+                    choiceClickedEvent.Raise();
                 }
             );
             TMP_Text buttonText = buttonGO.GetComponentInChildren<TMP_Text>();

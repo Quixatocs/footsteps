@@ -9,18 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5721c296e56f40d892de93d0aa63cba8, type: 3}
-  m_Name: WaitForMovementHexSelectState
+  m_Script: {fileID: 11500000, guid: 53a3cc5246374222913d299c7f4de9a1, type: 3}
+  m_Name: WaitForCostsClickedVoidEventState
   m_EditorClassIdentifier: 
   nextStateReference:
-    m_AssetGUID: 3a9fbd3191c444046beade93769afaf2
+    m_AssetGUID: f4c037d06daf01348bf75adcd7bd6988
     m_SubObjectName: 
     m_SubObjectType: 
-  worldObjectManagerReference:
-    m_AssetGUID: 3628bd214742ed04b9261ea92d9c8022
-    m_SubObjectName: 
-    m_SubObjectType: 
-  playerCurrentHexEventReference:
-    m_AssetGUID: a426f8ec035c0d645ba5be278ef0e38a
+  voidEventReference:
+    m_AssetGUID: 2cf0814b37bbf454893389b025adf927
     m_SubObjectName: 
     m_SubObjectType: 

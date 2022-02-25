@@ -6,6 +6,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 [Serializable]
 public abstract class State : ScriptableObject
 {
+    [NonSerialized]
     public bool IsComplete;
 
     [SerializeField]
