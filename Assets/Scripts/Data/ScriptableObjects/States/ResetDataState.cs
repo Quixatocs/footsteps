@@ -3,16 +3,16 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/States/ActivateUIState", order = 1)]
+[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/States/ResetDataState", order = 1)]
 [Serializable]
-public class ActivateUIState : State
+public class ResetDataState : State
 {
     [Header("Asset References")]
     [SerializeField]
-    private AssetReference uiActivationEventReference;
-    
-    private BoolEvent uiActivationEvent;
+    private AssetReference intVariableReference;
 
+    private IntVariable intVariable;
+    
     public override void OnEnter()
     {
         base.OnEnter();
@@ -22,7 +22,7 @@ public class ActivateUIState : State
         stateHandleOperation.Completed += OnNextStateAssetLoaded;
         
         ++assetLoadCount;
-        Addressables.LoadAssetAsync<BoolEvent>(uiActivationEventReference).Completed += OnUIActivationEventAssetLoaded;
+        Addressables.LoadAssetAsync<IntVariable>(intVariableReference).Completed += OnIntVariableAssetLoaded;
     }
     
     private void OnNextStateAssetLoaded(AsyncOperationHandle<State> obj)
@@ -36,12 +36,12 @@ public class ActivateUIState : State
         }
     }
     
-    private void OnUIActivationEventAssetLoaded(AsyncOperationHandle<BoolEvent> obj)
+    private void OnIntVariableAssetLoaded(AsyncOperationHandle<IntVariable> obj)
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
-            uiActivationEvent = obj.Result;
-            Debug.Log($"Successfully loaded asset <{uiActivationEvent.name}>");
+            intVariable = obj.Result;
+            Debug.Log($"Successfully loaded asset <{intVariable.name}>");
 
             ContinueOnAllAssetsLoaded();
         }
@@ -60,14 +60,18 @@ public class ActivateUIState : State
         if (--assetLoadCount == 0)
         {
             IsInitialised = true;
-            uiActivationEvent.Raise(true);
-            IsComplete = true; 
+            SetData();
         }
+    }
+    
+    private void SetData()
+    {
+        intVariable.Value = intVariable.DefaultValue;
+        IsComplete = true;
     }
 
     public override State GetNextState()
     {
         return nextState;
     }
-    
 }

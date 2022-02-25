@@ -1,13 +1,16 @@
+using System;
 using UnityEngine;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
+[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/States/LogicState", order = 1)]
+[Serializable]
 public class LogicState : State
 {
     public Transition[] transitions;
 
     public override void OnEnter()
     {
-        IsComplete = false;
+        base.OnEnter();
         
         if (IsInitialised) return;
         

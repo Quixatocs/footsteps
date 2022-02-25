@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
+[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/States/SetDataState", order = 1)]
+[Serializable]
 public class SetDataState : State
 {
     [Header("Asset References")]

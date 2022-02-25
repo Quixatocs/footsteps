@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/States/DeactivateUIState", order = 1)]
+[Serializable]
 public class DeactivateUIState : State
 {
     [Header("Asset References")]
