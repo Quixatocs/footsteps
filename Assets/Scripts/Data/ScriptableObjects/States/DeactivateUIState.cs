@@ -13,20 +13,47 @@ public class DeactivateUIState : State
 
     public override void OnEnter()
     {
-        IsComplete = false;
+        base.OnEnter();
+        
+        if (IsInitialised) return;
+        
+        stateHandleOperation.Completed += OnNextStateAssetLoaded;
+        
+        ++assetLoadCount;
         Addressables.LoadAssetAsync<BoolEvent>(UIDeactivationEventReference).Completed += OnUIDeactivationEventAssetLoaded;
+    }
+    
+    private void OnNextStateAssetLoaded(AsyncOperationHandle<State> obj)
+    {
+        if (obj.Status == AsyncOperationStatus.Succeeded)
+        {
+            --assetLoadCount;
+            nextState = obj.Result;
+            Debug.Log($"Successfully loaded asset <{nextState.name}>");
+
+            if (assetLoadCount == 0)
+            {
+                IsInitialised = true;
+                uiDeactivationEvent.Raise(false);
+                IsComplete = true;
+            }
+        }
     }
     
     private void OnUIDeactivationEventAssetLoaded(AsyncOperationHandle<BoolEvent> obj)
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
+            --assetLoadCount;
             uiDeactivationEvent = obj.Result;
             Debug.Log($"Successfully loaded asset <{uiDeactivationEvent.name}>");
 
-            IsInitialised = true;
-            uiDeactivationEvent.Raise(false);
-            IsComplete = true;
+            if (assetLoadCount == 0)
+            {
+                IsInitialised = true;
+                uiDeactivationEvent.Raise(false);
+                IsComplete = true;
+            }
         }
     }
     
@@ -36,6 +63,11 @@ public class DeactivateUIState : State
 
     public override void OnUpdate()
     {
+    }
+    
+    public override State GetNextState()
+    {
+        return nextState;
     }
     
 }

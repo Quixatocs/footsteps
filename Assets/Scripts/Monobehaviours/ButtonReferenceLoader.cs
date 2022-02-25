@@ -9,7 +9,7 @@ public class ButtonReferenceLoader : MonoBehaviour
     [SerializeField]
     private AssetReference uiStateReference;
 
-    private EnableUIState enableUIState;
+    //private EnableUIState enableUIState;
     private Button button;
 
     private void OnEnable()
@@ -19,9 +19,10 @@ public class ButtonReferenceLoader : MonoBehaviour
             button = GetComponent<Button>();
         }
         
-        Addressables.LoadAssetAsync<EnableUIState>(uiStateReference).Completed += OnEnableUIStateAssetLoaded;
+        //Addressables.LoadAssetAsync<EnableUIState>(uiStateReference).Completed += OnEnableUIStateAssetLoaded;
     }
 
+    /*
     private void OnEnableUIStateAssetLoaded(AsyncOperationHandle<EnableUIState> obj)
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
@@ -32,6 +33,7 @@ public class ButtonReferenceLoader : MonoBehaviour
             button.onClick.AddListener(enableUIState.ReturnFromUI);
         }
     }
+    */
 
     private void OnDisable()
     {

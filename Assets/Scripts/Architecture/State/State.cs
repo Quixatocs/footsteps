@@ -1,16 +1,32 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 [Serializable]
 public abstract class State : ScriptableObject
 {
     public bool IsComplete;
 
-    private State nextState;
+    [SerializeField]
+    protected AssetReference nextStateReference;
+    
+    protected State nextState;
+    protected AsyncOperationHandle<State> stateHandleOperation;
 
     protected bool IsInitialised;
+    
+    protected int assetLoadCount;
 
-    public abstract void OnEnter();
+    public virtual void OnEnter()
+    {
+        IsComplete = false;
+        if (!IsInitialised && nextStateReference != null)
+        {
+            ++assetLoadCount;
+            stateHandleOperation = nextStateReference.LoadAssetAsync<State>();
+        }
+    }
 
     public abstract void OnExit();
 

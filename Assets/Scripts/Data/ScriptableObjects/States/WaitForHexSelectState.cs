@@ -19,15 +19,38 @@ public class WaitForHexSelectState : State
 
     public override void OnEnter()
     {
-        IsComplete = false;
+        base.OnEnter();
+        
+        if (IsInitialised) return;
+        
+        stateHandleOperation.Completed += OnNextStateAssetLoaded;
+        
+        ++assetLoadCount;
         Addressables.LoadAssetAsync<WorldObjectManager>(worldObjectManagerReference).Completed += OnWorldObjectManagerAssetLoaded;
+        ++assetLoadCount;
         Addressables.LoadAssetAsync<HexEvent>(playerCurrentHexEventReference).Completed += OnPlayerCurrentHexAssetLoaded;
+    }
+    
+    private void OnNextStateAssetLoaded(AsyncOperationHandle<State> obj)
+    {
+        if (obj.Status == AsyncOperationStatus.Succeeded)
+        {
+            --assetLoadCount;
+            nextState = obj.Result;
+            Debug.Log($"Successfully loaded asset <{nextState.name}>");
+
+            if (assetLoadCount == 0)
+            {
+                IsInitialised = true;
+            }
+        }
     }
     
     private void OnWorldObjectManagerAssetLoaded(AsyncOperationHandle<WorldObjectManager> obj)
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
+            --assetLoadCount;
             worldObjectManager = obj.Result;
             Debug.Log($"Successfully loaded asset <{worldObjectManager.name}>");
 
@@ -36,7 +59,7 @@ public class WaitForHexSelectState : State
                 grid = worldObjectManager.GetComponent<Grid>();
             }
 
-            if (hexClickedEvent != null)
+            if (assetLoadCount == 0)
             {
                 IsInitialised = true;
             }
@@ -47,10 +70,11 @@ public class WaitForHexSelectState : State
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
+            --assetLoadCount;
             hexClickedEvent = obj.Result;
             Debug.Log($"Successfully loaded asset <{hexClickedEvent.name}>");
 
-            if (worldObjectManager != null)
+            if (assetLoadCount == 0)
             {
                 IsInitialised = true;
             }
@@ -72,5 +96,10 @@ public class WaitForHexSelectState : State
             hexClickedEvent.Raise(clickedHex);
             IsComplete = true;
         }
+    }
+
+    public override State GetNextState()
+    {
+        return nextState;
     }
 }

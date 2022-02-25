@@ -17,9 +17,10 @@ public class WaitForVoidEventState : State
 
     public override void OnEnter()
     {
-        IsComplete = false;
+        base.OnEnter();
+        
         isTriggered = false;
-
+        
         if (voidEventListener == null)
         {
             voidEventListener = new VoidEventListener(OnEventTriggered);
@@ -27,19 +28,41 @@ public class WaitForVoidEventState : State
         
         if (IsInitialised) return;
         
+        stateHandleOperation.Completed += OnNextStateAssetLoaded;
+        
+        ++assetLoadCount;
         Addressables.LoadAssetAsync<VoidEvent>(voidEventReference).Completed += OnVoidEventAssetLoaded;
+    }
+    
+    private void OnNextStateAssetLoaded(AsyncOperationHandle<State> obj)
+    {
+        if (obj.Status == AsyncOperationStatus.Succeeded)
+        {
+            --assetLoadCount;
+            nextState = obj.Result;
+            Debug.Log($"Successfully loaded asset <{nextState.name}>");
+
+            if (assetLoadCount == 0)
+            {
+                IsInitialised = true;
+            }
+        }
     }
     
     private void OnVoidEventAssetLoaded(AsyncOperationHandle<VoidEvent> obj)
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
+            --assetLoadCount;
             voidEvent = obj.Result;
             Debug.Log($"Successfully loaded asset <{voidEvent.name}>");
             
             voidEvent.RegisterListener(voidEventListener);
 
-            IsInitialised = true;
+            if (assetLoadCount == 0)
+            {
+                IsInitialised = true;
+            }
         }
     }
 
@@ -58,5 +81,10 @@ public class WaitForVoidEventState : State
     private void OnEventTriggered()
     {
         isTriggered = true;
+    }
+    
+    public override State GetNextState()
+    {
+        return nextState;
     }
 }

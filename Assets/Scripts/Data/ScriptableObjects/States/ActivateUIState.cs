@@ -7,26 +7,53 @@ public class ActivateUIState : State
 {
     [Header("Asset References")]
     [SerializeField]
-    private AssetReference UIActivationEventReference;
+    private AssetReference uiActivationEventReference;
     
     private BoolEvent uiActivationEvent;
 
     public override void OnEnter()
     {
-        IsComplete = false;
-        Addressables.LoadAssetAsync<BoolEvent>(UIActivationEventReference).Completed += OnUIActivationEventAssetLoaded;
+        base.OnEnter();
+        
+        if (IsInitialised) return;
+        
+        stateHandleOperation.Completed += OnNextStateAssetLoaded;
+        
+        ++assetLoadCount;
+        Addressables.LoadAssetAsync<BoolEvent>(uiActivationEventReference).Completed += OnUIActivationEventAssetLoaded;
+    }
+    
+    private void OnNextStateAssetLoaded(AsyncOperationHandle<State> obj)
+    {
+        if (obj.Status == AsyncOperationStatus.Succeeded)
+        {
+            --assetLoadCount;
+            nextState = obj.Result;
+            Debug.Log($"Successfully loaded asset <{nextState.name}>");
+
+            if (assetLoadCount == 0)
+            {
+                IsInitialised = true;
+                uiActivationEvent.Raise(true);
+                IsComplete = true;
+            }
+        }
     }
     
     private void OnUIActivationEventAssetLoaded(AsyncOperationHandle<BoolEvent> obj)
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
+            --assetLoadCount;
             uiActivationEvent = obj.Result;
             Debug.Log($"Successfully loaded asset <{uiActivationEvent.name}>");
 
-            IsInitialised = true;
-            uiActivationEvent.Raise(true);
-            IsComplete = true;
+            if (assetLoadCount == 0)
+            {
+                IsInitialised = true;
+                uiActivationEvent.Raise(true);
+                IsComplete = true; 
+            }
         }
     }
     
@@ -36,6 +63,11 @@ public class ActivateUIState : State
 
     public override void OnUpdate()
     {
+    }
+    
+    public override State GetNextState()
+    {
+        return nextState;
     }
     
 }

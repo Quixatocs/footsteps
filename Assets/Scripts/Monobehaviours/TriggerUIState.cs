@@ -9,12 +9,12 @@ public class TriggerUIState : MonoBehaviour
     [SerializeField]
     private AssetReference enableUIStateReference;
 
-    private EnableUIState enableUIState;
+    //private EnableUIState enableUIState;
     private Button button;
     
     private void OnEnable()
     {
-        Addressables.LoadAssetAsync<EnableUIState>(enableUIStateReference).Completed += OnEnableUIStateAssetLoaded;
+        //Addressables.LoadAssetAsync<EnableUIState>(enableUIStateReference).Completed += OnEnableUIStateAssetLoaded;
         
         if (button == null)
         {
@@ -24,6 +24,7 @@ public class TriggerUIState : MonoBehaviour
         button.interactable = false;
     }
 
+    /*
     private void OnEnableUIStateAssetLoaded(AsyncOperationHandle<EnableUIState> obj)
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
@@ -34,9 +35,10 @@ public class TriggerUIState : MonoBehaviour
             button.interactable = true;
         }
     }
+    */
 
     public void ReturnFromUI()
     {
-        enableUIState.ReturnFromUI();
+        //enableUIState.ReturnFromUI();
     }
 }
