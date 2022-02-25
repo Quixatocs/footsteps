@@ -27,16 +27,10 @@ public class ActivateUIState : State
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
-            --assetLoadCount;
             nextState = obj.Result;
             Debug.Log($"Successfully loaded asset <{nextState.name}>");
 
-            if (assetLoadCount == 0)
-            {
-                IsInitialised = true;
-                uiActivationEvent.Raise(true);
-                IsComplete = true;
-            }
+            ContinueOnAllAssetsLoaded();
         }
     }
     
@@ -44,16 +38,10 @@ public class ActivateUIState : State
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
-            --assetLoadCount;
             uiActivationEvent = obj.Result;
             Debug.Log($"Successfully loaded asset <{uiActivationEvent.name}>");
 
-            if (assetLoadCount == 0)
-            {
-                IsInitialised = true;
-                uiActivationEvent.Raise(true);
-                IsComplete = true; 
-            }
+            ContinueOnAllAssetsLoaded();
         }
     }
     
@@ -64,7 +52,17 @@ public class ActivateUIState : State
     public override void OnUpdate()
     {
     }
-    
+
+    protected override void ContinueOnAllAssetsLoaded()
+    {
+        if (--assetLoadCount == 0)
+        {
+            IsInitialised = true;
+            uiActivationEvent.Raise(true);
+            IsComplete = true; 
+        }
+    }
+
     public override State GetNextState()
     {
         return nextState;

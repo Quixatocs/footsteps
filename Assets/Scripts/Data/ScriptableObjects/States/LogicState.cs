@@ -5,8 +5,6 @@ public class LogicState : State
 {
     public Transition[] transitions;
 
-    private int referenceCount;
-    
     public override void OnEnter()
     {
         IsComplete = false;
@@ -15,6 +13,7 @@ public class LogicState : State
         
         foreach (Transition transition in transitions)
         {
+            ++assetLoadCount;
             transition.LoadNextStateAsset().Completed += OnLoadNextStateAssetComplete;
         }
     }
@@ -23,13 +22,7 @@ public class LogicState : State
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
-            ++referenceCount;
-
-            if (referenceCount == transitions.Length)
-            {
-                Debug.Log($"All states loaded on transitions for LogicState <{name}>");
-                IsInitialised = true;
-            }
+            ContinueOnAllAssetsLoaded();
         }
     }
 
@@ -42,6 +35,15 @@ public class LogicState : State
         if (!IsInitialised) return;
 
         IsComplete = true;
+    }
+
+    protected override void ContinueOnAllAssetsLoaded()
+    {
+        if (--assetLoadCount == 0)
+        {
+            Debug.Log($"All states loaded on transitions for LogicState <{name}>");
+            IsInitialised = true;
+        }
     }
 
     public override State GetNextState()

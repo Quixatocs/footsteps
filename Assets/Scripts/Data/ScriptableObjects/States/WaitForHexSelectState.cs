@@ -35,14 +35,10 @@ public class WaitForHexSelectState : State
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
-            --assetLoadCount;
             nextState = obj.Result;
             Debug.Log($"Successfully loaded asset <{nextState.name}>");
 
-            if (assetLoadCount == 0)
-            {
-                IsInitialised = true;
-            }
+            ContinueOnAllAssetsLoaded();
         }
     }
     
@@ -50,7 +46,6 @@ public class WaitForHexSelectState : State
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
-            --assetLoadCount;
             worldObjectManager = obj.Result;
             Debug.Log($"Successfully loaded asset <{worldObjectManager.name}>");
 
@@ -59,10 +54,7 @@ public class WaitForHexSelectState : State
                 grid = worldObjectManager.GetComponent<Grid>();
             }
 
-            if (assetLoadCount == 0)
-            {
-                IsInitialised = true;
-            }
+            ContinueOnAllAssetsLoaded();
         }
     }
     
@@ -70,14 +62,10 @@ public class WaitForHexSelectState : State
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
-            --assetLoadCount;
             hexClickedEvent = obj.Result;
             Debug.Log($"Successfully loaded asset <{hexClickedEvent.name}>");
 
-            if (assetLoadCount == 0)
-            {
-                IsInitialised = true;
-            }
+            ContinueOnAllAssetsLoaded();
         }
     }
 
@@ -95,6 +83,14 @@ public class WaitForHexSelectState : State
             Hex clickedHex = grid.WorldToHex(worldPoint); 
             hexClickedEvent.Raise(clickedHex);
             IsComplete = true;
+        }
+    }
+
+    protected override void ContinueOnAllAssetsLoaded()
+    {
+        if (--assetLoadCount == 0)
+        {
+            IsInitialised = true;
         }
     }
 

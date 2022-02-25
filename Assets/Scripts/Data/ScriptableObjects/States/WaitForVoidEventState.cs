@@ -38,14 +38,10 @@ public class WaitForVoidEventState : State
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
-            --assetLoadCount;
             nextState = obj.Result;
             Debug.Log($"Successfully loaded asset <{nextState.name}>");
 
-            if (assetLoadCount == 0)
-            {
-                IsInitialised = true;
-            }
+            ContinueOnAllAssetsLoaded();
         }
     }
     
@@ -53,16 +49,12 @@ public class WaitForVoidEventState : State
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
-            --assetLoadCount;
             voidEvent = obj.Result;
             Debug.Log($"Successfully loaded asset <{voidEvent.name}>");
             
             voidEvent.RegisterListener(voidEventListener);
 
-            if (assetLoadCount == 0)
-            {
-                IsInitialised = true;
-            }
+            ContinueOnAllAssetsLoaded();
         }
     }
 
@@ -76,6 +68,14 @@ public class WaitForVoidEventState : State
         if (!IsInitialised) return;
         if (!isTriggered) return;
         IsComplete = true;
+    }
+
+    protected override void ContinueOnAllAssetsLoaded()
+    {
+        if (--assetLoadCount == 0)
+        {
+            IsInitialised = true;
+        }
     }
 
     private void OnEventTriggered()

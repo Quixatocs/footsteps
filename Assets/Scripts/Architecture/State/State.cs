@@ -32,5 +32,7 @@ public abstract class State : ScriptableObject
 
     public abstract void OnUpdate();
 
+    protected abstract void ContinueOnAllAssetsLoaded();
+
     public abstract State GetNextState();
 }
