@@ -15,6 +15,7 @@ public abstract class State : ScriptableObject
     protected State nextState;
     protected AsyncOperationHandle<State> stateHandleOperation;
 
+    [NonSerialized]
     protected bool IsInitialised;
     
     protected int assetLoadCount;

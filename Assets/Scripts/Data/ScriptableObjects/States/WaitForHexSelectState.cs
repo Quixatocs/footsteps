@@ -80,6 +80,12 @@ public class WaitForHexSelectState : State
         if (Input.GetMouseButtonDown(0)) {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 worldPoint = ray.GetPoint(-ray.origin.z / ray.direction.z);
+            
+            if (grid == null && worldObjectManager != null)
+            {
+                grid = worldObjectManager.GetComponent<Grid>();
+            }
+            
             Hex clickedHex = grid.WorldToHex(worldPoint); 
             hexClickedEvent.Raise(clickedHex);
             IsComplete = true;
