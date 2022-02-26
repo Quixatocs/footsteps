@@ -1884,10 +1884,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChoicesUI
       objectReference: {fileID: 0}
-    - target: {fileID: 6260521444168147216, guid: 4e5864e4df90d5544ac1c51a559fe785, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6260521444168147217, guid: 4e5864e4df90d5544ac1c51a559fe785, type: 3}
       propertyPath: m_RootOrder
       value: 1

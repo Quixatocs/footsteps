@@ -12,6 +12,7 @@ public abstract class State : ScriptableObject
     [SerializeField]
     protected AssetReference nextStateReference;
     
+    [NonSerialized]
     protected State nextState;
     protected AsyncOperationHandle<State> stateHandleOperation;
 

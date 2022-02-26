@@ -115,7 +115,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6260521444168147217
 Transform:
   m_ObjectHideFlags: 0
@@ -149,6 +149,10 @@ MonoBehaviour:
     m_SubObjectType: 
   playerCurrentHexReference:
     m_AssetGUID: df854edbc715a904ea3fdd64df122ae3
+    m_SubObjectName: 
+    m_SubObjectType: 
+  choiceClickedEventReference:
+    m_AssetGUID: 7c55b6db458f6ee489bbd25b2c906af4
     m_SubObjectName: 
     m_SubObjectType: 
   choicesButtonPrefab: {fileID: 1096804848406420152, guid: 8da781cd4b3f0c1458caa65de63e7cb0, type: 3}

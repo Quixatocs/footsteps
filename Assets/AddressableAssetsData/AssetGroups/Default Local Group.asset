@@ -311,6 +311,12 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 7938a83dabc27a5479e6c5ef72ed1f41
+    m_Address: Assets/ScriptableObjects/StateMachine/States/CheckDeathLogicState.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6fc6c05852e40f64783f822c55665ad0, type: 2}
   m_SchemaSet:

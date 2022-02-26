@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DeactivateCostsUIState
   m_EditorClassIdentifier: 
   nextStateReference:
-    m_AssetGUID: 
+    m_AssetGUID: 7938a83dabc27a5479e6c5ef72ed1f41
     m_SubObjectName: 
     m_SubObjectType: 
   UIDeactivationEventReference:

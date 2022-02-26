@@ -22,7 +22,7 @@ public class CostsUIController : MonoBehaviour
 
     private WorldObjectManager worldObjectManager;
     private HexVariable playerCurrentHex;
-    private VoidEvent choiceClickedEvent;
+    private VoidEvent costsClickedEvent;
     private Tilemap tileMap;
     private GameObject buttonHolder;
     private int assetLoadCount;
@@ -68,8 +68,8 @@ public class CostsUIController : MonoBehaviour
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
-            choiceClickedEvent = obj.Result;
-            Debug.Log($"Successfully loaded asset <{choiceClickedEvent.name}>");
+            costsClickedEvent = obj.Result;
+            Debug.Log($"Successfully loaded asset <{costsClickedEvent.name}>");
 
             ContinueOnAllAssetsLoaded();
         }
@@ -97,7 +97,11 @@ public class CostsUIController : MonoBehaviour
         
         foreach (IntDelta cost in currentTileCosts)
         {
-            button.onClick.AddListener(() => cost.ApplyDelta());
+            button.onClick.AddListener(() =>
+            {
+                cost.ApplyDelta();
+                costsClickedEvent.Raise();
+            });
         }
     }
 
