@@ -13,7 +13,7 @@ public class CostsUIController : MonoBehaviour
     private AssetReference playerCurrentHexReference;
     [SerializeField]
     private AssetReference costsClickedEventReference;
-    
+
     [Header("Scene References")]
     [SerializeField]
     private GameObject continueButtonPrefab;

@@ -40,6 +40,7 @@ MonoBehaviour:
   costs:
   - {fileID: 11400000, guid: 6abebd98d721a4f44a8afd71005f426d, type: 2}
   - {fileID: 11400000, guid: c2b3d9cb3868665448874761ef7973f8, type: 2}
+  - {fileID: 11400000, guid: 2c12d243a08c2504e906d4a5554a1a17, type: 2}
   harvestables:
   - {fileID: 11400000, guid: cbe7146832d9b9140b1c089fb16548f7, type: 2}
   interactableSpawnChances:
