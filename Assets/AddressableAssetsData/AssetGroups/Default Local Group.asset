@@ -317,6 +317,24 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 62bcc89a5aa97324ba749a6dae8bdcae
+    m_Address: Assets/ScriptableObjects/StateMachine/States/WaterResetDataState.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: a8b5105322ddbb049bc0f21c75893388
+    m_Address: Assets/ScriptableObjects/StateMachine/States/DaysSurvivedResetDataState.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 5b94bdfd94c565c4c89365404ae006d8
+    m_Address: Assets/ScriptableObjects/StateMachine/States/FoodResetDataState.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6fc6c05852e40f64783f822c55665ad0, type: 2}
   m_SchemaSet:
