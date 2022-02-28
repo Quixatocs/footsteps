@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WaterResetDataState
   m_EditorClassIdentifier: 
   nextStateReference:
-    m_AssetGUID: a8b5105322ddbb049bc0f21c75893388
+    m_AssetGUID: a8836005183a2b645a680d3e1141e26c
     m_SubObjectName: 
     m_SubObjectType: 
   intVariableReference:

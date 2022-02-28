@@ -9,14 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9cfdaeca79d408c91150a40c2af99a8, type: 3}
-  m_Name: DaysSurvivedResetDataState
+  m_Script: {fileID: 11500000, guid: e838554359eb44a3abe47c87b261202a, type: 3}
+  m_Name: DaysSurvivedVariableChangedState
   m_EditorClassIdentifier: 
   nextStateReference:
-    m_AssetGUID: ac9e4818eafa1d148a864715b9343398
+    m_AssetGUID: 632c46ee4c4117f49939c01a5a6d8c5a
     m_SubObjectName: 
     m_SubObjectType: 
   intVariableReference:
     m_AssetGUID: 3f201d9cdff10aa46bd8498491c5caef
+    m_SubObjectName: 
+    m_SubObjectType: 
+  voidEventReference:
+    m_AssetGUID: 19279c9c5e3ccc045a98b219c750bfa7
     m_SubObjectName: 
     m_SubObjectType: 

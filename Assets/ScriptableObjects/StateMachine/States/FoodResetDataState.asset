@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FoodResetDataState
   m_EditorClassIdentifier: 
   nextStateReference:
-    m_AssetGUID: 62bcc89a5aa97324ba749a6dae8bdcae
+    m_AssetGUID: 4f586c5de0205da4bbb9416ee9a39f26
     m_SubObjectName: 
     m_SubObjectType: 
   intVariableReference:
