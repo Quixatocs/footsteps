@@ -16,10 +16,14 @@ public class DeactivateUIState : State
     public override void OnEnter()
     {
         base.OnEnter();
+
+        if (IsInitialised)
+        {
+            Continue();
+            return;
+        }
         
-        if (IsInitialised) return;
-        
-        stateHandleOperation.Completed += OnNextStateAssetLoaded;
+        if (stateHandleOperation.HasValue) stateHandleOperation.Value.Completed += OnNextStateAssetLoaded;
         
         ++assetLoadCount;
         Addressables.LoadAssetAsync<BoolEvent>(UIDeactivationEventReference).Completed += OnUIDeactivationEventAssetLoaded;
@@ -60,9 +64,14 @@ public class DeactivateUIState : State
         if (--assetLoadCount == 0)
         {
             IsInitialised = true;
-            uiDeactivationEvent.Raise(false);
-            IsComplete = true;
+            Continue();
         }
+    }
+
+    protected override void Continue()
+    {
+        uiDeactivationEvent.Raise(false);
+        IsComplete = true;
     }
 
     public override State GetNextState()

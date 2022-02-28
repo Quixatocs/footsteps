@@ -20,10 +20,14 @@ public class WaitForHexSelectState : State
     public override void OnEnter()
     {
         base.OnEnter();
-        
-        if (IsInitialised) return;
-        
-        stateHandleOperation.Completed += OnNextStateAssetLoaded;
+
+        if (IsInitialised)
+        {
+            Continue();
+            return;
+        }
+
+        if (stateHandleOperation.HasValue) stateHandleOperation.Value.Completed += OnNextStateAssetLoaded;
         
         ++assetLoadCount;
         Addressables.LoadAssetAsync<WorldObjectManager>(worldObjectManagerReference).Completed += OnWorldObjectManagerAssetLoaded;
@@ -97,7 +101,12 @@ public class WaitForHexSelectState : State
         if (--assetLoadCount == 0)
         {
             IsInitialised = true;
+            Continue();
         }
+    }
+
+    protected override void Continue()
+    {
     }
 
     public override State GetNextState()

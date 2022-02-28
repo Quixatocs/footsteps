@@ -16,10 +16,14 @@ public class ResetDataState : State
     public override void OnEnter()
     {
         base.OnEnter();
+
+        if (IsInitialised)
+        {
+            Continue();
+            return;
+        }
         
-        if (IsInitialised) return;
-        
-        stateHandleOperation.Completed += OnNextStateAssetLoaded;
+        if (stateHandleOperation.HasValue) stateHandleOperation.Value.Completed += OnNextStateAssetLoaded;
         
         ++assetLoadCount;
         Addressables.LoadAssetAsync<IntVariable>(intVariableReference).Completed += OnIntVariableAssetLoaded;
@@ -60,11 +64,11 @@ public class ResetDataState : State
         if (--assetLoadCount == 0)
         {
             IsInitialised = true;
-            SetData();
+            Continue();
         }
     }
     
-    private void SetData()
+    protected override void Continue()
     {
         intVariable.Value = intVariable.DefaultValue;
         IsComplete = true;

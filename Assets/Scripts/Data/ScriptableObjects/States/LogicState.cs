@@ -11,8 +11,12 @@ public class LogicState : State
     public override void OnEnter()
     {
         base.OnEnter();
-        
-        if (IsInitialised) return;
+
+        if (IsInitialised)
+        {
+            Continue();
+            return;
+        }
         
         foreach (Transition transition in transitions)
         {
@@ -46,7 +50,12 @@ public class LogicState : State
         {
             Debug.Log($"All states loaded on transitions for LogicState <{name}>");
             IsInitialised = true;
+            Continue();
         }
+    }
+
+    protected override void Continue()
+    {
     }
 
     public override State GetNextState()

@@ -100,9 +100,10 @@ public class CostsUIController : MonoBehaviour
             button.onClick.AddListener(() =>
             {
                 cost.ApplyDelta();
-                costsClickedEvent.Raise();
             });
         }
+        
+        button.onClick.AddListener(costsClickedEvent.Raise);
     }
 
     private void OnDisable()

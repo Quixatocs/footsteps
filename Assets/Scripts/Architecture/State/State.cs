@@ -14,7 +14,8 @@ public abstract class State : ScriptableObject
     
     [NonSerialized]
     protected State nextState;
-    protected AsyncOperationHandle<State> stateHandleOperation;
+    [NonSerialized]
+    protected AsyncOperationHandle<State>? stateHandleOperation;
 
     [NonSerialized]
     protected bool IsInitialised;
@@ -24,8 +25,10 @@ public abstract class State : ScriptableObject
     public virtual void OnEnter()
     {
         IsComplete = false;
-        if (!IsInitialised && nextStateReference != null)
+        stateHandleOperation = null;
+        if (!IsInitialised && !string.IsNullOrEmpty(nextStateReference.AssetGUID))
         {
+            //stateHandleOperation = new AsyncOperationHandle<State>();
             ++assetLoadCount;
             stateHandleOperation = nextStateReference.LoadAssetAsync<State>();
         }
@@ -36,6 +39,8 @@ public abstract class State : ScriptableObject
     public abstract void OnUpdate();
 
     protected abstract void ContinueOnAllAssetsLoaded();
+
+    protected abstract void Continue();
 
     public abstract State GetNextState();
 }

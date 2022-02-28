@@ -23,6 +23,10 @@ public class RestartSceneState : State
     {
     }
 
+    protected override void Continue()
+    {
+    }
+
     public override State GetNextState()
     {
         return nextState;

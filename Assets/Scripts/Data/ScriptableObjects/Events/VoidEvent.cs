@@ -11,6 +11,7 @@ public class VoidEvent : ScriptableObject
         List<IVoidEventListener> listenersCopy = new List<IVoidEventListener>(listeners);
         for (int i = listenersCopy.Count - 1; i >= 0; i--)
         {
+            Debug.Log($"Event <{name}> raised for listener <{listenersCopy[i]}>");
             listenersCopy[i].OnEventRaised();
         }
     }

@@ -16,10 +16,14 @@ public class ActivateUIState : State
     public override void OnEnter()
     {
         base.OnEnter();
+
+        if (IsInitialised)
+        {
+            Continue();
+            return;
+        }
         
-        if (IsInitialised) return;
-        
-        stateHandleOperation.Completed += OnNextStateAssetLoaded;
+        if (stateHandleOperation.HasValue) stateHandleOperation.Value.Completed += OnNextStateAssetLoaded;
         
         ++assetLoadCount;
         Addressables.LoadAssetAsync<BoolEvent>(uiActivationEventReference).Completed += OnUIActivationEventAssetLoaded;
@@ -60,10 +64,16 @@ public class ActivateUIState : State
         if (--assetLoadCount == 0)
         {
             IsInitialised = true;
-            uiActivationEvent.Raise(true);
-            IsComplete = true; 
+            Continue();
         }
     }
+
+    protected override void Continue()
+    {
+        uiActivationEvent.Raise(true);
+        IsComplete = true; 
+    }
+
 
     public override State GetNextState()
     {
