@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GenerateTilesAtPlayerHexState
   m_EditorClassIdentifier: 
   nextStateReference:
-    m_AssetGUID: 
+    m_AssetGUID: 632c46ee4c4117f49939c01a5a6d8c5a
     m_SubObjectName: 
     m_SubObjectType: 
   worldObjectManagerReference:
