@@ -51,27 +51,26 @@ public class Map : MonoBehaviour
     
     private void OnWorldObjectManagerAssetLoaded(AsyncOperationHandle<WorldObjectManager> obj)
     {
-        if (obj.Status == AsyncOperationStatus.Succeeded)
+        if (obj.Status != AsyncOperationStatus.Succeeded) return;
+        
+        --count;
+        worldObjectManager = obj.Result;
+        Debug.Log($"Successfully loaded asset <{worldObjectManager.name}>");
+            
+            
+        if (tileMap == null)
         {
-            --count;
-            worldObjectManager = obj.Result;
-            Debug.Log($"Successfully loaded asset <{worldObjectManager.name}>");
-            
-            
-            if (tileMap == null)
-            {
-                tileMap = worldObjectManager.GetComponent<Tilemap>();
-            }
+            tileMap = worldObjectManager.GetComponent<Tilemap>();
+        }
 
-            if (grid == null)
-            {
-                grid = worldObjectManager.GetComponent<Grid>();
-            }
+        if (grid == null)
+        {
+            grid = worldObjectManager.GetComponent<Grid>();
+        }
 
-            if (count <= 0)
-            {
-                GenerateTilesAroundPlayer(playerCurrentHex.Value);
-            }
+        if (count <= 0)
+        {
+            GenerateTilesAroundPlayer(playerCurrentHex.Value);
         }
     }
     
