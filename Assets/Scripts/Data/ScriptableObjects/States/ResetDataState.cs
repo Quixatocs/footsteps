@@ -1,17 +1,17 @@
-using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.Serialization;
 
-[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/States/ResetDataState", order = 1)]
-[Serializable]
-public class ResetDataState : State
+
+public class ResetDataState<T> : State
 {
+    [FormerlySerializedAs("intVariableReference")]
     [Header("Asset References")]
     [SerializeField]
-    private AssetReference intVariableReference;
+    private AssetReference variableReference;
 
-    private IntVariable intVariable;
+    private Variable<T> variable;
     
     public override void OnEnter()
     {
@@ -26,7 +26,7 @@ public class ResetDataState : State
         if (stateHandleOperation.HasValue) stateHandleOperation.Value.Completed += OnNextStateAssetLoaded;
         
         ++assetLoadCount;
-        Addressables.LoadAssetAsync<IntVariable>(intVariableReference).Completed += OnIntVariableAssetLoaded;
+        Addressables.LoadAssetAsync<Variable<T>>(variableReference).Completed += OnIntVariableAssetLoaded;
     }
     
     private void OnNextStateAssetLoaded(AsyncOperationHandle<State> obj)
@@ -40,12 +40,12 @@ public class ResetDataState : State
         }
     }
     
-    private void OnIntVariableAssetLoaded(AsyncOperationHandle<IntVariable> obj)
+    private void OnIntVariableAssetLoaded(AsyncOperationHandle<Variable<T>> obj)
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
-            intVariable = obj.Result;
-            Debug.Log($"Successfully loaded asset <{intVariable.name}>");
+            variable = obj.Result;
+            Debug.Log($"Successfully loaded asset <{variable.name}>");
 
             ContinueOnAllAssetsLoaded();
         }
@@ -70,7 +70,7 @@ public class ResetDataState : State
     
     protected override void Continue()
     {
-        intVariable.Value = intVariable.DefaultValue;
+        variable.Value = variable.DefaultValue;
         IsComplete = true;
     }
 

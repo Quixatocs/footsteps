@@ -1,19 +1,18 @@
-using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.Serialization;
 
-[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/States/VariableChangedState", order = 1)]
-[Serializable]
-public class VariableChangedState : State
+public class VariableChangedState<T> : State
 {
+    [FormerlySerializedAs("intVariableReference")]
     [Header("Asset References")]
     [SerializeField]
-    private AssetReference intVariableReference;
+    private AssetReference variableReference;
     [SerializeField]
     private AssetReference voidEventReference;
     
-    private IntVariable intVariable;
+    private T variable;
     private VoidEvent voidEvent;
     
     public override void OnEnter()
@@ -29,7 +28,7 @@ public class VariableChangedState : State
         if (stateHandleOperation.HasValue) stateHandleOperation.Value.Completed += OnNextStateAssetLoaded;
         
         ++assetLoadCount;
-        Addressables.LoadAssetAsync<IntVariable>(intVariableReference).Completed += OnIntVariableAssetLoaded;
+        Addressables.LoadAssetAsync<T>(variableReference).Completed += OnVariableAssetLoaded;
         ++assetLoadCount;
         Addressables.LoadAssetAsync<VoidEvent>(voidEventReference).Completed += OnVoidEventAssetLoaded;
     }
@@ -45,12 +44,12 @@ public class VariableChangedState : State
         }
     }
     
-    private void OnIntVariableAssetLoaded(AsyncOperationHandle<IntVariable> obj)
+    private void OnVariableAssetLoaded(AsyncOperationHandle<T> obj)
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
-            intVariable = obj.Result;
-            Debug.Log($"Successfully loaded asset <{intVariable.name}>");
+            variable = obj.Result;
+            Debug.Log($"Successfully loaded asset <{variable}> TEST TEST TEST");
 
             ContinueOnAllAssetsLoaded();
         }

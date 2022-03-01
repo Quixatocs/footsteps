@@ -353,6 +353,36 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: bc903558ee3bbbf4fab10a9cb844ea1b
+    m_Address: Assets/ScriptableObjects/StateMachine/States/PlayerHexResetDataState.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 396bb12994fc45b48afe03a6a07d8412
+    m_Address: Assets/ScriptableObjects/StateMachine/States/PlayerHexVariableChangedState.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 80527b98c8270464981e89a5f3597a91
+    m_Address: Assets/ScriptableObjects/Events/PlayerHexChangedEvent.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: a561e54f3d7da924d85ccb69040effc1
+    m_Address: Assets/ScriptableObjects/StateMachine/States/WorldTileLoadState.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 36604c29c586d4347ba5c128634b41d6
+    m_Address: Assets/ScriptableObjects/StateMachine/States/GenerateTilesAtPlayerHexState.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6fc6c05852e40f64783f822c55665ad0, type: 2}
   m_SchemaSet:

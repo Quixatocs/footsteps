@@ -9,18 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04eb6e844c664ee3b165c1c48cc167ae, type: 3}
-  m_Name: FoodVariableChangedState
+  m_Script: {fileID: 11500000, guid: 1c64892fb3ee4a0383c8964000658cf2, type: 3}
+  m_Name: PlayerHexResetDataState
   m_EditorClassIdentifier: 
   nextStateReference:
-    m_AssetGUID: 62bcc89a5aa97324ba749a6dae8bdcae
+    m_AssetGUID: 396bb12994fc45b48afe03a6a07d8412
     m_SubObjectName: 
     m_SubObjectType: 
   variableReference:
-    m_AssetGUID: 0df5fbe816bb16049a9c522c9834d4bb
-    m_SubObjectName: 
-    m_SubObjectType: 
-  voidEventReference:
-    m_AssetGUID: d09356d768d22f348b2433ec7dbe3b8d
+    m_AssetGUID: df854edbc715a904ea3fdd64df122ae3
     m_SubObjectName: 
     m_SubObjectType: 

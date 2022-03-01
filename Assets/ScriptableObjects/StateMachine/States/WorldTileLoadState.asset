@@ -9,18 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04eb6e844c664ee3b165c1c48cc167ae, type: 3}
-  m_Name: FoodVariableChangedState
+  m_Script: {fileID: 11500000, guid: 81f814e32b134516abc54c4a1b4a22fc, type: 3}
+  m_Name: WorldTileLoadState
   m_EditorClassIdentifier: 
   nextStateReference:
-    m_AssetGUID: 62bcc89a5aa97324ba749a6dae8bdcae
+    m_AssetGUID: 36604c29c586d4347ba5c128634b41d6
     m_SubObjectName: 
     m_SubObjectType: 
-  variableReference:
-    m_AssetGUID: 0df5fbe816bb16049a9c522c9834d4bb
+  worldObjectManagerReference:
+    m_AssetGUID: 3628bd214742ed04b9261ea92d9c8022
     m_SubObjectName: 
     m_SubObjectType: 
-  voidEventReference:
-    m_AssetGUID: d09356d768d22f348b2433ec7dbe3b8d
+  worldTileSetReference:
+    m_AssetGUID: e3e967fb36e89e6418d30d1851c3aac9
     m_SubObjectName: 
     m_SubObjectType: 

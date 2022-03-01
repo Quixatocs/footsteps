@@ -1,10 +1,14 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
-public class GenerateTilesAtDataHexState : State
+[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/States/GenerateTilesAtHexState", order = 1)]
+[Serializable]
+public class GenerateTilesAtHexState : State
 {
     [Header("Asset References")]
     [SerializeField]
@@ -114,8 +118,8 @@ public class GenerateTilesAtDataHexState : State
     {
         GenerateTilesAroundPlayer(playerCurrentHex.Value);
     }
-    
-    public void GenerateTilesAroundPlayer(Hex hex)
+
+    private void GenerateTilesAroundPlayer(Hex hex)
     {
         if (lastInRangeWorldTiles != null)
         {

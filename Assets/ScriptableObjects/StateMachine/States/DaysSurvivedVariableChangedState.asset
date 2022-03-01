@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e838554359eb44a3abe47c87b261202a, type: 3}
+  m_Script: {fileID: 11500000, guid: 04eb6e844c664ee3b165c1c48cc167ae, type: 3}
   m_Name: DaysSurvivedVariableChangedState
   m_EditorClassIdentifier: 
   nextStateReference:
-    m_AssetGUID: 632c46ee4c4117f49939c01a5a6d8c5a
+    m_AssetGUID: bc903558ee3bbbf4fab10a9cb844ea1b
     m_SubObjectName: 
     m_SubObjectType: 
-  intVariableReference:
+  variableReference:
     m_AssetGUID: 3f201d9cdff10aa46bd8498491c5caef
     m_SubObjectName: 
     m_SubObjectType: 

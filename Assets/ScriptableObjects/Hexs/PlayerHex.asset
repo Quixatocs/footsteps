@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 18ad242af8792cd4a825e13a1734a0c9, type: 3}
-  m_Name: PlayerCurrentHex
+  m_Name: PlayerHex
   m_EditorClassIdentifier: 
