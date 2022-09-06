@@ -129,18 +129,20 @@ public class GenerateTilesAtHexState : State
         lastInRangeWorldTiles = GetTilesInRange(hex, visionRange.Value, true);
 
         tileMap.RefreshAllTiles();
+        
+        IsComplete = true;
     }
     
     private void ApplyFogToTiles(Hex centerHex, int range)
     {
         foreach (WorldTile worldTile in lastInRangeWorldTiles)
         {
+            if (worldTile == null) continue;
             if (centerHex.Distance(worldTile.coords) < range) continue;
 
             worldTile.color = worldTile.fogTint;
             tileMap.SetTile(worldTile.coords, worldTile);
         }
-        tileMap.RefreshAllTiles();
     }
     
     private List<WorldTile> GetTilesInRange(Hex centerHex, int range, bool canSpawn = false)

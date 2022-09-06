@@ -100,6 +100,7 @@ public class WorldTileLoadState : State
 
     protected override void Continue()
     {
+        IsComplete = true;
     }
 
     public override State GetNextState()
