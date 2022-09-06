@@ -11,7 +11,7 @@ public class ResetDataState<T> : State
     [SerializeField]
     private AssetReference variableReference;
 
-    private Variable<T> variable;
+    protected T variable;
     
     public override void OnEnter()
     {
@@ -26,7 +26,7 @@ public class ResetDataState<T> : State
         if (stateHandleOperation.HasValue) stateHandleOperation.Value.Completed += OnNextStateAssetLoaded;
         
         ++assetLoadCount;
-        Addressables.LoadAssetAsync<Variable<T>>(variableReference).Completed += OnIntVariableAssetLoaded;
+        Addressables.LoadAssetAsync<T>(variableReference).Completed += OnVariableAssetLoaded;
     }
     
     private void OnNextStateAssetLoaded(AsyncOperationHandle<State> obj)
@@ -40,12 +40,12 @@ public class ResetDataState<T> : State
         }
     }
     
-    private void OnIntVariableAssetLoaded(AsyncOperationHandle<Variable<T>> obj)
+    private void OnVariableAssetLoaded(AsyncOperationHandle<T> obj)
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
             variable = obj.Result;
-            Debug.Log($"Successfully loaded asset <{variable.name}>");
+            Debug.Log($"Successfully loaded asset <{variable}>");
 
             ContinueOnAllAssetsLoaded();
         }
@@ -70,8 +70,6 @@ public class ResetDataState<T> : State
     
     protected override void Continue()
     {
-        variable.Value = variable.DefaultValue;
-        IsComplete = true;
     }
 
     public override State GetNextState()

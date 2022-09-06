@@ -5,4 +5,10 @@ using UnityEngine;
 [Serializable]
 public class ResetIntDataState : ResetDataState<IntVariable>
 {
+    protected override void Continue()
+    {
+        variable.Value = variable.DefaultValue;
+        
+        IsComplete = true;
+    }
 }

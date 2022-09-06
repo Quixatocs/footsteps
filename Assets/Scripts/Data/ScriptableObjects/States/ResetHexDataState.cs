@@ -5,4 +5,10 @@ using UnityEngine;
 [Serializable]
 public class ResetHexDataState : ResetDataState<HexVariable>
 {
+    protected override void Continue()
+    {
+        variable.Value = variable.DefaultValue;
+        
+        IsComplete = true;
+    }
 }
