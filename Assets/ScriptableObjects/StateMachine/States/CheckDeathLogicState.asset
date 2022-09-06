@@ -16,11 +16,13 @@ MonoBehaviour:
     m_AssetGUID: 
     m_SubObjectName: 
     m_SubObjectType: 
+    m_EditorAssetChanged: 0
   transitions:
   - NextStateReference:
       m_AssetGUID: 1e00c3022b4e3e94c9bc59165bc02069
       m_SubObjectName: 
       m_SubObjectType: 
+      m_EditorAssetChanged: 0
     Stat: {fileID: 11400000, guid: 0df5fbe816bb16049a9c522c9834d4bb, type: 2}
     Comparer: 1
     Constant: 0
@@ -28,20 +30,23 @@ MonoBehaviour:
       m_AssetGUID: 1e00c3022b4e3e94c9bc59165bc02069
       m_SubObjectName: 
       m_SubObjectType: 
+      m_EditorAssetChanged: 0
     Stat: {fileID: 11400000, guid: d14e25f6d4f87f346811f7c63efbe1db, type: 2}
     Comparer: 1
     Constant: 0
   - NextStateReference:
-      m_AssetGUID: 632c46ee4c4117f49939c01a5a6d8c5a
+      m_AssetGUID: 36604c29c586d4347ba5c128634b41d6
       m_SubObjectName: 
       m_SubObjectType: 
+      m_EditorAssetChanged: 0
     Stat: {fileID: 11400000, guid: 0df5fbe816bb16049a9c522c9834d4bb, type: 2}
     Comparer: 2
     Constant: -1
   - NextStateReference:
-      m_AssetGUID: 632c46ee4c4117f49939c01a5a6d8c5a
+      m_AssetGUID: 36604c29c586d4347ba5c128634b41d6
       m_SubObjectName: 
       m_SubObjectType: 
+      m_EditorAssetChanged: 0
     Stat: {fileID: 11400000, guid: d14e25f6d4f87f346811f7c63efbe1db, type: 2}
     Comparer: 2
     Constant: -1
