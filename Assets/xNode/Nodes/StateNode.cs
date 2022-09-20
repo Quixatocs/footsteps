@@ -11,17 +11,24 @@ public abstract class StateNode : Node
     public bool IsComplete;
     
     [NonSerialized]
+    protected bool IsInitialised;
+    
+    [NonSerialized]
     protected int assetLoadCount;
 
     public virtual void OnEnter()
     {
-        Debug.Log($"At State <{name}>.");
+        Debug.Log($"<color=#00FF00>At State <{name}>.</color>");
         IsComplete = false;
     }
 
     public virtual void OnExit()
     {
     }
+    
+    protected abstract void ContinueOnAllAssetsLoaded();
+    
+    protected abstract void Continue();
     
     public override object GetValue(NodePort port) 
     {

@@ -18,6 +18,12 @@ public class WorldTileLoadStateNode : StateNode
     {
         base.OnEnter();
         
+        if (IsInitialised)
+        {
+            Continue();
+            return;
+        }
+        
         ++assetLoadCount;
         Addressables.LoadAssetAsync<WorldObjectManager>(worldObjectManagerReference).Completed += OnWorldObjectManagerAssetLoaded;
         ++assetLoadCount;
@@ -60,7 +66,7 @@ public class WorldTileLoadStateNode : StateNode
         }
     }
     
-    private void ContinueOnAllAssetsLoaded()
+    protected override void ContinueOnAllAssetsLoaded()
     {
         if (--assetLoadCount != 0) return;
         
@@ -68,7 +74,7 @@ public class WorldTileLoadStateNode : StateNode
         Continue();
     }
 
-    private void Continue()
+    protected override void Continue()
     {
         IsComplete = true;
     }
