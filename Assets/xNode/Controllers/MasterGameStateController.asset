@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 174fa5da1cb54bc0b84c9f0df4ceb240, type: 3}
-  m_Name: Reset Int Data State
+  m_Name: Reset DaysSurvived
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
   position: {x: -296, y: -152}
@@ -56,7 +56,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a77e00ce0dd940eaa2943e48785bdccd, type: 3}
-  m_Name: Raise Void Event State
+  m_Name: Raise Water Event
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
   position: {x: -72, y: 104}
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a77e00ce0dd940eaa2943e48785bdccd, type: 3}
-  m_Name: Raise Void Event State
+  m_Name: Raise Food Event
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
   position: {x: -72, y: -24}
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 174fa5da1cb54bc0b84c9f0df4ceb240, type: 3}
-  m_Name: Reset Int Data State
+  m_Name: Reset Food
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
   position: {x: -296, y: -24}
@@ -206,6 +206,7 @@ MonoBehaviour:
   - {fileID: -7826536145502284546}
   - {fileID: 9016532071612706406}
   - {fileID: 1249617755218246862}
+  - {fileID: 5521601012668213331}
 --- !u!114 &1249617755218246862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,7 +217,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16a0ec9973c54d57abcc51eea7e43cd1, type: 3}
-  m_Name: Reset Hex Data State
+  m_Name: Reset PlayerHex
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
   position: {x: -296, y: 248}
@@ -354,7 +355,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 174fa5da1cb54bc0b84c9f0df4ceb240, type: 3}
-  m_Name: Reset Int Data State
+  m_Name: Reset Water
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
   position: {x: -296, y: 104}
@@ -400,7 +401,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a77e00ce0dd940eaa2943e48785bdccd, type: 3}
-  m_Name: Raise Void Event State
+  m_Name: Raise DaysSurvived Event
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
   position: {x: -72, y: -152}
@@ -436,6 +437,48 @@ MonoBehaviour:
   value: 0
   exit: 0
   voidEvent: {fileID: 11400000, guid: 19279c9c5e3ccc045a98b219c750bfa7, type: 2}
+--- !u!114 &5521601012668213331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f8216ed27848e18bbdbd2512499ce6, type: 3}
+  m_Name: End Chain Test State
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 290, y: 265.5}
+  ports:
+    keys:
+    - value
+    - exit
+    values:
+    - _fieldName: value
+      _node: {fileID: 5521601012668213331}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: exit
+        node: {fileID: 9016532071612706406}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 5521601012668213331}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: 0
+  exit: 0
 --- !u!114 &6404633122591750618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -531,7 +574,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a77e00ce0dd940eaa2943e48785bdccd, type: 3}
-  m_Name: Raise Void Event State
+  m_Name: Raise PlayerHex Event
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
   position: {x: -72, y: 248}
@@ -556,7 +599,10 @@ MonoBehaviour:
       _node: {fileID: 9016532071612706406}
       _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: value
+        node: {fileID: 5521601012668213331}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0

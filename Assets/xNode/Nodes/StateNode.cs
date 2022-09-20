@@ -9,6 +9,9 @@ public abstract class StateNode : Node
 
     [NonSerialized]
     public bool IsComplete;
+    
+    [NonSerialized]
+    protected int assetLoadCount;
 
     public virtual void OnEnter()
     {
