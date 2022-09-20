@@ -25,10 +25,16 @@ public abstract class StateNode : Node
     public virtual void OnExit()
     {
     }
+
+    public virtual void OnUpdate()
+    {
+    }
     
     protected abstract void ContinueOnAllAssetsLoaded();
-    
-    protected abstract void Continue();
+
+    protected virtual void Continue()
+    {
+    }
     
     public override object GetValue(NodePort port) 
     {

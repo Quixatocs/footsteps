@@ -1,14 +1,14 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-public abstract class ResetDataStateNode<T> : StateNode 
+public class ActivateUIStateNode : StateNode
 {
     [Header("Asset References")]
     [SerializeField]
-    private AssetReference variableReference;
-
-    private Variable<T> variable;
+    private AssetReference uiActivationEventReference;
+    
+    private BoolEvent uiActivationEvent;
 
     public override void OnEnter()
     {
@@ -21,15 +21,15 @@ public abstract class ResetDataStateNode<T> : StateNode
         }
         
         ++assetLoadCount;
-        Addressables.LoadAssetAsync<Variable<T>>(variableReference).Completed += OnVariableAssetLoaded;
+        Addressables.LoadAssetAsync<BoolEvent>(uiActivationEventReference).Completed += OnUIActivationEventAssetLoaded;
     }
     
-    private void OnVariableAssetLoaded(AsyncOperationHandle<Variable<T>> obj)
+    private void OnUIActivationEventAssetLoaded(AsyncOperationHandle<BoolEvent> obj)
     {
         if (obj.Status != AsyncOperationStatus.Succeeded) return;
         
-        variable = obj.Result;
-        Debug.Log($"Successfully loaded asset <{variable}>");
+        uiActivationEvent = obj.Result;
+        Debug.Log($"Successfully loaded asset <{uiActivationEvent.name}>");
 
         ContinueOnAllAssetsLoaded();
     }
@@ -41,10 +41,10 @@ public abstract class ResetDataStateNode<T> : StateNode
         IsInitialised = true;
         Continue();
     }
-    
+
     protected override void Continue()
     {
-        variable.Value = variable.DefaultValue;
-        IsComplete = true;
+        uiActivationEvent.Raise(true);
+        IsComplete = true; 
     }
 }

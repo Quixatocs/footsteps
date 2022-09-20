@@ -10,6 +10,7 @@ public class ArgEvent<T> : ScriptableObject
         List<ArgEventListener<T>> listenersCopy = new List<ArgEventListener<T>>(listeners);
         for (int i = listenersCopy.Count - 1; i >= 0; i--)
         {
+            Debug.Log($"<color=#FF0000>Event <{name}> raised for listener <{listenersCopy[i]}></color>");
             listenersCopy[i].OnEventRaised(arg);
         }
     }

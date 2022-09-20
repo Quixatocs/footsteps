@@ -35,4 +35,9 @@ public class GameStateController : NodeGraph
         currentStateNode.OnEnter();
     }
 
+    public void Update()
+    {
+        currentStateNode.OnUpdate();
+    }
+
 }

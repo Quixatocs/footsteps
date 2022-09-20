@@ -15,5 +15,6 @@ public class MasterGameController : MonoBehaviour
     private void Update()
     {
         gameStateController.CheckCurrentStateCompleted();
+        gameStateController.Update();
     }
 }

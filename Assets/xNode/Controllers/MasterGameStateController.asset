@@ -100,6 +100,61 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+--- !u!114 &-6149700401397716321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf37cd137277428dbcd5384ae5d6a452, type: 3}
+  m_Name: Wait For Hex Select State
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 712, y: -56}
+  ports:
+    keys:
+    - value
+    - exit
+    values:
+    - _fieldName: value
+      _node: {fileID: -6149700401397716321}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: exit
+        node: {fileID: 1728807684882497965}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -6149700401397716321}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: value
+        node: {fileID: -3751767011102448757}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: 0
+  exit: 0
+  worldObjectManagerReference:
+    m_AssetGUID: 3628bd214742ed04b9261ea92d9c8022
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  playerCurrentHexEventReference:
+    m_AssetGUID: a426f8ec035c0d645ba5be278ef0e38a
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
 --- !u!114 &-5362348501489981808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,6 +202,56 @@ MonoBehaviour:
   exit: 0
   voidEventReference:
     m_AssetGUID: d09356d768d22f348b2433ec7dbe3b8d
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+--- !u!114 &-3751767011102448757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 689afbf650d64410956bc1478ec64cdb, type: 3}
+  m_Name: Activate UI State
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 952, y: -40}
+  ports:
+    keys:
+    - value
+    - exit
+    values:
+    - _fieldName: value
+      _node: {fileID: -3751767011102448757}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: exit
+        node: {fileID: -6149700401397716321}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -3751767011102448757}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: value
+        node: {fileID: 5521601012668213331}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: 0
+  exit: 0
+  uiActivationEventReference:
+    m_AssetGUID: 8086c7e230b76564bbda1aa8b0e508e8
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
@@ -225,6 +330,8 @@ MonoBehaviour:
   - {fileID: 5521601012668213331}
   - {fileID: 4222705510417719935}
   - {fileID: 1728807684882497965}
+  - {fileID: -6149700401397716321}
+  - {fileID: -3751767011102448757}
 --- !u!114 &1249617755218246862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,7 +465,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: value
-        node: {fileID: 5521601012668213331}
+        node: {fileID: -6149700401397716321}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -596,7 +703,7 @@ MonoBehaviour:
   m_Name: End Chain Test State
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 520, y: 280}
+  position: {x: 1096, y: 296}
   ports:
     keys:
     - value
@@ -608,7 +715,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: exit
-        node: {fileID: 1728807684882497965}
+        node: {fileID: -3751767011102448757}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
