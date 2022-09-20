@@ -6,8 +6,4 @@ public class EntryStateNode : StateNode
         base.OnEnter();
         IsComplete = true;
     }
-
-    public override void OnExit()
-    {
-    }
 }

@@ -15,12 +15,14 @@ public abstract class StateNode : Node
         Debug.Log($"At State <{name}>.");
         IsComplete = false;
     }
-    public abstract void OnExit();
-        
+
+    public virtual void OnExit()
+    {
+    }
+    
     public override object GetValue(NodePort port) 
     {
         if (port.fieldName != "exit") return null;
-
         return null;
     }
     
