@@ -18,8 +18,6 @@ public class Transition
     public Comparer Comparer;
     public int Constant;
 
-    private State nextState;
-
     public bool IsOpenTransition()
     {
         if (Stat == null)
@@ -41,7 +39,7 @@ public class Transition
                 return false;
         } 
     }
-
+/*
     public AsyncOperationHandle<State> LoadNextStateAsset()
     {
         AsyncOperationHandle<State> op = IntVariableReference.LoadAssetAsync<State>();
@@ -65,4 +63,6 @@ public class Transition
         return null;
 
     }
+
+*/
 }

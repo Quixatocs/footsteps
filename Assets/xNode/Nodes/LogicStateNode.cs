@@ -9,17 +9,20 @@ public class LogicStateNode : StateNode
     {
         base.OnEnter();
 
+        Continue();
         if (IsInitialised)
         {
             Continue();
             return;
         }
-        
+
+        /*
         foreach (Transition transition in transitions)
         {
             ++assetLoadCount;
             transition.LoadNextStateAsset().Completed += OnLoadNextStateAssetComplete;
         }
+        */
     }
 
     private void OnLoadNextStateAssetComplete(AsyncOperationHandle<State> obj)
@@ -52,33 +55,35 @@ public class LogicStateNode : StateNode
 
     protected override void Continue()
     {
+        IsInitialised = true;
     }
-
-    public State GetNextState()
+    
+    public override StateNode GetNextStateNode()
     {
         if (transitions == null || transitions.Length == 0)
         {
             Debug.LogError($"No Transitions present for state <{name}>.");
-            return null;
+            return GetOutputPort("exit").Connection.node as StateNode;
         }
 
+        
         if (transitions.Length == 1)
         {
-            return transitions[0].GetNextState();
+            return GetOutputPort($"transitions 0").Connection.node as StateNode;
         }
 
         if (transitions.Length > 1)
         {
-            foreach (Transition transition in transitions)
+            for (int i = 0; i < transitions.Length; i++)
             {
-                if (transition.IsOpenTransition())
+                if (transitions[i].IsOpenTransition())
                 {
-                    return transition.GetNextState();
+                    return GetOutputPort($"transitions {i}").Connection.node as StateNode;
                 }
             }
         }
 
         Debug.LogError($"No open transition present for state <{name}>.");
-        return null;
+        return GetOutputPort("exit").Connection.node as StateNode;
     }
 }

@@ -44,7 +44,7 @@ public abstract class StateNode : Node
         return null;
     }
     
-    public StateNode GetNextStateNode()
+    public virtual StateNode GetNextStateNode()
     {
         return GetOutputPort("exit").Connection.node as StateNode;
     }
