@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Name: Wait For Hex Select State
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 712, y: -56}
+  position: {x: 824, y: -152}
   ports:
     keys:
     - value
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Name: Activate UI State
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 952, y: -40}
+  position: {x: 1048, y: -152}
   ports:
     keys:
     - value
@@ -703,7 +703,7 @@ MonoBehaviour:
   m_Name: End Chain Test State
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1096, y: 296}
+  position: {x: 1624, y: 776}
   ports:
     keys:
     - value

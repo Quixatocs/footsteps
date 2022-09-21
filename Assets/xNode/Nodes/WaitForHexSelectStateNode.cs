@@ -59,19 +59,19 @@ public class WaitForHexSelectStateNode : StateNode
     {
         if (!IsInitialised) return;
 
-        if (Input.GetMouseButtonDown(0)) {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Vector3 worldPoint = ray.GetPoint(-ray.origin.z / ray.direction.z);
+        if (!Input.GetMouseButtonDown(0)) return;
+        
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Vector3 worldPoint = ray.GetPoint(-ray.origin.z / ray.direction.z);
             
-            if (grid == null && worldObjectManager != null)
-            {
-                grid = worldObjectManager.GetComponent<Grid>();
-            }
-            
-            Hex clickedHex = grid.WorldToHex(worldPoint); 
-            hexClickedEvent.Raise(clickedHex);
-            IsComplete = true;
+        if (grid == null && worldObjectManager != null)
+        {
+            grid = worldObjectManager.GetComponent<Grid>();
         }
+            
+        Hex clickedHex = grid.WorldToHex(worldPoint); 
+        hexClickedEvent.Raise(clickedHex);
+        IsComplete = true;
     }
 
     protected override void ContinueOnAllAssetsLoaded()
