@@ -73,13 +73,4 @@ public class WaitForHexSelectStateNode : StateNode
         hexClickedEvent.Raise(clickedHex);
         IsComplete = true;
     }
-
-    protected override void ContinueOnAllAssetsLoaded()
-    {
-        if (--assetLoadCount != 0) return;
-        
-        IsInitialised = true;
-        Continue();
-    }
-    
 }

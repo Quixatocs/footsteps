@@ -81,14 +81,6 @@ public class GenerateTilesAtHexStateNode : StateNode
             
         ContinueOnAllAssetsLoaded();
     }
-    
-    protected override void ContinueOnAllAssetsLoaded()
-    {
-        if (--assetLoadCount != 0) return;
-        
-        IsInitialised = true;
-        Continue();
-    }
 
     protected override void Continue()
     {

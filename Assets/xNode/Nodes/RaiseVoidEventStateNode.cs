@@ -33,18 +33,6 @@ public class RaiseVoidEventStateNode : StateNode
 
         ContinueOnAllAssetsLoaded();
     }
-    
-    public override void OnExit()
-    {
-    }
-
-    protected override void ContinueOnAllAssetsLoaded()
-    {
-        if (--assetLoadCount != 0) return;
-        
-        IsInitialised = true;
-        Continue();
-    }
 
     protected override void Continue()
     {

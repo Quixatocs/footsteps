@@ -32,6 +32,10 @@ public abstract class StateNode : Node
 
     protected virtual void ContinueOnAllAssetsLoaded()
     {
+        if (--assetLoadCount != 0) return;
+        
+        IsInitialised = true;
+        Continue();
     }
 
     protected virtual void Continue()

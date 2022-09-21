@@ -34,15 +34,6 @@ public class DeactivateUIStateNode : StateNode
         ContinueOnAllAssetsLoaded();
     }
     
-
-    protected override void ContinueOnAllAssetsLoaded()
-    {
-        if (--assetLoadCount != 0) return;
-        
-        IsInitialised = true;
-        Continue();
-    }
-
     protected override void Continue()
     {
         uiDeactivationEvent.Raise(false);

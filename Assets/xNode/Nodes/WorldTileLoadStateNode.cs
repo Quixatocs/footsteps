@@ -71,6 +71,7 @@ public class WorldTileLoadStateNode : StateNode
         if (--assetLoadCount != 0) return;
         
         worldObjectManager.SetWorldTiles(worldTiles);
+        IsInitialised = true;
         Continue();
     }
 

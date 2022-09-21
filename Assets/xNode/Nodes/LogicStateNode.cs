@@ -41,15 +41,6 @@ public class LogicStateNode : StateNode
         IsComplete = true;
     }
 
-    protected override void ContinueOnAllAssetsLoaded()
-    {
-        if (--assetLoadCount != 0) return;
-        
-        Debug.Log($"All states loaded on transitions for LogicState <{name}>");
-        IsInitialised = true;
-        Continue();
-    }
-
     protected override void Continue()
     {
         IsInitialised = true;
