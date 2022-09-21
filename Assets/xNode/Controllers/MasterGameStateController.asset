@@ -544,6 +544,7 @@ MonoBehaviour:
   - {fileID: 5216161248225110164}
   - {fileID: 3344738282379619448}
   - {fileID: -7504213251324032246}
+  - {fileID: 2505571727873147228}
 --- !u!114 &64481758468958449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -803,6 +804,61 @@ MonoBehaviour:
   value: 0
   exit: 0
   intVariable: {fileID: 11400000, guid: 0df5fbe816bb16049a9c522c9834d4bb, type: 2}
+--- !u!114 &2505571727873147228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353eb260aa194c49a7a2933914251df2, type: 3}
+  m_Name: Raise Hex Event State
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 232, y: 120}
+  ports:
+    keys:
+    - value
+    - exit
+    values:
+    - _fieldName: value
+      _node: {fileID: 2505571727873147228}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: exit
+        node: {fileID: 9016532071612706406}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 2505571727873147228}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: value
+        node: {fileID: 4222705510417719935}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: 0
+  exit: 0
+  argEventReference:
+    m_AssetGUID: a426f8ec035c0d645ba5be278ef0e38a
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  variableReference:
+    m_AssetGUID: df854edbc715a904ea3fdd64df122ae3
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
 --- !u!114 &3344738282379619448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -866,7 +922,7 @@ MonoBehaviour:
   m_Name: World Tile Load State
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 200, y: 264}
+  position: {x: 280, y: -168}
   ports:
     keys:
     - value
@@ -878,7 +934,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: exit
-        node: {fileID: 9016532071612706406}
+        node: {fileID: 2505571727873147228}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -1411,7 +1467,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: value
-        node: {fileID: 4222705510417719935}
+        node: {fileID: 2505571727873147228}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
