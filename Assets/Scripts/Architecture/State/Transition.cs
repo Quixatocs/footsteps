@@ -8,61 +8,52 @@ using UnityEngine.Serialization;
 [Serializable]
 public class Transition
 {
-    [FormerlySerializedAs("NextStateReference")]
+    
     [Header("Asset References")]
     [SerializeField]
-    private AssetReference IntVariableReference; 
+    private AssetReference intVariableReference; 
     
     [Header("Comparison References")]
-    public IntVariable Stat;
-    public Comparer Comparer;
-    public int Constant;
+    private IntVariable stat;
+    [SerializeField]
+    private Comparer comparer;
+    [SerializeField]
+    private int constant;
 
     public bool IsOpenTransition()
     {
-        if (Stat == null)
+        if (stat == null)
         {
             Debug.LogError($"Stat on transition was null");
             return false;
         }
         
-        switch (Comparer)
+        switch (comparer)
         {
             case Comparer.Equals:
-                return Stat.Value == Constant;
+                return stat.Value == constant;
             case Comparer.LessThan:
-                return Stat.Value < Constant;
+                return stat.Value < constant;
             case Comparer.GreaterThan:
-                return Stat.Value > Constant;
+                return stat.Value > constant;
             default:
-                Debug.LogError($"Comparator value of <{Comparer}> was unexpected");
+                Debug.LogError($"Comparator value of <{comparer}> was unexpected");
                 return false;
         } 
     }
-/*
-    public AsyncOperationHandle<State> LoadNextStateAsset()
+
+    public AsyncOperationHandle<IntVariable> LoadLogicAsset()
     {
-        AsyncOperationHandle<State> op = IntVariableReference.LoadAssetAsync<State>();
-        op.Completed += OnLoadNextStateAssetComplete;
+        AsyncOperationHandle<IntVariable> op = intVariableReference.LoadAssetAsync<IntVariable>();
+        op.Completed += OnLoadLogicAssetComplete;
         return op;
     }
     
-    private void OnLoadNextStateAssetComplete(AsyncOperationHandle<State> obj)
+    private void OnLoadLogicAssetComplete(AsyncOperationHandle<IntVariable> obj)
     {
         if (obj.Status != AsyncOperationStatus.Succeeded) return;
         
-        nextState = obj.Result;
-        Debug.Log($"Successfully loaded asset <{nextState.name}>");
+        stat = obj.Result;
+        Debug.Log($"Successfully loaded asset <{stat.name}>");
     }
-
-    public State GetNextState()
-    {
-        if (nextState != null) return nextState;
-        
-        Debug.LogError($"Next State on transition was null");
-        return null;
-
-    }
-
-*/
 }

@@ -8,24 +8,21 @@ public class LogicStateNode : StateNode
     public override void OnEnter()
     {
         base.OnEnter();
-
-        Continue();
+        
         if (IsInitialised)
         {
             Continue();
             return;
         }
 
-        /*
         foreach (Transition transition in transitions)
         {
             ++assetLoadCount;
-            transition.LoadNextStateAsset().Completed += OnLoadNextStateAssetComplete;
+            transition.LoadLogicAsset().Completed += OnLoadLogicAssetComplete;
         }
-        */
     }
 
-    private void OnLoadNextStateAssetComplete(AsyncOperationHandle<State> obj)
+    private void OnLoadLogicAssetComplete(AsyncOperationHandle<IntVariable> obj)
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
@@ -65,7 +62,6 @@ public class LogicStateNode : StateNode
             Debug.LogError($"No Transitions present for state <{name}>.");
             return GetOutputPort("exit").Connection.node as StateNode;
         }
-
         
         if (transitions.Length == 1)
         {

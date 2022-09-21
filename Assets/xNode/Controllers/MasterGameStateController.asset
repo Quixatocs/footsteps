@@ -1074,7 +1074,7 @@ MonoBehaviour:
   m_Name: End Chain Test State
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1576, y: 456}
+  position: {x: 808, y: 504}
   ports:
     keys:
     - value
@@ -1116,7 +1116,7 @@ MonoBehaviour:
   m_Name: Entry
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -584, y: -264}
+  position: {x: -296, y: 440}
   ports:
     keys:
     - value
@@ -1253,38 +1253,34 @@ MonoBehaviour:
   value: 0
   exit: 0
   transitions:
-  - IntVariableReference:
+  - intVariableReference:
       m_AssetGUID: 0df5fbe816bb16049a9c522c9834d4bb
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
-    Stat: {fileID: 11400000, guid: 0df5fbe816bb16049a9c522c9834d4bb, type: 2}
-    Comparer: 1
-    Constant: 0
-  - IntVariableReference:
+    comparer: 1
+    constant: 0
+  - intVariableReference:
       m_AssetGUID: d14e25f6d4f87f346811f7c63efbe1db
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
-    Stat: {fileID: 11400000, guid: d14e25f6d4f87f346811f7c63efbe1db, type: 2}
-    Comparer: 1
-    Constant: 0
-  - IntVariableReference:
+    comparer: 1
+    constant: 0
+  - intVariableReference:
       m_AssetGUID: 0df5fbe816bb16049a9c522c9834d4bb
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
-    Stat: {fileID: 11400000, guid: 0df5fbe816bb16049a9c522c9834d4bb, type: 2}
-    Comparer: 2
-    Constant: -1
-  - IntVariableReference:
+    comparer: 2
+    constant: -1
+  - intVariableReference:
       m_AssetGUID: d14e25f6d4f87f346811f7c63efbe1db
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
-    Stat: {fileID: 11400000, guid: d14e25f6d4f87f346811f7c63efbe1db, type: 2}
-    Comparer: 2
-    Constant: -1
+    comparer: 2
+    constant: -1
 --- !u!114 &6887086000749610177
 MonoBehaviour:
   m_ObjectHideFlags: 0
