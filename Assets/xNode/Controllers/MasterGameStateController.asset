@@ -25,10 +25,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: exit
-        node: {fileID: 6404633122591750618}
-        reroutePoints: []
-      - fieldName: exit
-        node: {fileID: 3344738282379619448}
+        node: {fileID: -4238367502061290786}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -358,6 +355,59 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+--- !u!114 &-4238367502061290786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4e4776038d64e1687aa0a52d56dcfed, type: 3}
+  m_Name: Reset Map State
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -40, y: -376}
+  ports:
+    keys:
+    - value
+    - exit
+    values:
+    - _fieldName: value
+      _node: {fileID: -4238367502061290786}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: exit
+        node: {fileID: 6404633122591750618}
+        reroutePoints: []
+      - fieldName: exit
+        node: {fileID: 3344738282379619448}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -4238367502061290786}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: value
+        node: {fileID: -8464560552422454310}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: 0
+  exit: 0
+  worldObjectManagerReference:
+    m_AssetGUID: 3628bd214742ed04b9261ea92d9c8022
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
 --- !u!114 &-3751767011102448757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -545,6 +595,7 @@ MonoBehaviour:
   - {fileID: 3344738282379619448}
   - {fileID: -7504213251324032246}
   - {fileID: 2505571727873147228}
+  - {fileID: -4238367502061290786}
 --- !u!114 &64481758468958449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -896,7 +947,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: value
-        node: {fileID: -8464560552422454310}
+        node: {fileID: -4238367502061290786}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -1172,7 +1223,7 @@ MonoBehaviour:
   m_Name: Entry
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -296, y: 440}
+  position: {x: -296, y: -424}
   ports:
     keys:
     - value
@@ -1193,7 +1244,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: value
-        node: {fileID: -8464560552422454310}
+        node: {fileID: -4238367502061290786}
         reroutePoints: []
       _direction: 1
       _connectionType: 0

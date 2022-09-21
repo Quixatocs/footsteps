@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class MasterGameController : MonoBehaviour
+public class MasterGameControllerComponent : MonoBehaviour
 {
     [SerializeField] private GameStateController gameStateController;
 
