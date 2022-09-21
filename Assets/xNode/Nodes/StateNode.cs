@@ -29,8 +29,10 @@ public abstract class StateNode : Node
     public virtual void OnUpdate()
     {
     }
-    
-    protected abstract void ContinueOnAllAssetsLoaded();
+
+    protected virtual void ContinueOnAllAssetsLoaded()
+    {
+    }
 
     protected virtual void Continue()
     {

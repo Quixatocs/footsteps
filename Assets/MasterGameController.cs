@@ -4,8 +4,6 @@ using UnityEngine;
 public class MasterGameController : MonoBehaviour
 {
     [SerializeField] private GameStateController gameStateController;
-    
-    
 
     private void Start()
     {

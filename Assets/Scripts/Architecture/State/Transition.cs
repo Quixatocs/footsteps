@@ -3,13 +3,15 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.Serialization;
 
 [Serializable]
 public class Transition
 {
+    [FormerlySerializedAs("NextStateReference")]
     [Header("Asset References")]
     [SerializeField]
-    private AssetReference NextStateReference; 
+    private AssetReference IntVariableReference; 
     
     [Header("Comparison References")]
     public IntVariable Stat;
@@ -42,28 +44,25 @@ public class Transition
 
     public AsyncOperationHandle<State> LoadNextStateAsset()
     {
-        AsyncOperationHandle<State> op = NextStateReference.LoadAssetAsync<State>();
+        AsyncOperationHandle<State> op = IntVariableReference.LoadAssetAsync<State>();
         op.Completed += OnLoadNextStateAssetComplete;
         return op;
     }
     
     private void OnLoadNextStateAssetComplete(AsyncOperationHandle<State> obj)
     {
-        if (obj.Status == AsyncOperationStatus.Succeeded)
-        {
-            nextState = obj.Result;
-            Debug.Log($"Successfully loaded asset <{nextState.name}>");
-        }
+        if (obj.Status != AsyncOperationStatus.Succeeded) return;
+        
+        nextState = obj.Result;
+        Debug.Log($"Successfully loaded asset <{nextState.name}>");
     }
 
     public State GetNextState()
     {
-        if (nextState == null)
-        {
-            Debug.LogError($"Next State on transition was null");
-            return null;
-        }
+        if (nextState != null) return nextState;
         
-        return nextState;
+        Debug.LogError($"Next State on transition was null");
+        return null;
+
     }
 }

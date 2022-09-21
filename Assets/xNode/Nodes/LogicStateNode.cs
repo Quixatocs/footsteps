@@ -1,12 +1,9 @@
-using System;
 using UnityEngine;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/States/LogicState", order = 1)]
-[Serializable]
-public class LogicState : State
+public class LogicStateNode : StateNode
 {
-    public Transition[] transitions;
+    [Output(dynamicPortList = true)]public Transition[] transitions;
 
     public override void OnEnter()
     {
@@ -21,7 +18,7 @@ public class LogicState : State
         foreach (Transition transition in transitions)
         {
             ++assetLoadCount;
-            //transition.LoadNextStateAsset().Completed += OnLoadNextStateAssetComplete;
+            transition.LoadNextStateAsset().Completed += OnLoadNextStateAssetComplete;
         }
     }
 
@@ -46,19 +43,18 @@ public class LogicState : State
 
     protected override void ContinueOnAllAssetsLoaded()
     {
-        if (--assetLoadCount == 0)
-        {
-            Debug.Log($"All states loaded on transitions for LogicState <{name}>");
-            IsInitialised = true;
-            Continue();
-        }
+        if (--assetLoadCount != 0) return;
+        
+        Debug.Log($"All states loaded on transitions for LogicState <{name}>");
+        IsInitialised = true;
+        Continue();
     }
 
     protected override void Continue()
     {
     }
 
-    public override State GetNextState()
+    public State GetNextState()
     {
         if (transitions == null || transitions.Length == 0)
         {
@@ -68,7 +64,7 @@ public class LogicState : State
 
         if (transitions.Length == 1)
         {
-            //return transitions[0].GetNextState();
+            return transitions[0].GetNextState();
         }
 
         if (transitions.Length > 1)
@@ -77,7 +73,7 @@ public class LogicState : State
             {
                 if (transition.IsOpenTransition())
                 {
-                    //return transition.GetNextState();
+                    return transition.GetNextState();
                 }
             }
         }
