@@ -24,26 +24,14 @@ public class LogicStateNode : StateNode
 
     private void OnLoadLogicAssetComplete(AsyncOperationHandle<IntVariable> obj)
     {
-        if (obj.Status == AsyncOperationStatus.Succeeded)
-        {
-            ContinueOnAllAssetsLoaded();
-        }
-    }
-
-    public override void OnExit()
-    {
-    }
-
-    public override void OnUpdate()
-    {
-        if (!IsInitialised) return;
-
-        IsComplete = true;
+        if (obj.Status != AsyncOperationStatus.Succeeded) return;
+        
+        ContinueOnAllAssetsLoaded();
     }
 
     protected override void Continue()
     {
-        IsInitialised = true;
+        IsComplete = true; 
     }
     
     public override StateNode GetNextStateNode()

@@ -14,7 +14,7 @@ public class ResetMapStateNode : StateNode
     
     private WorldObjectManager worldObjectManager;
     private WorldTileList lastInRangeWorldTiles;
-    private Tilemap tileMap;
+    private Tilemap tilemap;
     
     public override void OnEnter()
     {
@@ -40,9 +40,9 @@ public class ResetMapStateNode : StateNode
         worldObjectManager = obj.Result;
         Debug.Log($"Successfully loaded asset <{worldObjectManager.name}>");
         
-        if (tileMap == null)
+        if (tilemap == null)
         {
-            tileMap = worldObjectManager.GetComponent<Tilemap>();
+            tilemap = worldObjectManager.GetComponent<Tilemap>();
         }
             
         ContinueOnAllAssetsLoaded();
@@ -61,7 +61,21 @@ public class ResetMapStateNode : StateNode
     protected override void Continue()
     {
         lastInRangeWorldTiles.Clear();
-        tileMap.ClearAllTiles();
+        
+        BoundsInt bounds = tilemap.cellBounds;
+        TileBase[] allTiles = tilemap.GetTilesBlock(bounds);
+        
+        foreach (WorldTile worldTile in allTiles)
+        {
+            if (worldTile == null) continue;
+
+            foreach (Interactable interactable in worldTile.runtimeInteractables)
+            {
+                interactable.DestroyIcon();
+            }
+        }
+        
+        tilemap.ClearAllTiles();
         IsComplete = true;
     }
 }

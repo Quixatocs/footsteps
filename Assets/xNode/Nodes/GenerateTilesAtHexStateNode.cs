@@ -99,6 +99,7 @@ public class GenerateTilesAtHexStateNode : StateNode
     protected override void Continue()
     {
         GenerateTilesAroundPlayer(playerCurrentHex.Value);
+        IsComplete = true;
     }
 
     private void GenerateTilesAroundPlayer(Hex hex)
@@ -111,8 +112,6 @@ public class GenerateTilesAtHexStateNode : StateNode
         lastInRangeWorldTiles.SetWorldTiles(GetTilesInRange(hex, visionRange.Value, true));
 
         tileMap.RefreshAllTiles();
-        
-        IsComplete = true;
     }
     
     private void ApplyFogToTiles(Hex centerHex, int range)
