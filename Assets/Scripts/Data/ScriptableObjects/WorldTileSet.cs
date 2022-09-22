@@ -7,4 +7,6 @@ using UnityEngine.AddressableAssets;
 public class WorldTileSet : ScriptableObject
 {
     public AssetReference[] WorldTiles;
+    
+    //TODO enforce this as a Set
 }

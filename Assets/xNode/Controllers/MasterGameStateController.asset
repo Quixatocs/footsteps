@@ -408,6 +408,11 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  lastInRangeWorldTilesReference:
+    m_AssetGUID: 3f33424158ca8b841ac3f32a5d1d446a
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
 --- !u!114 &-3751767011102448757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -805,6 +810,11 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   playerCurrentHexReference:
     m_AssetGUID: df854edbc715a904ea3fdd64df122ae3
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  lastInRangeWorldTilesReference:
+    m_AssetGUID: 3f33424158ca8b841ac3f32a5d1d446a
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0

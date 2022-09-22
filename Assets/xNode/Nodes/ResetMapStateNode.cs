@@ -9,10 +9,12 @@ public class ResetMapStateNode : StateNode
     [Header("Asset References")]
     [SerializeField]
     private AssetReference worldObjectManagerReference;
+    [SerializeField]
+    private AssetReference lastInRangeWorldTilesReference;
     
     private WorldObjectManager worldObjectManager;
+    private WorldTileList lastInRangeWorldTiles;
     private Tilemap tileMap;
-    private Grid grid;
     
     public override void OnEnter()
     {
@@ -26,6 +28,8 @@ public class ResetMapStateNode : StateNode
 
         ++assetLoadCount;
         Addressables.LoadAssetAsync<WorldObjectManager>(worldObjectManagerReference).Completed += OnWorldObjectManagerAssetLoaded;
+        ++assetLoadCount;
+        Addressables.LoadAssetAsync<WorldTileList>(lastInRangeWorldTilesReference).Completed += OnLastInRangeWorldTilesAssetLoaded;
 
     }
     
@@ -40,19 +44,24 @@ public class ResetMapStateNode : StateNode
         {
             tileMap = worldObjectManager.GetComponent<Tilemap>();
         }
+            
+        ContinueOnAllAssetsLoaded();
+    }
+    
+    private void OnLastInRangeWorldTilesAssetLoaded(AsyncOperationHandle<WorldTileList> obj)
+    {
+        if (obj.Status != AsyncOperationStatus.Succeeded) return;
         
-        if (grid == null)
-        {
-            grid = worldObjectManager.GetComponent<Grid>();
-        }
+        lastInRangeWorldTiles = obj.Result;
+        Debug.Log($"Successfully loaded asset <{lastInRangeWorldTiles.name}>");
             
         ContinueOnAllAssetsLoaded();
     }
 
     protected override void Continue()
     {
+        lastInRangeWorldTiles.Clear();
         tileMap.ClearAllTiles();
-        tileMap.RefreshAllTiles();
         IsComplete = true;
     }
 }

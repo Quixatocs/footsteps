@@ -8,7 +8,7 @@ public class WorldObjectManager : ScriptableObject
     private GameObject worldObjectManager;
     private List<WorldTile> worldTiles;
 
-    public ReadOnlyCollection<WorldTile> WorldTilesReadOnly => new ReadOnlyCollection<WorldTile>(worldTiles);
+    public ReadOnlyCollection<WorldTile> WorldTilesReadOnly => new(worldTiles);
 
     public T GetComponent<T>()
     {

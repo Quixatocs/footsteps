@@ -265,6 +265,10 @@ MonoBehaviour:
     m_Address: Assets/ScriptableObjects/StateMachine/States/DeactivateDeathUIState.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 3f33424158ca8b841ac3f32a5d1d446a
+    m_Address: Assets/ScriptableObjects/World/LastInRangeWorldTiles.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6fc6c05852e40f64783f822c55665ad0, type: 2}
   m_SchemaSet:

@@ -18,7 +18,7 @@ public abstract class StateNode : Node
 
     public virtual void OnEnter()
     {
-        Debug.Log($"<color=#00FF00>At State <{name}>.</color>");
+        Debug.Log($"<color=#00FF00>At State <{name}></color>");
         IsComplete = false;
     }
 

@@ -13,12 +13,14 @@ public class GenerateTilesAtHexStateNode : StateNode
     private AssetReference playerVisionRangeReference;
     [SerializeField]
     private AssetReference playerCurrentHexReference;
+    [SerializeField]
+    private AssetReference lastInRangeWorldTilesReference;
     
     [Header("Prefab References")]
     [SerializeField] private GameObject interactablePrefab;
     
     private WorldObjectManager worldObjectManager;
-    private List<WorldTile> lastInRangeWorldTiles;
+    private WorldTileList lastInRangeWorldTiles;
     private IntVariable visionRange;
     private HexVariable playerCurrentHex;
     private Tilemap tileMap;
@@ -40,6 +42,8 @@ public class GenerateTilesAtHexStateNode : StateNode
         Addressables.LoadAssetAsync<IntVariable>(playerVisionRangeReference).Completed += OnPlayerVisionRangeAssetLoaded;
         ++assetLoadCount;
         Addressables.LoadAssetAsync<HexVariable>(playerCurrentHexReference).Completed += OnPlayerCurrentHexAssetLoaded;
+        ++assetLoadCount;
+        Addressables.LoadAssetAsync<WorldTileList>(lastInRangeWorldTilesReference).Completed += OnLastInRangeWorldTilesAssetLoaded;
     }
     
     private void OnWorldObjectManagerAssetLoaded(AsyncOperationHandle<WorldObjectManager> obj)
@@ -81,6 +85,16 @@ public class GenerateTilesAtHexStateNode : StateNode
             
         ContinueOnAllAssetsLoaded();
     }
+    
+    private void OnLastInRangeWorldTilesAssetLoaded(AsyncOperationHandle<WorldTileList> obj)
+    {
+        if (obj.Status != AsyncOperationStatus.Succeeded) return;
+        
+        lastInRangeWorldTiles = obj.Result;
+        Debug.Log($"Successfully loaded asset <{lastInRangeWorldTiles.name}>");
+            
+        ContinueOnAllAssetsLoaded();
+    }
 
     protected override void Continue()
     {
@@ -94,7 +108,7 @@ public class GenerateTilesAtHexStateNode : StateNode
             ApplyFogToTiles(hex, visionRange.Value);
         }
         
-        lastInRangeWorldTiles = GetTilesInRange(hex, visionRange.Value, true);
+        lastInRangeWorldTiles.SetWorldTiles(GetTilesInRange(hex, visionRange.Value, true));
 
         tileMap.RefreshAllTiles();
         
@@ -103,7 +117,7 @@ public class GenerateTilesAtHexStateNode : StateNode
     
     private void ApplyFogToTiles(Hex centerHex, int range)
     {
-        foreach (WorldTile worldTile in lastInRangeWorldTiles)
+        foreach (WorldTile worldTile in lastInRangeWorldTiles.GetWorldTiles())
         {
             if (worldTile == null) continue;
             if (centerHex.Distance(worldTile.coords) < range) continue;
