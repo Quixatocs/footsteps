@@ -13,6 +13,11 @@ public abstract class Interactable : ScriptableObject
 
     public virtual void Interact()
     {
+        DestroyIcon();
+    }
+
+    public virtual void DestroyIcon()
+    {
         Destroy(MapIcon);
     }
 }

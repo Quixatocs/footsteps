@@ -18,6 +18,14 @@ public class WorldTileList : ScriptableObject
 
     public void Clear()
     {
+        foreach (WorldTile worldTile in worldTiles)
+        {
+            foreach (Interactable interactable in worldTile.runtimeInteractables)
+            {
+                interactable.DestroyIcon();
+            }
+        }
+        
         worldTiles.Clear();
     }
     
