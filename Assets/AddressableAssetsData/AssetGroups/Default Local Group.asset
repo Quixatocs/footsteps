@@ -93,10 +93,6 @@ MonoBehaviour:
     m_Address: Assets/ScriptableObjects/Events/WaterChangedEvent.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: c98230a98e54e994fb259a48a658f07f
-    m_Address: Assets/ScriptableObjects/StateMachine/Controllers/GameStateController.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 3628bd214742ed04b9261ea92d9c8022
     m_Address: Assets/ScriptableObjects/World/WorldObjectManager.asset
     m_ReadOnly: 0
@@ -157,112 +153,24 @@ MonoBehaviour:
     m_Address: Assets/ScriptableObjects/World/Map/Interactables/LizardSandSpawnChance.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 632c46ee4c4117f49939c01a5a6d8c5a
-    m_Address: Assets/ScriptableObjects/StateMachine/States/WaitForMovementHexSelectState.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 2c12d243a08c2504e906d4a5554a1a17
     m_Address: Assets/ScriptableObjects/Deltas/DaySurvived.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 3a9fbd3191c444046beade93769afaf2
-    m_Address: Assets/ScriptableObjects/StateMachine/States/ActivateChoicesUIState.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: d3ef960f3c0c53140a234d7b63ee0a89
-    m_Address: Assets/ScriptableObjects/StateMachine/States/WaitForChoiceClickedVoidEventState.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 7c55b6db458f6ee489bbd25b2c906af4
     m_Address: Assets/ScriptableObjects/Events/ChoiceClickedEvent.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 257f258f119b62742baf63a8ed7acd2d
-    m_Address: Assets/ScriptableObjects/StateMachine/States/DeactivateChoicesUIState.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 1136f169013913d4da502104cd30b3f8
-    m_Address: Assets/ScriptableObjects/StateMachine/States/ActivateCostsUIState.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 26b9e476ba8b6cc46ae1a589866ed86b
-    m_Address: Assets/ScriptableObjects/StateMachine/States/WaitForCostsClickedVoidEventState.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 2cf0814b37bbf454893389b025adf927
     m_Address: Assets/ScriptableObjects/Events/CostsClickedEvent.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: f4c037d06daf01348bf75adcd7bd6988
-    m_Address: Assets/ScriptableObjects/StateMachine/States/DeactivateCostsUIState.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 1e00c3022b4e3e94c9bc59165bc02069
-    m_Address: Assets/ScriptableObjects/StateMachine/States/ActivateDeathUIState.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: dcf0ed65ce0949f43bf4088178e9a3fd
     m_Address: Assets/ScriptableObjects/Events/RetryClickedEvent.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: f5e9bc929be954b4781482ce2b9bb768
-    m_Address: Assets/ScriptableObjects/StateMachine/States/WaitForRetryClickedVoidEventState.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 020f57428fa305348bfda9696445b8df
-    m_Address: Assets/ScriptableObjects/StateMachine/States/RestartScene0State.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 7938a83dabc27a5479e6c5ef72ed1f41
-    m_Address: Assets/ScriptableObjects/StateMachine/States/CheckDeathLogicState.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 62bcc89a5aa97324ba749a6dae8bdcae
-    m_Address: Assets/ScriptableObjects/StateMachine/States/WaterResetDataState.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: a8b5105322ddbb049bc0f21c75893388
-    m_Address: Assets/ScriptableObjects/StateMachine/States/DaysSurvivedResetDataState.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 5b94bdfd94c565c4c89365404ae006d8
-    m_Address: Assets/ScriptableObjects/StateMachine/States/FoodResetDataState.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 4f586c5de0205da4bbb9416ee9a39f26
-    m_Address: Assets/ScriptableObjects/StateMachine/States/FoodVariableChangedState.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: a8836005183a2b645a680d3e1141e26c
-    m_Address: Assets/ScriptableObjects/StateMachine/States/WaterVariableChangedState.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: ac9e4818eafa1d148a864715b9343398
-    m_Address: Assets/ScriptableObjects/StateMachine/States/DaysSurvivedVariableChangedState.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: bc903558ee3bbbf4fab10a9cb844ea1b
-    m_Address: Assets/ScriptableObjects/StateMachine/States/PlayerHexResetDataState.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 396bb12994fc45b48afe03a6a07d8412
-    m_Address: Assets/ScriptableObjects/StateMachine/States/PlayerHexVariableChangedState.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 80527b98c8270464981e89a5f3597a91
     m_Address: Assets/ScriptableObjects/Events/PlayerHexChangedEvent.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: a561e54f3d7da924d85ccb69040effc1
-    m_Address: Assets/ScriptableObjects/StateMachine/States/WorldTileLoadState.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 36604c29c586d4347ba5c128634b41d6
-    m_Address: Assets/ScriptableObjects/StateMachine/States/GenerateTilesAtPlayerHexState.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: dbba226928dc5c4499af709bccbe1651
-    m_Address: Assets/ScriptableObjects/StateMachine/States/DeactivateDeathUIState.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 3f33424158ca8b841ac3f32a5d1d446a
