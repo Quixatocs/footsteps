@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
@@ -15,7 +16,7 @@ public class WorldTile : Tile
     public IntDelta[] costs;
     public IntDelta[] harvestables;
     public InteractableSpawnChance[] interactableSpawnChances;
-    public TileNeighbourWeight[] tileNeighbourWeight;
+    [FormerlySerializedAs("tileNeighbourWeight")] public TileNeighbourInfo[] tileNeighbourInfos;
     
     [NonSerialized]
     public List<Interactable> runtimeInteractables;
@@ -33,7 +34,7 @@ public class WorldTile : Tile
         copiedTile.costs = costs;
         copiedTile.harvestables = harvestables;
         copiedTile.interactableSpawnChances = interactableSpawnChances;
-        copiedTile.tileNeighbourWeight = tileNeighbourWeight;
+        copiedTile.tileNeighbourInfos = tileNeighbourInfos;
 
         copiedTile.runtimeInteractables = GenerateRuntimeInteractables();
 

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -7,6 +8,22 @@ using UnityEngine.AddressableAssets;
 public class WorldTileSet : ScriptableObject
 {
     public AssetReference[] WorldTiles;
+
+    //TODO Change this to a list
+    private Dictionary<string, WorldTile> worldTiles = new();
     
-    //TODO enforce this as a Set
+    public void AddTile(WorldTile worldTile)
+    {
+        if (worldTiles.ContainsKey(worldTile.tileName))
+        {
+            Debug.LogError($"WorldTileSet already contains an entry for <{worldTile.tileName}>.");
+            return;
+        }
+        worldTiles.Add(worldTile.tileName, worldTile);
+    }
+
+    public WorldTile GetWorldTile(string tileName)
+    {
+        return worldTiles[tileName];
+    }
 }

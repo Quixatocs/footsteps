@@ -1,7 +1,7 @@
 ﻿using System;
 
 [Serializable]
-public class TileNeighbourWeight
+public class TileNeighbourInfo
 {
     public string tileName;
     public short weightMultiplier;

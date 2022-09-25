@@ -15,12 +15,15 @@ public class GenerateTilesAtHexStateNode : StateNode
     private AssetReference playerCurrentHexReference;
     [SerializeField]
     private AssetReference lastInRangeWorldTilesReference;
+    [SerializeField]
+    private AssetReference generationAlgorithmFunctionReference;
     
     [Header("Prefab References")]
     [SerializeField] private GameObject interactablePrefab;
     
     private WorldObjectManager worldObjectManager;
     private WorldTileList lastInRangeWorldTiles;
+    private WorldGenerationAlgorithm worldGenerationAlgorithm;
     private IntVariable visionRange;
     private HexVariable playerCurrentHex;
     private Tilemap tileMap;
@@ -44,6 +47,8 @@ public class GenerateTilesAtHexStateNode : StateNode
         Addressables.LoadAssetAsync<HexVariable>(playerCurrentHexReference).Completed += OnPlayerCurrentHexAssetLoaded;
         ++assetLoadCount;
         Addressables.LoadAssetAsync<WorldTileList>(lastInRangeWorldTilesReference).Completed += OnLastInRangeWorldTilesAssetLoaded;
+        ++assetLoadCount;
+        Addressables.LoadAssetAsync<WorldGenerationAlgorithm>(generationAlgorithmFunctionReference).Completed += OnGenerationAlgorithmFunctionAssetLoaded;
     }
     
     private void OnWorldObjectManagerAssetLoaded(AsyncOperationHandle<WorldObjectManager> obj)
@@ -92,6 +97,16 @@ public class GenerateTilesAtHexStateNode : StateNode
         
         lastInRangeWorldTiles = obj.Result;
         Debug.Log($"Successfully loaded asset <{lastInRangeWorldTiles.name}>");
+            
+        ContinueOnAllAssetsLoaded();
+    }
+    
+    private void OnGenerationAlgorithmFunctionAssetLoaded(AsyncOperationHandle<WorldGenerationAlgorithm> obj)
+    {
+        if (obj.Status != AsyncOperationStatus.Succeeded) return;
+        
+        worldGenerationAlgorithm = obj.Result;
+        Debug.Log($"Successfully loaded asset <{worldGenerationAlgorithm.name}>");
             
         ContinueOnAllAssetsLoaded();
     }
