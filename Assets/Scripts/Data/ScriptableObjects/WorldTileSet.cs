@@ -9,21 +9,37 @@ public class WorldTileSet : ScriptableObject
 {
     public AssetReference[] WorldTiles;
 
-    //TODO Change this to a list
-    private Dictionary<string, WorldTile> worldTiles = new();
-    
+    private List<WorldTile> worldTiles = new();
+    private List<string> allTileNames = new();
+
     public void AddTile(WorldTile worldTile)
     {
-        if (worldTiles.ContainsKey(worldTile.tileName))
-        {
-            Debug.LogError($"WorldTileSet already contains an entry for <{worldTile.tileName}>.");
-            return;
-        }
-        worldTiles.Add(worldTile.tileName, worldTile);
+        worldTiles.Add(worldTile);
     }
 
     public WorldTile GetWorldTile(string tileName)
     {
-        return worldTiles[tileName];
+        foreach (WorldTile worldTile in worldTiles)
+        {
+            if (worldTile.tileName != tileName) continue;
+            
+            return worldTile;
+        }
+        
+        Debug.Log($"No WorldTile with name <{tileName}> exists in the WorldTileSet");
+        return null;
     }
+
+    public List<string> GetNames()
+    {
+        if (allTileNames.Count != 0) return allTileNames;
+
+        for (int i = 0; i < worldTiles.Count; i++)
+        {
+            allTileNames.Add(worldTiles[i].tileName);
+        }
+
+        return allTileNames;
+    }
+    
 }

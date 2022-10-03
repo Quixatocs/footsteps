@@ -16,7 +16,7 @@ public class WorldTile : Tile
     public IntDelta[] costs;
     public IntDelta[] harvestables;
     public InteractableSpawnChance[] interactableSpawnChances;
-    [FormerlySerializedAs("tileNeighbourWeight")] public TileNeighbourInfo[] tileNeighbourInfos;
+    public TileNeighbourInfo[] tileNeighbourInfos;
     
     [NonSerialized]
     public List<Interactable> runtimeInteractables;

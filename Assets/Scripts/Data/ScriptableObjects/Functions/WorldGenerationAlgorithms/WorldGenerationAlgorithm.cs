@@ -3,5 +3,5 @@ using UnityEngine;
 
 public abstract class WorldGenerationAlgorithm : ScriptableObject
 {
-    public abstract void GenerateTile(WorldTileSet worldTileSet, List<WorldTile> neighbours);
+    public abstract WorldTile GenerateTile(List<WorldTile> allWorldTiles, List<WorldTile> currentTileExistingNeighbours = null);
 }
