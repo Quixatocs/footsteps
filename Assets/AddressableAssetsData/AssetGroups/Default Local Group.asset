@@ -181,6 +181,10 @@ MonoBehaviour:
     m_Address: Assets/ScriptableObjects/World/Map/WorldGenerationAlgorithms/RandomWorldGenerationAlgorithm.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 2b8eff0fdffc170468cc99a3faf6c7c6
+    m_Address: Assets/ScriptableObjects/World/Map/WorldGenerationAlgorithms/ExistingNeighbourWeightWorldGenerationAlgorithm.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6fc6c05852e40f64783f822c55665ad0, type: 2}
   m_SchemaSet:

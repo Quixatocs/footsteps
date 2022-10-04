@@ -142,26 +142,6 @@ public class GenerateTilesAtHexStateNode : StateNode
             tileMap.SetTile(worldTile.coords, worldTile);
         }
     }
-    
-    //TODO 1 GET LIST OF HEXES THAT NEED TO HAVE TILES IN NEXT ROUND
-    //TODO 2 LOOP THROUGH EACH GETTING ANY NEIGHBOURS INTO A LIST
-    //TODO 3 PASS THIS LIST INTO THE GEN ALGO
-
-    private List<WorldTile> MegaGenerate(Hex center)
-    {
-        List<Hex> hexPositionsToGenerateFor = center.GetNeighbours(visionRange.Value);
-        
-        List<WorldTile> tilesInRange = new List<WorldTile>();
-
-        foreach (Hex hexPositionToGenerateFor in hexPositionsToGenerateFor)
-        {
-            List<WorldTile> worldTileNeighbours = GetWorldTiles(hexPositionToGenerateFor.GetNeighbours());
-
-            WorldTile inRangeTile = worldGenerationAlgorithm.GenerateTile(worldObjectManager.WorldTilesReadOnly, worldTileNeighbours);
-        }
-
-        return null;
-    }
 
     private List<WorldTile> GetWorldTiles(List<Hex> hexes)
     {
