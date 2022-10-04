@@ -818,6 +818,11 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  generationAlgorithmFunctionReference:
+    m_AssetGUID: 6b88a1362187a894dad8e6312c2939be
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   interactablePrefab: {fileID: 3032549205781402714, guid: f632cfc3c49ccbd4eb790adf7a8ad9c8, type: 3}
 --- !u!114 &2349328697070160325
 MonoBehaviour:

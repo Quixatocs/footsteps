@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -47,5 +48,27 @@ public class Hex
     {
         Hex vector = Subtract(other);
         return Mathf.Max(Mathf.Abs(vector.coords.x), Math.Abs(vector.coords.y), Math.Abs(vector.coords.z));
+    }
+
+    public List<Hex> GetNeighbours(int range = 1)
+    {
+        List<Hex> hexesInRange = new List<Hex>();
+        
+        for (int q = this.q - range; q <= this.q + range; q++)
+        {
+            for (int r = this.r - range; r <= this.r + range; r++)
+            {
+                for (int s = this.s - range; s <= this.s + range; s++)
+                {
+                    if (q + r + s != 0) continue;
+                    
+                    Hex newHexPosition = new Hex(q, r, s);
+
+                    hexesInRange.Add(newHexPosition);
+                }
+            }
+        }
+
+        return hexesInRange;
     }
 }

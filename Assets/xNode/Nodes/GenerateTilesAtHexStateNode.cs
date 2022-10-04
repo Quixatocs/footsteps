@@ -123,8 +123,10 @@ public class GenerateTilesAtHexStateNode : StateNode
         {
             ApplyFogToTiles(hex, visionRange.Value);
         }
+
         
-        lastInRangeWorldTiles.SetWorldTiles(GetTilesInRange(hex, visionRange.Value, true));
+        
+        lastInRangeWorldTiles.SetWorldTiles(FindOrGenerateTilesInRange(hex, visionRange.Value, true));
 
         tileMap.RefreshAllTiles();
     }
@@ -141,7 +143,43 @@ public class GenerateTilesAtHexStateNode : StateNode
         }
     }
     
-    private List<WorldTile> GetTilesInRange(Hex centerHex, int range, bool canSpawn = false)
+    //TODO 1 GET LIST OF HEXES THAT NEED TO HAVE TILES IN NEXT ROUND
+    //TODO 2 LOOP THROUGH EACH GETTING ANY NEIGHBOURS INTO A LIST
+    //TODO 3 PASS THIS LIST INTO THE GEN ALGO
+
+    private List<WorldTile> MegaGenerate(Hex center)
+    {
+        List<Hex> hexPositionsToGenerateFor = center.GetNeighbours(visionRange.Value);
+        
+        List<WorldTile> tilesInRange = new List<WorldTile>();
+
+        foreach (Hex hexPositionToGenerateFor in hexPositionsToGenerateFor)
+        {
+            List<WorldTile> worldTileNeighbours = GetWorldTiles(hexPositionToGenerateFor.GetNeighbours());
+
+            WorldTile inRangeTile = worldGenerationAlgorithm.GenerateTile(worldObjectManager.WorldTilesReadOnly, worldTileNeighbours);
+        }
+
+        return null;
+    }
+
+    private List<WorldTile> GetWorldTiles(List<Hex> hexes)
+    {
+        List<WorldTile> worldTiles = new List<WorldTile>();
+
+        foreach (Hex hex in hexes)
+        {
+            WorldTile worldTile = (WorldTile)tileMap.GetTile(hex);
+            
+            if (worldTile == null) continue;
+            
+            worldTiles.Add(worldTile);
+        }
+
+        return worldTiles;
+    }
+    
+    private List<WorldTile> FindOrGenerateTilesInRange(Hex centerHex, int range, bool canSpawn = false)
     {
         List<WorldTile> tilesInRange = new List<WorldTile>();
         
@@ -155,17 +193,25 @@ public class GenerateTilesAtHexStateNode : StateNode
                     
                     Hex newHexPosition = new Hex(q, r, s);
 
-                    WorldTile inRangeTile = (WorldTile)tileMap.GetTile(newHexPosition);
+                    WorldTile newInRangeTile = (WorldTile)tileMap.GetTile(newHexPosition);
 
-                    if (inRangeTile == null && canSpawn)
+                    if (newInRangeTile == null && canSpawn)
                     {
-                        inRangeTile = GenerateTile(newHexPosition);
+                        List<Hex> newHexPositionNeighbours = newHexPosition.GetNeighbours(range);
+                        List<WorldTile> existingNeighbours = GetWorldTiles(newHexPositionNeighbours);
+   
+                        newInRangeTile = worldGenerationAlgorithm.GenerateTile(worldObjectManager.WorldTilesReadOnly, existingNeighbours);
                     }
 
-                    if (inRangeTile != null)
+                    if (newInRangeTile != null)
                     {
-                        inRangeTile.color = inRangeTile.visibleTint;
-                        tilesInRange.Add(inRangeTile); 
+                        newInRangeTile.color = newInRangeTile.visibleTint;
+                        tilesInRange.Add(newInRangeTile); 
+                        
+                        newInRangeTile.coords = newHexPosition;
+        
+                        DrawTileInteractables(newHexPosition, newInRangeTile);
+                        tileMap.SetTile(newHexPosition, newInRangeTile);
                     }
                 }
             }
@@ -191,6 +237,7 @@ public class GenerateTilesAtHexStateNode : StateNode
         return newTile;
     }
     
+    //TODO transfer this to ExistingNeighbourWeightWorldGenerationAlgorithm
     private WorldTile GenerateTileFromNeighbourWeights(Hex hex)
     {
         // Get the six neighbours
@@ -237,7 +284,7 @@ public class GenerateTilesAtHexStateNode : StateNode
     
     private Dictionary<WorldTile, int> GetNeighbourWeights(Hex hex)
     {
-        List<WorldTile> neighbours = GetTilesInRange(hex, 1);
+        List<WorldTile> neighbours = FindOrGenerateTilesInRange(hex, 1);
         
         Dictionary<WorldTile, int> neighbourWeights = new Dictionary<WorldTile, int>();
         foreach (WorldTile neighbour in neighbours)

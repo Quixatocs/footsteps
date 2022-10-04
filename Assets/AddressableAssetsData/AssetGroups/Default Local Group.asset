@@ -177,6 +177,10 @@ MonoBehaviour:
     m_Address: Assets/ScriptableObjects/World/LastInRangeWorldTiles.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 6b88a1362187a894dad8e6312c2939be
+    m_Address: Assets/ScriptableObjects/World/Map/WorldGenerationAlgorithms/RandomWorldGenerationAlgorithm.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6fc6c05852e40f64783f822c55665ad0, type: 2}
   m_SchemaSet:
