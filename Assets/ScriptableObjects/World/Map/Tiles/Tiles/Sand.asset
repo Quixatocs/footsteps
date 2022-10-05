@@ -46,4 +46,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cbe7146832d9b9140b1c089fb16548f7, type: 2}
   interactableSpawnChances:
   - {fileID: 11400000, guid: 90509a0432cdf594687c89142f50ee77, type: 2}
-  tileNeighbourWeight: []
+  tileNeighbourInfos:
+  - tileName: Grass
+    weightMultiplier: 0
+  - tileName: Water
+    weightMultiplier: 0

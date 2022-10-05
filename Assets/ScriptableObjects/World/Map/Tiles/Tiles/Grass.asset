@@ -45,4 +45,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cbe7146832d9b9140b1c089fb16548f7, type: 2}
   interactableSpawnChances:
   - {fileID: 11400000, guid: 3bb30bc7778d6a04a963817ea15f9caf, type: 2}
-  tileNeighbourWeight: []
+  tileNeighbourInfos:
+  - tileName: Sand
+    weightMultiplier: 0
+  - tileName: DeepGrass
+    weightMultiplier: 0

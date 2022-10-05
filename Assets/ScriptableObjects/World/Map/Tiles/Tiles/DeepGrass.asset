@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de8246415dd2f104184744c6ab033c17, type: 3}
-  m_Name: Water
+  m_Name: DeepGrass
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: 6ace5c7f75a18564fb1c2eff196499c7, type: 3}
-  m_Color: {r: 0.1764706, g: 0.26666668, b: 1, a: 1}
+  m_Color: {r: 0.1330949, g: 0.4433962, b: 0.123398006, a: 1}
   m_Transform:
     e00: 1
     e01: 0
@@ -34,17 +34,15 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
   m_ColliderType: 1
-  tileName: Water
-  visibleTint: {r: 0.1764706, g: 0.26666668, b: 1, a: 1}
-  fogTint: {r: 0.06421324, g: 0.09747685, b: 0.3679245, a: 1}
+  tileName: 
+  visibleTint: {r: 0.13333334, g: 0.44313726, b: 0.12156863, a: 1}
+  fogTint: {r: 0.06576802, g: 0.1981132, b: 0.06074226, a: 1}
   costs:
   - {fileID: 11400000, guid: 6abebd98d721a4f44a8afd71005f426d, type: 2}
-  - {fileID: 11400000, guid: c2b3d9cb3868665448874761ef7973f8, type: 2}
   - {fileID: 11400000, guid: 2c12d243a08c2504e906d4a5554a1a17, type: 2}
   harvestables:
-  - {fileID: 11400000, guid: 6b820fe6a77165a41b33fb496cf4b49e, type: 2}
-  interactableSpawnChances:
-  - {fileID: 11400000, guid: d0442c1da0a777545834c5015c7f93f9, type: 2}
+  - {fileID: 11400000, guid: cbe7146832d9b9140b1c089fb16548f7, type: 2}
+  interactableSpawnChances: []
   tileNeighbourInfos:
-  - tileName: Sand
+  - tileName: Grass
     weightMultiplier: 0
