@@ -163,6 +163,8 @@ public class GenerateTilesAtHexStateNode : StateNode
     {
         List<WorldTile> tilesInRange = new List<WorldTile>();
         
+        WorldTile centerWorldTile = (WorldTile)tileMap.GetTile(centerHex);
+        
         for (int q = centerHex.q - range; q <= centerHex.q + range; q++)
         {
             for (int r = centerHex.r - range; r <= centerHex.r + range; r++)
@@ -180,7 +182,7 @@ public class GenerateTilesAtHexStateNode : StateNode
                         List<Hex> newHexPositionNeighbours = newHexPosition.GetNeighbours(range);
                         List<WorldTile> existingNeighbours = GetWorldTiles(newHexPositionNeighbours);
    
-                        newInRangeTile = worldGenerationAlgorithm.GenerateTile(worldObjectManager.WorldTilesReadOnly, existingNeighbours);
+                        newInRangeTile = worldGenerationAlgorithm.GenerateTile(centerWorldTile, worldObjectManager.WorldTilesReadOnly, existingNeighbours);
                     }
 
                     if (newInRangeTile != null)

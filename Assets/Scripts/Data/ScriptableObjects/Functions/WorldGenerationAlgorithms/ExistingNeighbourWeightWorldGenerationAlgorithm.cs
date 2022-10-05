@@ -7,8 +7,11 @@ public class ExistingNeighbourWeightWorldGenerationAlgorithm : WorldGenerationAl
 {
     private const int TESTED_PERCENTAGE = 96;
     private const int CUMULATIVE_PERCENTAGE_START = 4;
-    public override WorldTile GenerateTile(ReadOnlyCollection<WorldTile> allWorldTiles, List<WorldTile> currentTileExistingNeighbours = null)
+    public override WorldTile GenerateTile(WorldTile self, ReadOnlyCollection<WorldTile> allWorldTiles, List<WorldTile> currentTileExistingNeighbours = null)
     {
+        //TODO deal with self is null (pick a random tile)
+        //TODO decide whether we want to use self instead of random picking
+        
         Dictionary<WorldTile, int> neighbourWeights = new Dictionary<WorldTile, int>();
         
         foreach (WorldTile neighbour in currentTileExistingNeighbours)

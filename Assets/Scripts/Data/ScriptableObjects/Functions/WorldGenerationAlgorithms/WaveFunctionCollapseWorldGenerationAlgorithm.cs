@@ -5,9 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/WorldGenerationAlgorithm/WaveFunctionCollapse", order = 1)]
 public class WaveFunctionCollapseWorldGenerationAlgorithm : WorldGenerationAlgorithm
 {
-    public override WorldTile GenerateTile(ReadOnlyCollection<WorldTile> allWorldTiles, List<WorldTile> currentTileExistingNeighbours = null)
+    public override WorldTile GenerateTile(WorldTile self, ReadOnlyCollection<WorldTile> allWorldTiles, List<WorldTile> currentTileExistingNeighbours = null)
     {
 
+        //TODO deal with self is null (pick a random tile)
+        //TODO decide whether we want to use self instead of random picking
+        
         List<string> allTileNeighbourConnections = new List<string>();
 
         foreach (WorldTile neighbourWorldTile in currentTileExistingNeighbours)
